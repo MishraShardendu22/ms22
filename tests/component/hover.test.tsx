@@ -87,4 +87,21 @@ describe("Hover Translation Effects", () => {
     expect(className).not.toContain("hover:-translate-y-");
     expect(className).not.toContain("hover:translate-y-");
   });
+
+  it("should not contain levitation (translate-y) effects on hover in ListCard", async () => {
+    const { ListCard } = await import("@/component/Section/ListCard");
+    const element = ListCard({
+      id: "test-skill",
+      href: "/skills/test-skill",
+      theme: "violet",
+      title: "Test Skill",
+      description: "Test description",
+      technologies: ["SKILL.md"],
+    });
+
+    expect(element).toBeDefined();
+    expect(element.props.className).not.toContain("hover:-translate-y-");
+    expect(element.props.className).not.toContain("hover:translate-y-");
+  });
 });
+
