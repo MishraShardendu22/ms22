@@ -1,17 +1,6 @@
 "use client";
 
-import {
-  AlertCircle,
-  AlertTriangle,
-  ArrowUpRight,
-  Check,
-  CheckCircle2,
-  Copy,
-  Info,
-  Loader2,
-  Terminal,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, Check, Copy, Loader2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { AgentSkill } from "@/lib/agentSkills";
 
@@ -165,28 +154,24 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
         }
         i = j - 1;
 
-        let alertStyles = "bg-blue-500/10 border-blue-500/30 text-blue-300";
-        let AlertIcon = Info;
+        let alertBorder = "border-l-blue-500 bg-blue-500/10 text-blue-300";
         if (alertType === "IMPORTANT") {
-          alertStyles = "bg-violet-500/10 border-violet-500/30 text-violet-300";
-          AlertIcon = CheckCircle2;
+          alertBorder = "border-l-violet-500 bg-violet-500/10 text-violet-300";
         } else if (alertType === "WARNING" || alertType === "CAUTION") {
-          alertStyles = "bg-amber-500/10 border-amber-500/30 text-amber-300";
-          AlertIcon = AlertTriangle;
+          alertBorder = "border-l-amber-500 bg-amber-500/10 text-amber-300";
         }
 
         elements.push(
           <div
             key={`alert-${keyIndex++}`}
-            className={`my-4 p-4 rounded-xl border flex items-start gap-3 ${alertStyles}`}
+            className={`my-4 p-4 rounded-r-xl border-l-4 border border-y-0 border-r-0 ${alertBorder}`}
           >
-            <AlertIcon className="w-5 h-5 shrink-0 mt-0.5" />
-            <div className="text-xs sm:text-sm leading-relaxed space-y-1">
-              <span className="font-bold tracking-wide uppercase text-[11px]">
-                {alertType}
-              </span>
-              <p className="text-gray-200">{alertContent.join(" ")}</p>
-            </div>
+            <span className="font-bold tracking-wider uppercase text-[11px] block mb-1">
+              {alertType}
+            </span>
+            <p className="text-gray-200 text-xs sm:text-sm leading-relaxed">
+              {alertContent.join(" ")}
+            </p>
           </div>,
         );
         continue;
@@ -290,27 +275,24 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
       onClick={(e) => e.target === e.currentTarget && onClose()}
       onKeyDown={(e) => e.key === "Escape" && onClose()}
     >
-      <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-gray-900 border border-gray-800 rounded-3xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
         {/* Modal Top Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800/80 bg-gray-950/60 backdrop-blur-md">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0">
-              <Terminal className="w-4 h-4 text-violet-400" />
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <h2
+                id="skill-modal-title"
+                className="text-base sm:text-lg font-mono font-bold text-white truncate"
+              >
+                {skill.name}
+              </h2>
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 shrink-0">
+                SKILL.md
+              </span>
             </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <h2
-                  id="skill-modal-title"
-                  className="text-base sm:text-lg font-mono font-bold text-white truncate"
-                >
-                  {skill.name}
-                </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 shrink-0">
-                  SKILL.md
-                </span>
-              </div>
-              <p className="text-xs text-gray-400 truncate">{skill.category}</p>
-            </div>
+            <p className="text-xs text-gray-400 truncate mt-0.5">
+              {skill.category}
+            </p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -318,7 +300,7 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
               href={skill.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold border border-gray-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold border border-gray-700 transition-colors"
               title="View on GitHub"
             >
               <span>GitHub</span>
@@ -327,7 +309,7 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-xl bg-gray-800/50 hover:bg-gray-800 text-gray-400 hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg bg-gray-800/50 hover:bg-gray-800 text-gray-400 hover:text-white transition-colors cursor-pointer"
               title="Close modal"
               aria-label="Close modal"
             >
@@ -337,11 +319,10 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
         </div>
 
         {/* CLI Quick Action Banner */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 px-6 py-2.5 bg-violet-950/20 border-b border-violet-900/30 text-xs">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 px-6 py-2.5 bg-gray-950/50 border-b border-gray-800/80 text-xs">
           <div className="flex items-center gap-2 text-violet-300">
-            <Terminal className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-gray-400">Sync into any local repo:</span>
-            <code className="font-mono bg-gray-950/80 px-2 py-0.5 rounded text-violet-300 border border-violet-900/40">
+            <span className="text-gray-400">Run via CLI:</span>
+            <code className="font-mono bg-gray-950 px-2 py-0.5 rounded text-violet-300 border border-violet-900/40 text-xs">
               {cliPullCommand}
             </code>
           </div>
@@ -377,8 +358,13 @@ export function SkillDetailModal({ skill, onClose }: SkillDetailModalProps) {
             </article>
           ) : (
             <div className="text-center py-12 text-gray-400">
-              <AlertCircle className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-              <p className="text-sm">Unable to load runbook markdown.</p>
+              <p className="text-sm font-medium text-gray-300">
+                Unable to load runbook markdown
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Please check your network connection or view the source
+                repository
+              </p>
               <a
                 href={skill.githubUrl}
                 target="_blank"

@@ -26,13 +26,14 @@ export default function SkillsCliLayout({
 }) {
   return (
     <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
-      {/* Ambient background glows */}
+      {/* Subtle Background matching portfolio */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 -left-10 w-96 h-96 bg-violet-500/10 rounded-full mix-blend-screen filter blur-3xl" />
-        <div className="absolute top-1/3 -right-10 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl" />
-        <div className="absolute bottom-10 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl" />
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-violet-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-teal-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
       </div>
-      <div className="relative z-10">{children}</div>
+      <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
+        {children}
+      </div>
     </main>
   );
 }
