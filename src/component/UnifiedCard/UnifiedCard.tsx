@@ -185,11 +185,11 @@ export const UnifiedCard = ({
             {href && (
               <Link
                 href={href}
-                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md border ${colors.certificateBorder} transition-all duration-200 shrink-0 relative z-10 self-end ml-auto hover:scale-105`}
+                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md border ${colors.certificateBorder} transition-all duration-200 shrink-0 relative z-10 self-end ml-auto`}
                 aria-label={`View details for ${title}`}
               >
                 <span>View</span>
-                <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
               </Link>
             )}
           </div>

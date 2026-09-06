@@ -236,6 +236,26 @@ export const FALLBACK_SKILLS: AgentSkill[] = [
     rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/polyglot-microservice-architecture/SKILL.md`,
     githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/polyglot-microservice-architecture`,
   },
+
+  // 7. UI Design & Engineering Standards
+  {
+    name: "ui-rules",
+    category: "UI Design & Engineering Standards",
+    description:
+      "Strict frontend UI invariants: bans hover levitation/translate-y, eliminates AI aesthetic bloat, and enforces grounded design tokens.",
+    link: ".agents/skills/ui-rules/SKILL.md",
+    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/ui-rules/SKILL.md`,
+    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/ui-rules`,
+  },
+  {
+    name: "meridian-design-system",
+    category: "UI Design & Engineering Standards",
+    description:
+      "Canonical reference and token guidelines for the Meridian Claude Design System across the mishrashardendu22 product ecosystem.",
+    link: ".agents/skills/meridian-design-system/SKILL.md",
+    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/meridian-design-system/SKILL.md`,
+    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/meridian-design-system`,
+  },
 ];
 
 export function groupSkillsByCategory(

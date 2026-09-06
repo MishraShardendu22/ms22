@@ -6,8 +6,8 @@ import {
 } from "@/lib/agentSkills";
 
 describe("agentSkills utility", () => {
-  it("contains all 20 expected fallback skills", () => {
-    expect(FALLBACK_SKILLS.length).toBe(20);
+  it("contains all 22 expected fallback skills", () => {
+    expect(FALLBACK_SKILLS.length).toBe(22);
     const names = FALLBACK_SKILLS.map((s) => s.name);
     expect(names).toContain("docker-first-architecture");
     expect(names).toContain("git-branch-management");
@@ -15,11 +15,13 @@ describe("agentSkills utility", () => {
     expect(names).toContain("professional-communication-standard");
     expect(names).toContain("modern-toolchain-standard");
     expect(names).toContain("polyglot-microservice-architecture");
+    expect(names).toContain("ui-rules");
+    expect(names).toContain("meridian-design-system");
   });
 
   it("groups skills into categories correctly", () => {
     const grouped = groupSkillsByCategory(FALLBACK_SKILLS);
-    expect(grouped.length).toBe(6);
+    expect(grouped.length).toBe(7);
 
     const categoryNames = grouped.map((g) => g.name);
     expect(categoryNames).toContain("Communication Standards & Core Protocols");
@@ -28,6 +30,7 @@ describe("agentSkills utility", () => {
     expect(categoryNames).toContain("DevOps, Tooling & CI/CD Pipelines");
     expect(categoryNames).toContain("Code Quality, Testing & Simplification");
     expect(categoryNames).toContain("System Architecture & SaaS Systems");
+    expect(categoryNames).toContain("UI Design & Engineering Standards");
 
     for (const cat of grouped) {
       expect(cat.skills.length).toBeGreaterThan(0);
