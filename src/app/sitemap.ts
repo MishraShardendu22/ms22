@@ -56,6 +56,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   addRoute("/experiences", "monthly", 0.8);
   addRoute("/certificates", "monthly", 0.7);
   addRoute("/volunteer", "monthly", 0.7);
+  addRoute("/skills", "weekly", 0.9);
+  addRoute("/skills/cli", "monthly", 0.8);
   addRoute("/links", "monthly", 0.9);
   addRoute("/contact", "yearly", 0.6);
   addRoute("/feed.xml", "monthly", 0.3);
