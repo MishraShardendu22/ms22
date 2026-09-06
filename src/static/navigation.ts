@@ -1,5 +1,6 @@
 import {
   Award,
+  Bot,
   Briefcase,
   Clock,
   FileText,
@@ -25,6 +26,7 @@ export const NAV_ITEMS: NavItem[] = [
   { name: "Experience", href: "/experiences", icon: Briefcase },
   { name: "Volunteer", href: "/volunteer", icon: Heart },
   { name: "Certifications", href: "/certificates", icon: Award },
+  { name: "Agent Skills", href: "/skills", icon: Bot },
   { name: "My Socials", href: "/links", icon: LinkIcon },
   { name: "Contact", href: "/#contact", icon: Mail },
   {

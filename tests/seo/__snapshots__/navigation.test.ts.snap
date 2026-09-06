@@ -59,6 +59,14 @@ exports[`navigation integrity > keeps navigation links stable 1`] = `
     "name": "Certifications",
   },
   {
+    "href": "/skills",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Agent Skills",
+  },
+  {
     "href": "/links",
     "icon": {
       "$$typeof": Symbol(react.forward_ref),
