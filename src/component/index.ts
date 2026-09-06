@@ -19,7 +19,7 @@ export {
   TwitterXIcon,
   YouTubeIcon,
 } from "./Icons";
-export { LinksPageDesktop, LinksPageMobile } from "./Links";
+export { LinksClientView, LinksPageDesktop, LinksPageMobile } from "./Links";
 export { LoadingStateLight } from "./Loading";
 export { PaginationControls, type PaginationTheme } from "./Pagination";
 export {
