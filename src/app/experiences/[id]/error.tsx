@@ -10,7 +10,7 @@ export default function ExperienceDetailError({
   reset: () => void;
 }) {
   return (
-    <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
+    <main className="flex-1 min-h-screen bg-[#0e0c0a] relative overflow-hidden">
       <ErrorState
         title="Failed to load experience"
         message={

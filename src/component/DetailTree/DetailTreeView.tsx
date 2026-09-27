@@ -29,7 +29,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
           <Link href={data.backLink.href}>
             <button
               type="button"
-              className={`flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-900/60 border border-gray-700/50 text-gray-400 rounded-md ${colors.hover} ${colors.accent} transition-all`}
+              className={`flex items-center gap-2 px-3 py-1.5 text-sm bg-[#1e1a16] border border-[#2f2923] text-[#8e8374] rounded-md ${colors.hover} ${colors.accent} transition-all`}
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="hidden sm:inline">{data.backLink.label}</span>
@@ -39,7 +39,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
           {/* Title Block */}
           <div className="flex items-center gap-3 flex-1 min-w-0">
             {data.logo && (
-              <div className="w-8 h-8 rounded-md bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
+              <div className="w-8 h-8 rounded-md bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden shrink-0">
                 <Image
                   src={data.logo}
                   alt={data.title}
@@ -51,7 +51,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
             )}
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-lg font-semibold text-white truncate">
+                <h1 className="text-lg font-semibold text-[#f3ebdd] truncate">
                   {data.title}
                 </h1>
                 {data.badge && (
@@ -99,11 +99,11 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
       {/* Main Content Area */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel - Tree View */}
-        <main className="flex-1 flex flex-col min-w-0 bg-gray-950">
+        <main className="flex-1 flex flex-col min-w-0 bg-[#0e0c0a]">
           {/* VS Code-style Tab Bar */}
-          <div className="shrink-0 flex items-center px-3 h-9 bg-gray-900/60 border-b border-gray-800/50">
+          <div className="shrink-0 flex items-center px-3 h-9 bg-[#161311] border-b border-[#2f2923]">
             <div
-              className={`flex items-center gap-2 px-3 py-1 text-sm ${colors.accent} bg-gray-950 border-t-2 ${colors.border} rounded-t-sm -mb-px`}
+              className={`flex items-center gap-2 px-3 py-1 text-sm ${colors.accent} bg-[#0e0c0a] border-t-2 border-[#d9a55b] rounded-t-sm -mb-px`}
             >
               <span className="w-3 h-3 opacity-60">
                 {data.entityType === "project" && "📁"}
@@ -131,7 +131,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-center h-full text-gray-500">
+              <div className="flex items-center justify-center h-full text-[#8e8374]">
                 No content available
               </div>
             )}
@@ -139,9 +139,9 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
         </main>
 
         {/* Right Panel - Sidebar (Desktop only) */}
-        <aside className="hidden lg:flex w-72 xl:w-80 shrink-0 flex-col border-l border-gray-800/50 bg-gray-900/40">
-          <div className="shrink-0 h-9 flex items-center px-4 border-b border-gray-800/50 bg-gray-900/60">
-            <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">
+        <aside className="hidden lg:flex w-72 xl:w-80 shrink-0 flex-col border-l border-[#2f2923] bg-[#161311]">
+          <div className="shrink-0 h-9 flex items-center px-4 border-b border-[#2f2923] bg-[#1e1a16]/60">
+            <span className="text-xs font-medium text-[#8e8374] uppercase tracking-wide">
               Details
             </span>
           </div>
@@ -150,13 +150,17 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
             {/* Quick Meta */}
             {data.quickMeta && data.quickMeta.length > 0 && (
               <div className="space-y-3">
-                <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <h3 className="text-xs font-medium text-[#8e8374] uppercase tracking-wide">
                   Summary
                 </h3>
                 {data.quickMeta.map((field) => (
                   <div key={field.label} className="flex flex-col gap-0.5">
-                    <span className="text-xs text-gray-500">{field.label}</span>
-                    <span className="text-sm text-gray-200">{field.value}</span>
+                    <span className="text-xs text-[#8e8374]">
+                      {field.label}
+                    </span>
+                    <span className="text-sm text-[#f3ebdd]">
+                      {field.value}
+                    </span>
                   </div>
                 ))}
               </div>

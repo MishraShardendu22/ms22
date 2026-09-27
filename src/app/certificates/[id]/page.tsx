@@ -44,7 +44,7 @@ export default async function CertificateDetailPage({ params }: PageProps) {
   const treeData = normalizeCertificate(certificate, resolvedProjects);
 
   return (
-    <main className="flex-1 min-h-screen bg-gray-950">
+    <main className="flex-1 min-h-screen bg-[#0e0c0a]">
       <DetailTreeView data={treeData} />
     </main>
   );

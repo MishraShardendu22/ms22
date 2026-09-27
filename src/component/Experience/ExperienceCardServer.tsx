@@ -60,8 +60,8 @@ export async function ExperiencesDisplayMobile() {
   if (experiences.length === 0) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-violet-400 mb-4">Experience</h2>
-        <p className="text-zinc-400 text-sm">No experiences available</p>
+        <h2 className="text-2xl font-bold text-[#f3ebdd] mb-4">Experience</h2>
+        <p className="text-[#8e8374] text-sm">No experiences available</p>
       </section>
     );
   }
@@ -69,15 +69,15 @@ export async function ExperiencesDisplayMobile() {
   return (
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-violet-400">Experience</h2>
+        <h2 className="text-2xl font-bold text-[#f3ebdd]">Experience</h2>
         <Link
           href="/experiences"
-          className="text-sm text-zinc-400 hover:text-violet-400 transition-colors"
+          className="text-sm text-[#b9ae9d] hover:text-[#d9a55b] transition-colors"
         >
           View All →
         </Link>
       </div>
-      <p className="text-zinc-400 text-sm mb-4">
+      <p className="text-[#8e8374] text-sm mb-4">
         My professional journey and career milestones
       </p>
       <div className="space-y-4">
@@ -92,7 +92,7 @@ export async function ExperiencesDisplayMobile() {
           return (
             <div
               key={expId}
-              className="group relative bg-zinc-900/80 border border-zinc-800 rounded-xl p-5 hover:border-violet-500/30 transition-colors duration-300"
+              className="group relative bg-[#161311] border border-[#2f2923] rounded-xl p-5 hover:border-[#d9a55b]/40 transition-colors duration-300"
             >
               {expId && (
                 <Link
@@ -112,18 +112,18 @@ export async function ExperiencesDisplayMobile() {
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-zinc-100 line-clamp-1 group-hover:text-violet-400 transition-colors">
+                  <h3 className="text-base font-bold text-[#f3ebdd] line-clamp-1 group-hover:text-[#d9a55b] transition-colors">
                     {latestPosition?.position || "Position"}
                   </h3>
-                  <p className="text-sm text-zinc-400">
+                  <p className="text-sm text-[#b9ae9d]">
                     {experience.company_name}
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 mb-2 font-medium relative z-10">
+              <p className="text-xs text-[#8e8374] mb-2 font-medium relative z-10">
                 {startDate} - {endDate}
               </p>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2 relative z-10">
+              <p className="text-sm text-[#8e8374] leading-relaxed mb-4 line-clamp-2 relative z-10">
                 {experience.description}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
@@ -131,13 +131,13 @@ export async function ExperiencesDisplayMobile() {
                   {experience.technologies?.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded"
+                      className="px-2 py-0.5 text-xs bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded"
                     >
                       {tech}
                     </span>
                   ))}
                   {(experience.technologies?.length ?? 0) > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded">
+                    <span className="px-2 py-0.5 text-xs bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded">
                       +{(experience.technologies?.length ?? 0) - 3}
                     </span>
                   )}
@@ -145,7 +145,7 @@ export async function ExperiencesDisplayMobile() {
                 {expId && (
                   <Link
                     href={`/experiences/${expId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-400 rounded border border-blue-500/30 shrink-0 self-end ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

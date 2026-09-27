@@ -29,16 +29,16 @@ export function ExpandableTreeSection({
 
   return (
     <div
-      className={`border ${colors.border} ${colors.bgHover} rounded-xl bg-gray-900/60 overflow-hidden transition-all`}
+      className={`border ${colors.border} rounded-xl bg-[#161311] overflow-hidden transition-all`}
     >
       {/* Header */}
       <button
         type="button"
         onClick={toggleExpanded}
-        className="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-800/30 transition-colors"
+        className="w-full flex items-center justify-between px-5 py-4 hover:bg-[#1e1a16] transition-colors"
         aria-expanded={isExpanded}
       >
-        <h3 className="text-base font-semibold text-white text-left">
+        <h3 className="text-base font-semibold text-[#f3ebdd] text-left">
           {section.title}
         </h3>
         <div className={`shrink-0 ${colors.text}`}>
@@ -52,7 +52,7 @@ export function ExpandableTreeSection({
 
       {/* Content */}
       {isExpanded && (
-        <div className="px-5 pb-5 border-t border-gray-800/50">
+        <div className="px-5 pb-5 border-t border-[#2f2923]">
           <div className="pt-4">
             <SectionContent content={section.content} theme={theme} />
           </div>
@@ -137,10 +137,10 @@ function SectionContent({ content, theme }: SectionContentProps) {
         <div className="space-y-3">
           {content.fields.map((field) => (
             <div key={field.label} className="flex items-start gap-3">
-              <div className="text-gray-500 text-sm font-medium min-w-25">
+              <div className="text-[#8e8374] text-sm font-medium min-w-25">
                 {field.label}:
               </div>
-              <div className="text-white text-sm flex-1">{field.value}</div>
+              <div className="text-[#f3ebdd] text-sm flex-1">{field.value}</div>
             </div>
           ))}
         </div>
@@ -153,15 +153,15 @@ function SectionContent({ content, theme }: SectionContentProps) {
             <a
               key={project.id}
               href={`/projects/${project.id}`}
-              className={`block p-4 bg-gray-800/50 rounded-lg border border-gray-700/50 hover:border-${theme}-500/40 transition-all`}
+              className="block p-4 bg-[#1e1a16] rounded-lg border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all"
             >
               <h4
-                className={`text-white font-medium ${colors.text} hover:underline`}
+                className={`text-[#f3ebdd] font-medium ${colors.text} hover:underline`}
               >
                 {project.name}
               </h4>
               {project.description && (
-                <p className="text-gray-400 text-sm mt-1 line-clamp-2">
+                <p className="text-[#8e8374] text-sm mt-1 line-clamp-2">
                   {project.description}
                 </p>
               )}
@@ -170,13 +170,13 @@ function SectionContent({ content, theme }: SectionContentProps) {
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={`${project.id}-tech-${tech}`}
-                      className="px-2 py-0.5 text-xs font-medium bg-gray-700/50 text-gray-300 rounded"
+                      className="px-2 py-0.5 text-xs font-medium bg-[#27221c] text-[#b9ae9d] border border-[#2f2923] rounded"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="px-2 py-0.5 text-xs font-medium bg-gray-700/50 text-gray-400 rounded">
+                    <span className="px-2 py-0.5 text-xs font-medium bg-[#27221c] text-[#8e8374] border border-[#2f2923] rounded">
                       +{project.technologies.length - 4} more
                     </span>
                   )}
@@ -193,7 +193,7 @@ function SectionContent({ content, theme }: SectionContentProps) {
           {content.urls.map((url) => (
             <div
               key={url}
-              className="relative aspect-video rounded-lg overflow-hidden bg-gray-800/50 border border-gray-700/50"
+              className="relative aspect-video rounded-lg overflow-hidden bg-[#1e1a16] border border-[#2f2923]"
             >
               <Image
                 src={url}

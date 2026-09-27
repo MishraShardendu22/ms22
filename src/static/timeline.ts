@@ -14,25 +14,25 @@ export const MONTH_NAMES = [
 ] as const;
 
 export const WORK_COLORS = [
-  "#06b6d4",
-  "#3b82f6",
-  "#8b5cf6",
-  "#0ea5e9",
-  "#2563eb",
-  "#6366f1",
-  "#0891b2",
-  "#1d4ed8",
+  "#d9a55b",
+  "#e6b56c",
+  "#c59146",
+  "#f3ebdd",
+  "#e8893f",
+  "#b8822e",
+  "#a05a3c",
+  "#dfaa6b",
 ] as const;
 
 export const VOLUNTEER_COLORS = [
-  "#10b981",
-  "#059669",
-  "#14b8a6",
-  "#0d9488",
-  "#06b6d4",
-  "#0891b2",
-  "#047857",
-  "#0f766e",
+  "#4caf7d",
+  "#62c48f",
+  "#3d9465",
+  "#82c99b",
+  "#d9a55b",
+  "#b9ae9d",
+  "#25784c",
+  "#5bb887",
 ] as const;
 
 export const MOBILE_QUERY = "(max-width: 767px)";

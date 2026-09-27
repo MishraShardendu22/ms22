@@ -44,7 +44,7 @@ export const ExperienceCard = ({
         aria-label={`Experience at ${exp.name}`}
       >
         <div
-          className="absolute -left-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-950 shadow-lg"
+          className="absolute -left-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-[#0e0c0a] shadow-lg"
           style={{
             backgroundColor: companyColor,
             boxShadow: `0 0 10px ${companyColor}80`,
@@ -53,7 +53,7 @@ export const ExperienceCard = ({
 
         <div
           className={`
-            absolute -right-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-950 shadow-lg
+            absolute -right-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-[#0e0c0a] shadow-lg
             ${!exp.end_date ? "animate-pulse" : ""}
           `}
           style={{
@@ -81,7 +81,7 @@ export const ExperienceCard = ({
       >
         <div
           className={`
-            w-14 h-14 rounded-xl bg-linear-to-br from-gray-900 to-gray-950 
+            w-14 h-14 rounded-xl bg-[#161311] 
             flex items-center justify-center cursor-pointer border-2
             transition-transform duration-200 shadow-lg
             ${isHovered ? "scale-125" : "hover:scale-105"}
@@ -111,7 +111,7 @@ export const ExperienceCard = ({
         <div
           className={`
             absolute top-16 left-1/2 -translate-x-1/2 
-            px-4 py-3 bg-gray-900/98
+            px-4 py-3 bg-[#161311]
             border rounded-xl shadow-xl text-xs font-medium whitespace-nowrap
             transition-opacity duration-150
             ${isHovered ? "opacity-100" : "opacity-0 pointer-events-none"}
@@ -122,13 +122,13 @@ export const ExperienceCard = ({
             zIndex: 1000,
           }}
         >
-          <div className="font-bold text-white">{exp.name}</div>
-          <div className="text-xs text-gray-400 mt-1">{exp.position}</div>
+          <div className="font-bold text-[#f3ebdd]">{exp.name}</div>
+          <div className="text-xs text-[#b9ae9d] mt-1">{exp.position}</div>
 
           <div
             className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45"
             style={{
-              background: "linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)",
+              background: "#161311",
               borderLeft: `1px solid ${companyColor}`,
               borderTop: `1px solid ${companyColor}`,
             }}
@@ -137,7 +137,7 @@ export const ExperienceCard = ({
       </button>
 
       <div
-        className="absolute text-xs text-gray-500 text-center font-medium pointer-events-none my-6"
+        className="absolute text-xs text-[#8e8374] text-center font-medium pointer-events-none my-6"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
@@ -148,7 +148,7 @@ export const ExperienceCard = ({
           month: "short",
           year: "numeric",
         })}{" "}
-        <span className="text-gray-600">→</span>{" "}
+        <span className="text-[#8e8374]">→</span>{" "}
         {exp.end_date ? (
           exp.endMonth.toLocaleDateString("en-US", {
             month: "short",
@@ -156,7 +156,7 @@ export const ExperienceCard = ({
           })
         ) : (
           <span
-            className={`${exp.type === "work" ? "text-violet-400" : "text-purple-400"} font-bold`}
+            className={`${exp.type === "work" ? "text-[#d9a55b]" : "text-[#4caf7d]"} font-bold`}
           >
             Present
           </span>

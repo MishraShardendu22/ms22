@@ -24,15 +24,15 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
         <div
           className={`w-4 h-4 rounded-full border-2 shadow-lg z-10 transition-all duration-300 ${
             isCurrentMonth
-              ? "bg-violet-400 border-violet-300 animate-pulse ring-4 ring-violet-400/30 scale-125"
+              ? "bg-[#d9a55b] border-[#e6b56c] animate-pulse ring-4 ring-[#d9a55b]/30 scale-125"
               : month.isYearStart
-                ? "bg-blue-400 border-blue-300 ring-2 ring-blue-400/20"
-                : "bg-purple-400 border-purple-300"
+                ? "bg-[#f3ebdd] border-[#d9a55b] ring-2 ring-[#d9a55b]/20"
+                : "bg-[#2f2923] border-[#413930]"
           }`}
         />
         {isCurrentMonth && (
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-30">
-            <div className="px-3 py-1.5 bg-linear-to-r from-violet-500 to-blue-500 text-white text-xs font-bold rounded-lg shadow-lg shadow-violet-500/50">
+            <div className="px-3 py-1.5 bg-[#d9a55b] text-[#0e0c0a] text-xs font-bold rounded-lg shadow-lg shadow-[#d9a55b]/30">
               Current
             </div>
           </div>
@@ -43,16 +43,16 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
         <div
           className={`text-xs sm:text-sm font-bold transition-all duration-300 px-2 py-1 rounded-md ${
             isCurrentMonth
-              ? "text-violet-300 scale-110 bg-violet-500/20 shadow-lg shadow-violet-500/30"
+              ? "text-[#d9a55b] scale-110 bg-[#d9a55b]/20 shadow-lg shadow-[#d9a55b]/20"
               : month.isYearStart
-                ? "text-blue-300 bg-blue-500/20 shadow-md shadow-blue-500/20"
-                : "text-purple-300 bg-purple-500/10"
+                ? "text-[#f3ebdd] bg-[#1e1a16] border border-[#2f2923]"
+                : "text-[#8e8374]"
           }`}
         >
           {month.monthName}
         </div>
         {month.isYearStart && (
-          <div className="text-xs text-gray-200 font-bold mt-1 bg-gray-800/50 px-2 py-0.5 rounded">
+          <div className="text-xs text-[#d9a55b] font-bold mt-1 bg-[#1e1a16] border border-[#2f2923] px-2 py-0.5 rounded">
             {month.year}
           </div>
         )}

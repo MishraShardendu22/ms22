@@ -24,27 +24,27 @@ const RepoCard = ({
       href={repoUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-4 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-violet-500/40 transition-all duration-200 group"
+      className="p-4 bg-[#1e1a16] rounded-lg border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200 group"
     >
       <div className="flex items-start justify-between mb-2">
-        <h4 className="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors line-clamp-1">
+        <h4 className="text-sm font-semibold text-[#f3ebdd] group-hover:text-[#d9a55b] transition-colors line-clamp-1">
           {repo.name}
         </h4>
-        <span className="text-xs text-gray-500">#{index + 1}</span>
+        <span className="text-xs text-[#8e8374]">#{index + 1}</span>
       </div>
       {repo.description && (
-        <p className="text-xs text-gray-400 mb-3 line-clamp-2">
+        <p className="text-xs text-[#8e8374] mb-3 line-clamp-2">
           {repo.description}
         </p>
       )}
-      <div className="flex items-center gap-4 text-xs text-gray-500">
+      <div className="flex items-center gap-4 text-xs text-[#8e8374]">
         <div className="flex items-center gap-1">
-          <Star className="w-3 h-3" />
+          <Star className="w-3 h-3 text-[#d9a55b]" />
           <span>{stars}</span>
         </div>
         {repo.language && (
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 rounded-full bg-violet-400" />
+            <div className="w-2 h-2 rounded-full bg-[#d9a55b]" />
             <span>{repo.language}</span>
           </div>
         )}
@@ -72,14 +72,14 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   }
 
   return (
-    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 hover:border-[#d9a55b]/40 transition-all duration-300">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-          <TrendingUp className="w-5 h-5 text-green-400" />
+        <div className="p-3 bg-[#4caf7d]/10 rounded-lg border border-[#4caf7d]/30">
+          <TrendingUp className="w-5 h-5 text-[#4caf7d]" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-white">Top Repositories</h3>
-          <p className="text-xs text-gray-400">Most Popular Projects</p>
+          <h3 className="text-lg font-bold text-[#f3ebdd]">Top Repositories</h3>
+          <p className="text-xs text-[#8e8374]">Most Popular Projects</p>
         </div>
       </div>
 

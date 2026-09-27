@@ -136,7 +136,7 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
             href={payload.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block relative aspect-video max-w-md rounded-lg overflow-hidden bg-gray-800/50 border border-gray-700/50 hover:border-gray-600 transition-colors group"
+            className="block relative aspect-video max-w-md rounded-lg overflow-hidden bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors group"
           >
             <Image
               src={payload.url}
@@ -145,8 +145,8 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
               fill
               sizes="(max-width: 768px) 100vw, 448px"
             />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-              <span className="text-white text-sm font-medium">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+              <span className="text-[#f3ebdd] text-sm font-medium">
                 View Full Image
               </span>
             </div>
@@ -163,7 +163,7 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block relative aspect-video rounded-lg overflow-hidden bg-gray-800/50 border border-gray-700/50 hover:border-gray-600 transition-colors group"
+              className="block relative aspect-video rounded-lg overflow-hidden bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors group"
             >
               <Image
                 src={url}
@@ -172,8 +172,8 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                <span className="text-white text-xs font-medium">View</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                <span className="text-[#f3ebdd] text-xs font-medium">View</span>
               </div>
             </a>
           ))}
@@ -184,13 +184,13 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
       return (
         <Link
           href={`/projects/${payload.id}`}
-          className={`block pl-6 p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-gray-600/50 transition-colors`}
+          className="block pl-6 p-3 bg-[#1e1a16] rounded-lg border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors"
         >
           <h4 className={`text-sm font-medium ${colors.text}`}>
             {payload.name}
           </h4>
           {payload.description && (
-            <p className="text-gray-400 text-xs mt-1 line-clamp-2">
+            <p className="text-[#8e8374] text-xs mt-1 line-clamp-2">
               {payload.description}
             </p>
           )}
@@ -299,7 +299,7 @@ function TreeRow({
         className={`
           group flex items-center min-h-7 cursor-pointer select-none
           ${colors.bgHover} transition-colors
-          ${isFocused ? "bg-gray-800/50 ring-1 ring-gray-600" : ""}
+          ${isFocused ? "bg-[#1e1a16] ring-1 ring-[#d9a55b]/40" : ""}
         `}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -550,18 +550,18 @@ export function TreeContainer({ nodes, theme }: TreeContainerProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800/50 bg-gray-900/40">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-[#2f2923] bg-[#161311]">
         <button
           type="button"
           onClick={expandAll}
-          className="px-2 py-1 text-xs text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded transition-colors"
+          className="px-2 py-1 text-xs text-[#8e8374] hover:text-[#f3ebdd] hover:bg-[#1e1a16] rounded transition-colors"
         >
           Expand All
         </button>
         <button
           type="button"
           onClick={collapseAll}
-          className="px-2 py-1 text-xs text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded transition-colors"
+          className="px-2 py-1 text-xs text-[#8e8374] hover:text-[#f3ebdd] hover:bg-[#1e1a16] rounded transition-colors"
         >
           Collapse All
         </button>

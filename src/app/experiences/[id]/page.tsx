@@ -25,7 +25,7 @@ export default async function ExperienceDetailPage({ params }: PageProps) {
   const treeData = normalizeExperience(response.data);
 
   return (
-    <main className="flex-1 min-h-screen bg-gray-950">
+    <main className="flex-1 min-h-screen bg-[#0e0c0a]">
       <DetailTreeView data={treeData} />
     </main>
   );

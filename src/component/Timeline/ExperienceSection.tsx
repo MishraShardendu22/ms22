@@ -24,10 +24,10 @@ export const ExperienceSection = ({
   const isWork = type === "work";
   const config = {
     title: isWork ? "Work Experience" : "Volunteer Experience",
-    titleColor: isWork ? "text-violet-400" : "text-purple-400",
+    titleColor: isWork ? "text-[#f3ebdd]" : "text-[#4caf7d]",
     lineGradient: isWork
-      ? "from-violet-500/20 via-blue-500/20 to-transparent"
-      : "from-purple-500/20 via-pink-500/20 to-transparent",
+      ? "from-[#d9a55b]/30 via-[#e6b56c]/20 to-transparent"
+      : "from-[#4caf7d]/30 via-[#62c48f]/20 to-transparent",
     spacing: isWork ? "mb-16" : "mb-8",
   };
 

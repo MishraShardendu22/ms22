@@ -138,9 +138,9 @@ export function SearchModalContent() {
       onClick={(e) => e.target === e.currentTarget && onClose()}
       onKeyDown={onKeyDown}
     >
-      <div className="h-[100dvh] w-full overflow-hidden border border-gray-700/80 bg-gray-900/98 shadow-2xl sm:mx-4 sm:h-auto sm:max-w-3xl sm:rounded-2xl sm:border sm:backdrop-blur-xl">
-        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 sm:px-5 py-3 border-b border-gray-800/70">
-          <span className="text-xs text-gray-500 font-medium shrink-0">
+      <div className="h-[100dvh] w-full overflow-hidden border border-[#2f2923] bg-[#161311] shadow-2xl sm:mx-4 sm:h-auto sm:max-w-3xl sm:rounded-2xl sm:border sm:backdrop-blur-xl">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 sm:px-5 py-3 border-b border-[#2f2923]">
+          <span className="text-xs text-[#8e8374] font-medium shrink-0">
             Filter:
           </span>
           <div className="flex flex-wrap gap-2 w-full">
@@ -153,7 +153,7 @@ export function SearchModalContent() {
                   key={type}
                   type="button"
                   onClick={() => toggleFilter(type)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium shrink-0 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-gray-800/60 text-gray-400 border border-gray-700/50 hover:bg-gray-800"}`}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium shrink-0 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#27221c] hover:text-[#f3ebdd]"}`}
                   style={{ minWidth: "90px" }}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -168,7 +168,7 @@ export function SearchModalContent() {
                   data.current.filter = undefined;
                   search(d.query, undefined);
                 }}
-                className="flex items-center gap-1 px-2 py-1.5 rounded-full text-xs font-medium bg-gray-800/60 text-gray-400 border border-gray-700/50 hover:bg-red-500/20 hover:text-red-400 shrink-0"
+                className="flex items-center gap-1 px-2 py-1.5 rounded-full text-xs font-medium bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#e06060]/20 hover:text-[#e06060] shrink-0"
               >
                 <X className="w-3 h-3" />
                 Clear
@@ -178,8 +178,8 @@ export function SearchModalContent() {
         </div>
 
         {/* Input */}
-        <div className="relative flex items-center border-b border-gray-700/70">
-          <Search className="absolute left-3 sm:left-5 w-5 h-5 text-gray-400" />
+        <div className="relative flex items-center border-b border-[#2f2923]">
+          <Search className="absolute left-3 sm:left-5 w-5 h-5 text-[#8e8374]" />
           <input
             ref={inputRef}
             type="text"
@@ -189,21 +189,21 @@ export function SearchModalContent() {
                 ? `Search ${FILTER_CONFIG[activeFilter].label.toLowerCase()}...`
                 : "Search everything..."
             }
-            className="w-full py-4 sm:py-5 pl-10 sm:pl-14 pr-10 sm:pr-14 bg-transparent text-white text-base sm:text-lg placeholder:text-gray-500 focus:outline-none"
+            className="w-full py-4 sm:py-5 pl-10 sm:pl-14 pr-10 sm:pr-14 bg-transparent text-[#f3ebdd] text-base sm:text-lg placeholder:text-[#8e8374] focus:outline-none"
             autoComplete="off"
           />
           {d.loading ? (
-            <Loader2 className="absolute right-3 sm:right-5 w-5 h-5 text-gray-400 animate-spin" />
+            <Loader2 className="absolute right-3 sm:right-5 w-5 h-5 text-[#d9a55b] animate-spin" />
           ) : d.query ? (
             <button
               type="button"
               onClick={clearInput}
-              className="absolute right-3 sm:right-5 p-1.5 text-gray-400 hover:text-gray-200 hover:bg-gray-800 rounded-md"
+              className="absolute right-3 sm:right-5 p-1.5 text-[#8e8374] hover:text-[#f3ebdd] hover:bg-[#1e1a16] rounded-md"
             >
               <X className="w-4 h-4" />
             </button>
           ) : (
-            <kbd className="absolute right-3 sm:right-5 px-2.5 py-1 text-xs text-gray-400 bg-gray-800/70 rounded-md border border-gray-700/70 font-medium">
+            <kbd className="absolute right-3 sm:right-5 px-2.5 py-1 text-xs text-[#8e8374] bg-[#1e1a16] rounded-md border border-[#2f2923] font-medium">
               ESC
             </kbd>
           )}
@@ -226,14 +226,14 @@ export function SearchModalContent() {
                         d.selected = i;
                         forceRender();
                       }}
-                      className={`flex flex-col sm:flex-row items-start gap-2 sm:gap-4 px-3 sm:px-5 py-3 sm:py-4 ${sel ? "bg-gray-800/90 border-l-2 border-violet-500" : "hover:bg-gray-800/60 border-l-2 border-transparent"}`}
+                      className={`flex flex-col sm:flex-row items-start gap-2 sm:gap-4 px-3 sm:px-5 py-3 sm:py-4 ${sel ? "bg-[#1e1a16] border-l-2 border-[#d9a55b]" : "hover:bg-[#1e1a16]/60 border-l-2 border-transparent"}`}
                     >
                       <div className={`shrink-0 p-2 rounded-xl ${c.bgColor}`}>
                         <Icon className={`w-4 h-4 ${c.color}`} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-                          <span className="font-semibold text-white truncate">
+                          <span className="font-semibold text-[#f3ebdd] truncate">
                             {r.title}
                           </span>
                           <span
@@ -243,11 +243,11 @@ export function SearchModalContent() {
                           </span>
                         </div>
                         {r.subtitle && (
-                          <p className="text-sm text-gray-300 truncate mt-0.5">
+                          <p className="text-sm text-[#b9ae9d] truncate mt-0.5">
                             {r.subtitle}
                           </p>
                         )}
-                        <p className="text-sm text-gray-500 line-clamp-1 mt-1">
+                        <p className="text-sm text-[#8e8374] line-clamp-1 mt-1">
                           {r.description}
                         </p>
                         {r.skills?.length ? (
@@ -255,13 +255,13 @@ export function SearchModalContent() {
                             {r.skills.slice(0, 4).map((s) => (
                               <span
                                 key={s}
-                                className="text-xs px-2 py-0.5 bg-gray-800/80 text-gray-300 rounded-md border border-gray-700/50"
+                                className="text-xs px-2 py-0.5 bg-[#1e1a16] text-[#b9ae9d] rounded-md border border-[#2f2923]"
                               >
                                 {s}
                               </span>
                             ))}
                             {r.skills.length > 4 && (
-                              <span className="text-xs text-gray-500 font-medium">
+                              <span className="text-xs text-[#8e8374] font-medium">
                                 +{r.skills.length - 4}
                               </span>
                             )}
@@ -314,11 +314,11 @@ export function SearchModalContent() {
                       key={type}
                       type="button"
                       onClick={() => toggleFilter(type)}
-                      className={`flex items-center gap-3 p-4 rounded-xl border ${active ? `${c.bgColor} ${c.borderColor}` : "bg-gray-800/50 border-gray-700/50 hover:border-gray-600"}`}
+                      className={`flex items-center gap-3 p-4 rounded-xl border ${active ? `${c.bgColor} ${c.borderColor}` : "bg-[#1e1a16] border-[#2f2923] hover:border-[#d9a55b]/40"}`}
                     >
                       <Icon className={`w-5 h-5 ${c.color}`} />
                       <span
-                        className={`text-sm font-medium ${active ? c.color : "text-gray-200"}`}
+                        className={`text-sm font-medium ${active ? c.color : "text-[#f3ebdd]"}`}
                       >
                         {c.label}
                       </span>
@@ -331,22 +331,22 @@ export function SearchModalContent() {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between px-3 sm:px-5 py-3 border-t border-gray-700/70 bg-gray-900/70 gap-2">
-          <div className="flex items-center gap-4 text-xs text-gray-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-3 sm:px-5 py-3 border-t border-[#2f2923] bg-[#161311] gap-2">
+          <div className="flex items-center gap-4 text-xs text-[#8e8374]">
             <span className="flex items-center gap-1.5">
-              <kbd className="px-2 py-1 bg-gray-800/80 rounded-md border border-gray-700/70 font-medium">
+              <kbd className="px-2 py-1 bg-[#1e1a16] rounded-md border border-[#2f2923] font-medium">
                 ↑↓
               </kbd>
               <span className="hidden sm:inline">navigate</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <kbd className="px-2 py-1 bg-gray-800/80 rounded-md border border-gray-700/70 font-medium">
+              <kbd className="px-2 py-1 bg-[#1e1a16] rounded-md border border-[#2f2923] font-medium">
                 ↵
               </kbd>
               <span className="hidden sm:inline">open</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <kbd className="px-2 py-1 bg-gray-800/80 rounded-md border border-gray-700/70 font-medium">
+              <kbd className="px-2 py-1 bg-[#1e1a16] rounded-md border border-[#2f2923] font-medium">
                 esc
               </kbd>
               <span className="hidden sm:inline">close</span>
@@ -387,7 +387,7 @@ export function SearchBar() {
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-gray-700/80 bg-gray-900/95 px-2.5 py-2 shadow-lg sm:flex-nowrap sm:gap-3 sm:px-3">
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[#2f2923] bg-[#161311] px-2.5 py-2 shadow-lg sm:flex-nowrap sm:gap-3 sm:px-3">
         <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto sm:flex-initial sm:overflow-visible sm:gap-2">
           {FILTER_TYPES.map((type) => {
             const c = FILTER_CONFIG[type];
@@ -398,7 +398,7 @@ export function SearchBar() {
                 key={type}
                 type="button"
                 onClick={() => openSearchModal(type)}
-                className={`flex shrink-0 items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-medium sm:px-3 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-gray-800/50 text-gray-400 border border-transparent hover:bg-gray-800"}`}
+                className={`flex shrink-0 items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-medium sm:px-3 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-[#1e1a16] text-[#8e8374] border border-transparent hover:bg-[#27221c] hover:text-[#f3ebdd]"}`}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{c.label}</span>
@@ -406,16 +406,16 @@ export function SearchBar() {
             );
           })}
         </div>
-        <div className="hidden h-6 w-px bg-gray-700/70 sm:block" />
+        <div className="hidden h-6 w-px bg-[#2f2923] sm:block" />
         <button
           type="button"
           onClick={() => openSearchModal(pageFilter)}
-          className="ml-auto flex shrink-0 items-center gap-2 rounded-lg border border-gray-700/70 bg-gray-800/70 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white"
+          className="ml-auto flex shrink-0 items-center gap-2 rounded-lg border border-[#2f2923] bg-[#1e1a16] px-3 py-2 text-[#b9ae9d] hover:bg-[#27221c] hover:text-[#f3ebdd]"
           aria-label="Search"
         >
           <Search className="w-4 h-4" />
           <span className="hidden text-sm font-medium md:inline">Search</span>
-          <kbd className="hidden md:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-gray-900/80 rounded border border-gray-700/70 font-semibold text-gray-400">
+          <kbd className="hidden md:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-[#161311] rounded border border-[#2f2923] font-semibold text-[#8e8374]">
             <Command className="w-2.5 h-2.5" />K
           </kbd>
         </button>
@@ -434,7 +434,7 @@ export function SidebarSearchButton() {
       <button
         type="button"
         onClick={() => openSearchModal(getPageFilter(pathname))}
-        className="group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-violet-400"
+        className="group relative flex items-center justify-center p-3 rounded-xl text-[#8e8374] hover:bg-[#1e1a16] hover:text-[#d9a55b]"
         data-tooltip="Search (⌘K)"
         aria-label="Search"
       >
@@ -456,7 +456,7 @@ export function PageSearch({
       <button
         type="button"
         onClick={() => openSearchModal(defaultFilter)}
-        className="flex items-center gap-2 rounded-xl border border-gray-700/70 bg-gray-800/70 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white sm:px-4"
+        className="flex items-center gap-2 rounded-xl border border-[#2f2923] bg-[#1e1a16] px-3 py-2 text-[#b9ae9d] hover:bg-[#27221c] hover:text-[#f3ebdd] sm:px-4"
         aria-label="Search"
       >
         <Search className="w-4 h-4" />
@@ -464,7 +464,7 @@ export function PageSearch({
         <span className="hidden text-sm font-medium sm:inline">
           Search {defaultFilter ? FILTER_CONFIG[defaultFilter].label : "All"}
         </span>
-        <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-gray-900/80 rounded border border-gray-700/70 font-semibold text-gray-400">
+        <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-[#161311] rounded border border-[#2f2923] font-semibold text-[#8e8374]">
           <Command className="w-2.5 h-2.5" />K
         </kbd>
       </button>

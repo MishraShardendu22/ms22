@@ -22,7 +22,7 @@ export function SectionWrapper({
 
   return (
     <section
-      className={`relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden ${className}`}
+      className={`relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-[#0e0c0a]/50 to-transparent overflow-hidden ${className}`}
     >
       <div className="absolute inset-0 pointer-events-none will-change-auto">
         <div

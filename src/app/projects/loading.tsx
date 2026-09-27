@@ -2,7 +2,7 @@ import { LoadingStateLight } from "@/component/Loading";
 
 export default function ProjectsLoading() {
   return (
-    <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
+    <main className="flex-1 min-h-screen bg-[#0e0c0a] relative overflow-hidden">
       <LoadingStateLight variant="violet" message="Loading projects..." />
     </main>
   );

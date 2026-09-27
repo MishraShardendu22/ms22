@@ -66,8 +66,8 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload?.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 shadow-xl">
-        <p className="text-xs text-gray-400 mb-1">
+      <div className="bg-[#161311] border border-[#2f2923] rounded-lg px-4 py-3 shadow-xl">
+        <p className="text-xs text-[#8e8374] mb-1">
           Week of{" "}
           {new Date(data.week).toLocaleDateString("en-US", {
             month: "short",
@@ -75,13 +75,13 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
           })}
         </p>
         <div className="space-y-1">
-          <p className="text-sm text-violet-400 font-semibold flex items-center gap-2">
+          <p className="text-sm text-[#d9a55b] font-semibold flex items-center gap-2">
             <GitCommit className="w-3 h-3" />
             {data.commits} commits
           </p>
           {data.trend && (
             <p
-              className={`text-xs ${data.trend > 0 ? "text-green-400" : "text-red-400"}`}
+              className={`text-xs ${data.trend > 0 ? "text-[#4caf7d]" : "text-[#e06060]"}`}
             >
               {data.trend > 0 ? "↑" : "↓"} {Math.abs(data.trend)}% vs avg
             </p>
@@ -181,36 +181,38 @@ export const CommitsActivityCard = ({
   ).toFixed(1);
 
   return (
-    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 hover:border-[#d9a55b]/40 transition-all duration-300">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-violet-500/10 rounded-lg border border-violet-500/30">
-          <Activity className="w-5 h-5 text-violet-400" />
+        <div className="p-3 bg-[#d9a55b]/10 rounded-lg border border-[#d9a55b]/30">
+          <Activity className="w-5 h-5 text-[#d9a55b]" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-white">Development Activity</h3>
-          <p className="text-xs text-gray-400">
+          <h3 className="text-lg font-bold text-[#f3ebdd]">
+            Development Activity
+          </h3>
+          <p className="text-xs text-[#8e8374]">
             Commit patterns and trends over time
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
-          <p className="text-xs text-gray-400 mb-1">Total</p>
-          <p className="text-xl font-bold text-white">{totalCommits}</p>
+        <div className="p-3 bg-[#1e1a16] rounded-lg border border-[#2f2923]">
+          <p className="text-xs text-[#8e8374] mb-1">Total</p>
+          <p className="text-xl font-bold text-[#f3ebdd]">{totalCommits}</p>
         </div>
-        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
-          <p className="text-xs text-gray-400 mb-1">Avg/Week</p>
-          <p className="text-xl font-bold text-violet-400">{avgPerWeek}</p>
+        <div className="p-3 bg-[#1e1a16] rounded-lg border border-[#2f2923]">
+          <p className="text-xs text-[#8e8374] mb-1">Avg/Week</p>
+          <p className="text-xl font-bold text-[#d9a55b]">{avgPerWeek}</p>
         </div>
-        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
-          <p className="text-xs text-gray-400 mb-1">Peak Week</p>
-          <p className="text-xl font-bold text-green-400">{peakWeek.commits}</p>
+        <div className="p-3 bg-[#1e1a16] rounded-lg border border-[#2f2923]">
+          <p className="text-xs text-[#8e8374] mb-1">Peak Week</p>
+          <p className="text-xl font-bold text-[#4caf7d]">{peakWeek.commits}</p>
         </div>
-        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
-          <p className="text-xs text-gray-400 mb-1">Recent Trend</p>
+        <div className="p-3 bg-[#1e1a16] rounded-lg border border-[#2f2923]">
+          <p className="text-xs text-[#8e8374] mb-1">Recent Trend</p>
           <p
-            className={`text-xl font-bold ${parseFloat(trendChange) >= 0 ? "text-green-400" : "text-red-400"}`}
+            className={`text-xl font-bold ${parseFloat(trendChange) >= 0 ? "text-[#4caf7d]" : "text-[#e06060]"}`}
           >
             {parseFloat(trendChange) > 0 ? "+" : ""}
             {trendChange}%
@@ -231,22 +233,22 @@ export const CommitsActivityCard = ({
           >
             <defs>
               <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                <stop offset="5%" stopColor="#d9a55b" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#d9a55b" stopOpacity={0} />
               </linearGradient>
             </defs>
 
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="#374151"
-              opacity={0.3}
+              stroke="#2f2923"
+              opacity={0.5}
             />
 
             <XAxis
               dataKey="weekLabel"
-              tick={{ fill: "#9CA3AF", fontSize: 11 }}
-              axisLine={{ stroke: "#374151" }}
-              tickLine={{ stroke: "#374151" }}
+              tick={{ fill: "#8e8374", fontSize: 11 }}
+              axisLine={{ stroke: "#2f2923" }}
+              tickLine={{ stroke: "#2f2923" }}
               interval={Math.floor(enrichedData.length / 8)}
               angle={-45}
               textAnchor="end"
@@ -255,14 +257,14 @@ export const CommitsActivityCard = ({
 
             <YAxis
               yAxisId="left"
-              tick={{ fill: "#9CA3AF", fontSize: 12 }}
-              axisLine={{ stroke: "#374151" }}
-              tickLine={{ stroke: "#374151" }}
+              tick={{ fill: "#8e8374", fontSize: 12 }}
+              axisLine={{ stroke: "#2f2923" }}
+              tickLine={{ stroke: "#2f2923" }}
               label={{
                 value: "Commits",
                 angle: -90,
                 position: "insideLeft",
-                fill: "#9CA3AF",
+                fill: "#8e8374",
                 fontSize: 12,
               }}
             />
@@ -273,7 +275,7 @@ export const CommitsActivityCard = ({
               wrapperStyle={{ paddingTop: "20px" }}
               iconType="circle"
               formatter={(value) => (
-                <span className="text-sm text-gray-300">{value}</span>
+                <span className="text-sm text-[#b9ae9d]">{value}</span>
               )}
             />
 
@@ -289,8 +291,8 @@ export const CommitsActivityCard = ({
             <Bar
               yAxisId="left"
               dataKey="commits"
-              fill="#06b6d4"
-              opacity={0.6}
+              fill="#d9a55b"
+              opacity={0.7}
               radius={[4, 4, 0, 0]}
               name="Weekly Commits"
             />
@@ -299,7 +301,7 @@ export const CommitsActivityCard = ({
               yAxisId="left"
               type="monotone"
               dataKey="movingAvg"
-              stroke="#10b981"
+              stroke="#4caf7d"
               strokeWidth={2}
               dot={false}
               name="4-Week Moving Avg"
@@ -309,15 +311,15 @@ export const CommitsActivityCard = ({
       </div>
 
       <div className="mt-4 flex items-center justify-between text-xs">
-        <p className="text-gray-500">Last 52 weeks</p>
+        <p className="text-[#8e8374]">Last 52 weeks</p>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-violet-500/60"></div>
-            <span className="text-gray-400">Commits</span>
+            <div className="w-3 h-3 rounded-full bg-[#d9a55b]/60"></div>
+            <span className="text-[#8e8374]">Commits</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span className="text-gray-400">Trend</span>
+            <div className="w-3 h-3 rounded-full bg-[#4caf7d]"></div>
+            <span className="text-[#8e8374]">Trend</span>
           </div>
         </div>
       </div>

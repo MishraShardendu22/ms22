@@ -63,7 +63,7 @@ export const UnifiedCard = ({
       }}
     >
       <div
-        className={`relative h-full flex flex-col bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl overflow-hidden transition-colors duration-200 ${colors.border}`}
+        className={`relative h-full flex flex-col bg-linear-to-br from-[#161311] to-[#1e1a16] border border-[#2f2923] rounded-xl overflow-hidden transition-colors duration-200 ${colors.border}`}
       >
         {href && (
           <Link
@@ -81,7 +81,7 @@ export const UnifiedCard = ({
             <div className="flex items-center justify-between gap-2.5 mb-2 pointer-events-auto">
               <div className="flex items-center gap-2.5 min-w-0 flex-1">
                 {logo && (
-                  <div className="w-9 h-9 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden shrink-0">
                     {(logoAlt || subtitle) && (
                       <Image
                         src={logo}
@@ -97,12 +97,12 @@ export const UnifiedCard = ({
                 )}
                 <div className="flex-1 min-w-0">
                   <h3
-                    className={`text-base font-bold text-white line-clamp-1 transition-colors duration-200 ${colors.titleHover}`}
+                    className={`text-base font-bold text-[#f3ebdd] line-clamp-1 transition-colors duration-200 ${colors.titleHover}`}
                   >
                     {title}
                   </h3>
                   {subtitle && (
-                    <div className="flex items-center gap-1.5 text-gray-400 text-xs font-medium">
+                    <div className="flex items-center gap-1.5 text-[#8e8374] text-xs font-medium">
                       {subtitleIcon}
                       <span className="line-clamp-1">{subtitle}</span>
                     </div>
@@ -137,7 +137,7 @@ export const UnifiedCard = ({
             </div>
 
             {(startDate || endDate || extraInfo) && (
-              <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-2 pointer-events-auto">
+              <div className="flex flex-wrap items-center gap-2 text-xs text-[#8e8374] mb-2 pointer-events-auto">
                 {(startDate || endDate) && (
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export const UnifiedCard = ({
             )}
 
             {description && (
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-2.5 line-clamp-2 pointer-events-auto">
+              <p className="text-[#b9ae9d] text-xs sm:text-sm leading-relaxed mb-2.5 line-clamp-2 pointer-events-auto">
                 {description}
               </p>
             )}
@@ -166,7 +166,7 @@ export const UnifiedCard = ({
                   {technologies.slice(0, maxTechDisplay).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50"
+                      className="px-2 py-0.5 font-medium bg-[#1e1a16] text-[#b9ae9d] rounded-md border border-[#2f2923]"
                     >
                       {tech}
                     </span>

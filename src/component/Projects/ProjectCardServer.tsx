@@ -24,7 +24,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_repository}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-violet-500/20 text-zinc-300 hover:text-violet-300 rounded-md border border-zinc-700/60 hover:border-violet-500/40 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
           aria-label="View repository"
         >
           <span>Code</span>
@@ -35,7 +35,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_live_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-indigo-500/20 text-zinc-300 hover:text-indigo-300 rounded-md border border-zinc-700/60 hover:border-indigo-500/40 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
           aria-label="View live project"
         >
           <span>Live</span>
@@ -46,7 +46,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_video}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-violet-500/20 text-zinc-300 hover:text-violet-300 rounded-md border border-zinc-700/60 hover:border-violet-500/40 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
           aria-label="Watch video"
         >
           <span>Demo</span>
@@ -90,8 +90,8 @@ export async function ProjectsDisplayMobile() {
   if (projects.length === 0) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-violet-400 mb-4">Projects</h2>
-        <p className="text-zinc-400 text-sm">No projects available</p>
+        <h2 className="text-2xl font-bold text-[#f3ebdd] mb-4">Projects</h2>
+        <p className="text-[#8e8374] text-sm">No projects available</p>
       </section>
     );
   }
@@ -99,15 +99,15 @@ export async function ProjectsDisplayMobile() {
   return (
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-violet-400">Projects</h2>
+        <h2 className="text-2xl font-bold text-[#f3ebdd]">Projects</h2>
         <Link
           href="/projects"
-          className="text-sm text-zinc-400 hover:text-violet-400 transition-colors"
+          className="text-sm text-[#b9ae9d] hover:text-[#d9a55b] transition-colors"
         >
           View All →
         </Link>
       </div>
-      <p className="text-zinc-400 text-sm mb-4">
+      <p className="text-[#8e8374] text-sm mb-4">
         A showcase of my work and open-source contributions
       </p>
       <div className="space-y-3">
@@ -116,7 +116,7 @@ export async function ProjectsDisplayMobile() {
           return (
             <div
               key={projectId}
-              className="group relative bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 hover:border-violet-500/40 transition-colors duration-200"
+              className="group relative bg-[#161311] border border-[#2f2923] rounded-xl p-4 hover:border-[#d9a55b]/40 transition-colors duration-200"
             >
               {projectId && (
                 <Link
@@ -126,7 +126,7 @@ export async function ProjectsDisplayMobile() {
                 />
               )}
               <div className="flex items-start justify-between gap-2 mb-2 relative z-10">
-                <h3 className="text-base font-bold text-zinc-100 line-clamp-1 group-hover:text-violet-400 transition-colors">
+                <h3 className="text-base font-bold text-[#f3ebdd] line-clamp-1 group-hover:text-[#d9a55b] transition-colors">
                   {project.project_name}
                 </h3>
                 <div className="flex items-center gap-1.5 shrink-0">
@@ -135,7 +135,7 @@ export async function ProjectsDisplayMobile() {
                       href={project.project_repository}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-300 rounded hover:bg-violet-500/20 hover:text-violet-300 transition-colors"
+                      className="px-2 py-0.5 text-xs font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
                     >
                       Code
                     </Link>
@@ -145,14 +145,14 @@ export async function ProjectsDisplayMobile() {
                       href={project.project_live_link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-300 rounded hover:bg-indigo-500/20 hover:text-indigo-300 transition-colors"
+                      className="px-2 py-0.5 text-xs font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
                     >
                       Live
                     </Link>
                   )}
                 </div>
               </div>
-              <p className="text-zinc-400 text-xs leading-relaxed mb-3 line-clamp-2">
+              <p className="text-[#8e8374] text-xs leading-relaxed mb-3 line-clamp-2">
                 {project.small_description || project.description}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
@@ -160,13 +160,13 @@ export async function ProjectsDisplayMobile() {
                   {project.skills.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded"
+                      className="px-2 py-0.5 text-xs bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded"
                     >
                       {skill}
                     </span>
                   ))}
                   {project.skills.length > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded">
+                    <span className="px-2 py-0.5 text-xs bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded">
                       +{project.skills.length - 3}
                     </span>
                   )}
@@ -174,7 +174,7 @@ export async function ProjectsDisplayMobile() {
                 {projectId && (
                   <Link
                     href={`/projects/${projectId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-violet-500/10 text-violet-400 rounded border border-violet-500/30 shrink-0 self-end ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

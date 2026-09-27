@@ -72,11 +72,11 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
       {/* Header matching portfolio standard */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white font-heading">
+          <h1 className="text-2xl font-bold text-[#f3ebdd] font-heading">
             Agent Skills
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
-            <span className="text-violet-400 font-medium">
+          <p className="text-sm text-[#8e8374] mt-1">
+            <span className="text-[#d9a55b] font-medium">
               {filteredSkills.length}
             </span>{" "}
             {filteredSkills.length === 1 ? "skill" : "skills"}
@@ -89,7 +89,7 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
         <div className="flex items-center gap-2.5 flex-wrap">
           <Link
             href="/skills/cli"
-            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-gray-300 hover:text-white transition-all text-xs font-medium"
+            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all text-xs font-medium"
           >
             <span>skills-sync CLI</span>
           </Link>
@@ -97,11 +97,11 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
             href="https://github.com/MishraShardendu22/agent-skills"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-500/10 hover:bg-violet-500/20 border border-violet-500/30 text-violet-300 hover:text-white transition-all text-xs font-medium"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#d9a55b]/10 hover:bg-[#d9a55b]/20 border border-[#d9a55b]/30 text-[#d9a55b] hover:text-[#f3ebdd] transition-all text-xs font-medium"
           >
             <GitHubIcon className="w-3.5 h-3.5" />
             <span>GitHub</span>
-            <ArrowUpRight className="w-3 h-3 text-violet-400" />
+            <ArrowUpRight className="w-3 h-3 text-[#d9a55b]" />
           </a>
         </div>
       </div>
@@ -114,8 +114,8 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
             onClick={() => setSelectedCategory("all")}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === "all"
-                ? "bg-violet-500/20 text-violet-300 border border-violet-500/40"
-                : "bg-gray-900/60 text-gray-400 hover:text-gray-200 border border-gray-800/80 hover:bg-gray-800/50"
+                ? "bg-[#d9a55b]/20 text-[#d9a55b] border border-[#d9a55b]/40"
+                : "bg-[#161311] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
             }`}
           >
             All ({skills.length})
@@ -131,8 +131,8 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-violet-500/20 text-violet-300 border border-violet-500/40"
-                    : "bg-gray-900/60 text-gray-400 hover:text-gray-200 border border-gray-800/80 hover:bg-gray-800/50"
+                    ? "bg-[#d9a55b]/20 text-[#d9a55b] border border-[#d9a55b]/40"
+                    : "bg-[#161311] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
                 }`}
               >
                 {shortName} ({count})
@@ -142,19 +142,19 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
         </div>
 
         <div className="relative w-full md:w-64 shrink-0">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#8e8374]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Filter skills..."
-            className="w-full pl-9 pr-8 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/60 transition-all"
+            className="w-full pl-9 pr-8 py-1.5 rounded-lg bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b]/60 focus:ring-1 focus:ring-[#d9a55b]/60 transition-all"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 p-0.5 cursor-pointer"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8e8374] hover:text-[#f3ebdd] p-0.5 cursor-pointer"
               title="Clear search"
             >
               <X className="w-3 h-3" />
