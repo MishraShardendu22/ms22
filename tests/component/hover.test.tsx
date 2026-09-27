@@ -104,4 +104,3 @@ describe("Hover Translation Effects", () => {
     expect(element.props.className).not.toContain("hover:translate-y-");
   });
 });
-
