@@ -4,6 +4,7 @@ import {
   InstagramIcon,
   LinkedInIcon,
   ResumeIcon,
+  TwitterXIcon,
 } from "@/component/Icons";
 import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import type { Introduction, SocialLink } from "./types";
@@ -28,6 +29,10 @@ export const SocialLinks = {
   Instagram: {
     url: "https://www.instagram.com/mishrashardendu22/",
     icon: InstagramIcon,
+  },
+  Twitter: {
+    url: "https://x.com/Shardendu_M",
+    icon: TwitterXIcon,
   },
   resume: {
     url: "https://drive.google.com/drive/folders/1s48wtD34inP2tK5FxQjaj2OtBpFAi7l8?usp=sharing",

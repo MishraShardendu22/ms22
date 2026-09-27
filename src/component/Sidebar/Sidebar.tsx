@@ -34,7 +34,7 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="nav-tooltip group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-violet-400 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="nav-tooltip group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-[#d9a55b] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#d9a55b] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 data-tooltip={item.name}
                 aria-label={item.name}
               >

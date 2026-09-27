@@ -16,5 +16,6 @@ export const BUTTON_LABELS: Record<string, string> = {
   GitHub: "@MishraShardendu22",
   LinkedIn: "@shardendumishra22",
   Instagram: "@mishrashardendu22",
+  Twitter: "@Shardendu_M",
   resume: "View Resume",
 };

@@ -1,40 +1,78 @@
 @import "tailwindcss";
 
 /* ------------------------------
-   Premium Zinc & Violet Dark Theme
+   Observatory Design System Theme
+   Warm near-black ground, hairline borders, and brand amber accent
 ------------------------------ */
 
 :root {
-  /* Core Dark Base */
-  --background: #09090b; /* zinc-950 */
-  --foreground: #fafafa; /* zinc-50 */
+  /* Observatory Ground & Surface Scale */
+  --bg-000: #0e0c0a; /* Page ground - warm near-black */
+  --bg-100: #161311; /* Surfaces, cards, sidebar */
+  --bg-200: #1e1a16; /* Raised fills, inputs, hover rows */
+  --bg-300: #27221c; /* Popovers, dropdowns */
 
-  --surface: #18181b; /* zinc-900 */
-  --surface-elevated: #27272a; /* zinc-800 */
-  --border: #27272a; /* zinc-800 */
+  /* Hairline Borders */
+  --border: #2f2923; /* Hairlines: card edges, dividers, sidebar edge */
+  --border-strong: #413930; /* Contrast outlines, buttons, active borders */
+  --border-glow: rgba(
+    217,
+    165,
+    91,
+    0.45
+  ); /* Highlighted card / active element */
+  --shadow-glow: 0 0 20px -4px rgba(217, 165, 91, 0.25);
 
-  /* Text */
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa; /* zinc-400 */
-  --text-disabled: #71717a; /* zinc-500 */
+  /* Typography Colors */
+  --ink: #f3ebdd; /* Primary text, headings, body copy */
+  --ink-secondary: #b9ae9d; /* Subtitles, descriptions, nav items */
+  --ink-muted: #8e8374; /* Kickers, captions, timestamps */
+  --ink-inverse: #1a1308; /* Text/icons on accent-fill */
 
-  /* Violet Accent */
-  --blue-primary: #7c3aed; /* mapped blue vars to violet */
-  --blue-hover: #8b5cf6;
-  --blue-active: #6d28d9;
+  /* Brand Amber Accent */
+  --accent: #d9a55b;
+  --accent-hover: #e6b56c;
+  --accent-fill: #d9a55b;
+  --accent-fill-hover: #e6b56c;
+  --accent-subtle: rgba(217, 165, 91, 0.12);
+  --accent-line: rgba(217, 165, 91, 0.25);
 
-  --lime-primary: #7c3aed; /* mapped lime vars to violet to fix legacy classes */
-  --lime-hover: #8b5cf6;
-  --lime-dark: #4c1d95;
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
-  /* Accent Red */
-  --red-accent: #ef4444;
+  /* Focus & Selection */
+  --focus: #d9a55b;
+  --selection: rgba(217, 165, 91, 0.25);
 
-  /* Status */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-  --info: #3b82f6;
+  /* Semantic Mappings for Legacy Surface Bindings */
+  --background: var(--bg-000);
+  --foreground: var(--ink);
+
+  --surface: var(--bg-100);
+  --surface-elevated: var(--bg-200);
+
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-secondary);
+  --text-disabled: var(--ink-muted);
+
+  --blue-primary: var(--accent);
+  --blue-hover: var(--accent-hover);
+  --blue-active: #c59146;
+
+  --lime-primary: var(--accent);
+  --lime-hover: var(--accent-hover);
+  --lime-dark: #8a5c12;
+
+  --red-accent: #f85149;
+
+  /* Status Colors */
+  --success: #3fb950;
+  --warning: #d29922;
+  --error: #f85149;
+  --info: #58a6ff;
 }
 
 /* ------------------------------
@@ -42,12 +80,31 @@
 ------------------------------ */
 
 @theme inline {
+  --color-bg-000: var(--bg-000);
+  --color-bg-100: var(--bg-100);
+  --color-bg-200: var(--bg-200);
+  --color-bg-300: var(--bg-300);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-glow: var(--border-glow);
+
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-inverse: var(--ink-inverse);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fill: var(--accent-fill);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-line: var(--accent-line);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
-  --color-border: var(--border);
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -139,12 +196,12 @@ body {
 ------------------------------ */
 
 ::selection {
-  background: var(--blue-primary);
-  color: #ffffff;
+  background: var(--selection);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue-primary);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -322,7 +379,7 @@ p {
 
 @layer components {
   .glow-effect {
-    @apply absolute -inset-4 md:-inset-8 bg-linear-to-r from-violet-600/30 to-indigo-600/30 rounded-full blur-[64px] opacity-0 transition-all duration-700;
+    @apply absolute -inset-4 md:-inset-8 bg-linear-to-r from-[#d9a55b]/20 to-[#8a5c12]/20 rounded-full blur-[64px] opacity-0 transition-all duration-700;
   }
 
   .image-container:hover .glow-effect {
