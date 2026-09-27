@@ -408,32 +408,27 @@ export function LinksClientView() {
       <section
         id="qr-passport"
         aria-label="Direct Digital ID Passport"
-        className="relative p-6 sm:p-8 rounded-2xl bg-[#161311] border border-[#2f2923] shadow-2xl mb-16 overflow-hidden"
+        className="relative p-6 sm:p-8 rounded-2xl bg-[#161311] border border-[#2f2923] hover:border-[#d9a55b]/40 shadow-2xl mb-16 overflow-hidden transition-colors"
       >
-        {/* Astrophotography Golden Viewfinder Reticles */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#d9a55b]" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#d9a55b]" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#d9a55b]" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#d9a55b]" />
-
-        {/* Ambient Warm Golden Pulse Behind Card */}
+        {/* Subtle Ambient Warm Glow */}
         <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#d9a55b]/5 blur-3xl pointer-events-none" />
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
           {/* Identity Credentials */}
           <div className="text-center lg:text-left flex-1 min-w-0">
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-3">
-              <span className="px-2.5 py-0.5 bg-[#1e1a16] text-[#d9a55b] text-[11px] font-mono font-medium rounded-md border border-[#2f2923]">
+              <span className="px-2.5 py-0.5 bg-[#1e1a16] text-[#d9a55b] text-[11px] font-mono font-semibold rounded-md border border-[#2f2923]">
                 {"SEC-ID // GRAVATAR-VERIFIED"}
               </span>
-              <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+              <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 Available for Consulting &amp; Engagements
               </span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-[#f3ebdd] font-heading tracking-tight mb-2">
-              Shardendu Mishra — Digital Passport
+            <h2 className="text-2xl sm:text-3xl font-serif text-[#f3ebdd] tracking-tight mb-2">
+              Shardendu Mishra &mdash;{" "}
+              <em className="italic text-[#d9a55b]">Digital Passport</em>
             </h2>
             <p className="text-xs sm:text-sm text-[#b9ae9d] max-w-xl leading-relaxed mb-6">
               Scan with your smartphone camera to instantly verify identity
@@ -450,7 +445,7 @@ export function LinksClientView() {
                     "passport-url",
                   )
                 }
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1e1a16] hover:bg-[#27221c] text-[#f3ebdd] border border-[#2f2923] hover:border-[#413930] text-xs font-semibold transition-all cursor-pointer shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e1a16] hover:bg-[#27221c] text-[#f3ebdd] border border-[#2f2923] hover:border-[#413930] text-xs font-semibold transition-all cursor-pointer shadow-sm"
               >
                 {copiedKey === "passport-url" ? (
                   <>
@@ -471,7 +466,7 @@ export function LinksClientView() {
                 href="https://gravatar.com/personahonestly8a347f9823"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#d9a55b] hover:bg-[#e6b56c] text-[#0e0c0a] text-xs font-bold transition-all shadow-[0_2px_12px_rgba(217,165,91,0.25)] cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#d9a55b] hover:bg-[#e6b56c] text-[#0e0c0a] text-xs font-bold transition-all shadow-[0_2px_12px_rgba(217,165,91,0.25)] cursor-pointer"
               >
                 <span>View Gravatar Profile</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -479,23 +474,24 @@ export function LinksClientView() {
             </div>
           </div>
 
-          {/* Framed QR Code with Celestial Golden Reticle */}
-          <div className="shrink-0 p-4 rounded-2xl bg-[#0e0c0a] border border-[#2f2923] shadow-inner flex flex-col items-center">
-            <div className="relative p-2.5 rounded-xl bg-white shadow-md">
+          {/* Framed QR Code Badge */}
+          <div className="shrink-0 p-4 rounded-xl bg-[#0e0c0a] border border-[#2f2923] flex flex-col items-center shadow-lg">
+            <div className="relative p-2 rounded-lg bg-white shadow-md">
               <Image
                 src={CDN_SHARDENDU_QR_AVIF}
                 alt="Shardendu Mishra Gravatar QR Code"
-                width={132}
-                height={132}
-                className="w-32 h-32 object-contain"
-                loading="lazy"
+                width={128}
+                height={128}
+                className="w-32 h-32 object-contain block"
+                unoptimized
+                priority
               />
             </div>
-            <div className="mt-2.5 text-center">
+            <div className="mt-3 text-center">
               <span className="text-xs font-mono font-medium text-[#f3ebdd] block">
                 @Shardendu_Mishra
               </span>
-              <span className="text-[10px] text-[#8e8374]">
+              <span className="text-[10px] text-[#8e8374] font-mono">
                 Scan to add contact
               </span>
             </div>

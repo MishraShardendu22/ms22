@@ -26,9 +26,8 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 2592000, // 30 days for static CDN images
-    dangerouslyAllowSVG: false, // or remove if not needed
-    // contentDispositionType: "inline", // default; leave out unless you have a reason
-    // contentSecurityPolicy: "...",    // remove unless you design a specific CSP
+    dangerouslyAllowSVG: false,
+    contentDispositionType: "inline",
   },
   compress: true,
   productionBrowserSourceMaps: false,
