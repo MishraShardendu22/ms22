@@ -8,7 +8,6 @@ import {
   Globe,
   QrCode,
   Search,
-  Sparkles,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -225,21 +224,13 @@ export function LinksClientView() {
       {/* Observatory Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 pb-6 border-b border-[#2f2923]">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923]">
-              <Sparkles className="w-3 h-3 text-[#d9a55b]" />
-              <span>Verified Directory</span>
-            </span>
-            <span className="text-xs text-[#8e8374]">
-              Global Developer Identity
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#f3ebdd] font-heading tracking-tight">
-            Links &amp; Online Presence
+          <div className="kicker mb-1">Global Developer Identity</div>
+          <h1 className="page-title text-3xl sm:text-4xl lg:text-5xl text-[#f3ebdd] font-serif tracking-tight m-0">
+            Verified Channels &amp; <em>Endpoints</em>.
           </h1>
-          <p className="text-sm text-[#8e8374] mt-1.5">
-            Connect across verified social networks, engineering platforms, open
-            source repos, and live deployments.
+          <p className="text-sm text-[#8e8374] mt-2 max-w-2xl">
+            Official developer handles, engineering platforms, open source
+            registries, and real-time communication endpoints.
           </p>
         </div>
 
@@ -255,12 +246,12 @@ export function LinksClientView() {
       </div>
 
       {/* Filter Tabs & Search Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === "all"
                 ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
                 : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
@@ -276,7 +267,7 @@ export function LinksClientView() {
                 key={catKey}
                 type="button"
                 onClick={() => setSelectedCategory(catKey)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
                     : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
@@ -295,7 +286,7 @@ export function LinksClientView() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search channels or handles..."
-            className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b] focus:ring-1 focus:ring-[#d9a55b]/40 transition-all"
+            className="w-full pl-9 pr-8 py-2 rounded-lg bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b] focus:ring-1 focus:ring-[#d9a55b]/40 transition-all font-mono"
           />
           {searchQuery && (
             <button
@@ -310,9 +301,9 @@ export function LinksClientView() {
         </div>
       </div>
 
-      {/* Constellation Cards Grid */}
+      {/* Verified Channel Directory Surface */}
       {filteredLinks.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-2xl mb-16">
           {filteredLinks.map((link: SocialLink) => {
             const style = getPlatformStyle(link.name);
             const Icon = style.icon;
@@ -321,86 +312,71 @@ export function LinksClientView() {
             return (
               <div
                 key={`${link.name}-${link.url}`}
-                className={`group relative rounded-2xl transition-all duration-300 ${style.borderHover}`}
+                className="group relative flex flex-col md:flex-row md:items-center justify-between p-4 sm:p-5 gap-4 hover:bg-[#1e1a16]/70 transition-colors"
               >
-                {/* Ambient Brand Glow */}
-                <div
-                  className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-br ${style.glowGradient} blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                />
-
-                <div className="relative h-full p-5 bg-[#161311] border border-[#2f2923] rounded-2xl flex flex-col justify-between overflow-hidden shadow-lg group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-300">
-                  {/* Top: Icon + Name + Tag */}
-                  <div>
-                    <div className="flex items-start justify-between gap-3 mb-3.5">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-300 group-hover:scale-105 ${style.iconBg}`}
-                        >
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h2
-                            className={`text-base font-bold text-[#f3ebdd] tracking-tight group-hover:${style.accentText} transition-colors`}
-                          >
-                            {link.name}
-                          </h2>
-                          <span
-                            className={`inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-md border mt-1 ${style.badgeBg}`}
-                          >
-                            {style.tag}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Handle Pill with 1-Click Copy */}
-                    <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-lg bg-[#1e1a16] border border-[#2f2923] mb-3 group-hover:border-[#413930] transition-colors">
-                      <span className="text-xs font-mono text-[#f3ebdd] truncate select-all">
-                        {link.username}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handleCopy(link.username, `user-${link.name}`)
-                        }
-                        className="text-[#8e8374] hover:text-[#d9a55b] p-0.5 cursor-pointer shrink-0 transition-colors"
-                        title="Copy handle"
+                {/* Left: Platform Icon Tile + Name + Category Tag + Description */}
+                <div className="flex items-start gap-4 min-w-0 flex-1">
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border ${style.iconBg} transition-transform group-hover:scale-105`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2
+                        className={`text-sm sm:text-base font-bold text-[#f3ebdd] font-mono group-hover:${style.accentText} transition-colors`}
                       >
-                        {copiedKey === `user-${link.name}` ? (
-                          <div className="flex items-center gap-1 text-[11px] font-medium text-emerald-400">
-                            <Check className="w-3.5 h-3.5" />
-                            <span>Copied</span>
-                          </div>
-                        ) : (
-                          <Copy className="w-3.5 h-3.5" />
-                        )}
-                      </button>
+                        {link.name}
+                      </h2>
+                      <span
+                        className={`inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-md border ${style.badgeBg}`}
+                      >
+                        {style.tag}
+                      </span>
+                      <span className="text-[11px] font-mono text-[#8e8374]">
+                        {hostname}
+                      </span>
                     </div>
-
-                    {/* Description */}
-                    <p className="text-xs text-[#b9ae9d] leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-xs sm:text-sm text-[#b9ae9d] leading-relaxed line-clamp-1 sm:line-clamp-2">
                       {link.description}
                     </p>
                   </div>
+                </div>
 
-                  {/* Footer: Domain Pill & Direct Action */}
-                  <div className="flex items-center justify-between pt-3.5 border-t border-[#2f2923] mt-2">
-                    <span
-                      className="text-[11px] font-mono text-[#8e8374] truncate max-w-[140px]"
-                      title={hostname}
-                    >
-                      {hostname}
+                {/* Right: Handle copy pill + Connect action */}
+                <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1e1a16] border border-[#2f2923] group-hover:border-[#413930]">
+                    <span className="text-xs font-mono text-[#f3ebdd] select-all">
+                      {link.username}
                     </span>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#1e1a16] hover:bg-[#d9a55b] text-[#d9a55b] hover:text-[#0e0c0a] border border-[#2f2923] hover:border-[#d9a55b] text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm"
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleCopy(link.username, `user-${link.name}`)
+                      }
+                      className="text-[#8e8374] hover:text-[#d9a55b] p-0.5 cursor-pointer transition-colors"
+                      title="Copy handle"
                     >
-                      <span>Open</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
+                      {copiedKey === `user-${link.name}` ? (
+                        <div className="flex items-center gap-1 text-[11px] font-medium text-emerald-400">
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Copied</span>
+                        </div>
+                      ) : (
+                        <Copy className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </div>
+
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#d9a55b] hover:bg-[#e6b56c] text-[#0e0c0a] font-semibold text-xs transition-colors shadow-sm cursor-pointer"
+                  >
+                    <span>Connect</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             );

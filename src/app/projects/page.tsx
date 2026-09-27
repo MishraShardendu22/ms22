@@ -92,9 +92,9 @@ async function ProjectsContent({ searchParams }: PageProps) {
         resultLabel="projects"
       />
 
-      {/* Projects Grid */}
+      {/* Projects List Surface */}
       {projects.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-xl">
           {projects.map((project) => {
             const projectId = project.inline?.id;
             if (!projectId) return null;
@@ -127,7 +127,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
                 description={project.description || project.small_description}
                 technologies={project.skills}
                 links={links}
-                maxTechDisplay={3}
+                maxTechDisplay={5}
               />
             );
           })}

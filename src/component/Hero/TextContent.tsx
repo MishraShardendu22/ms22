@@ -1,43 +1,64 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { StatStrip } from "@/component/Hero/StatStrip";
+import { GitHubIcon } from "@/component/Icons";
+import { Kicker } from "@/component/Section/PageHeader";
 import { myIntro, SocialLinks } from "@/static/info/header";
 import { BUTTON_LABELS } from "@/static/ui";
 
 export const TextContent = () => {
   return (
-    <div className="lg:col-span-7 text-center lg:text-left space-y-4 md:space-y-6 lg:space-y-8 relative z-10 order-2 lg:order-1">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black bg-linear-to-b from-[#f3ebdd] to-[#b9ae9d] bg-clip-text text-transparent leading-[1.1] break-words drop-shadow-sm">
-        {myIntro.name}
+    <div className="lg:col-span-7 text-left space-y-4 md:space-y-5 relative z-10 order-2 lg:order-1">
+      <Kicker>Software Developer &amp; Systems Researcher</Kicker>
+
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#f3ebdd] font-serif leading-[1.12]">
+        Engineering high-reliability systems, CLI engines &amp;{" "}
+        <em className="italic text-[#d9a55b]">autonomous</em> agents.
       </h1>
 
-      <div className="w-16 md:w-20 lg:w-24 h-1.5 bg-linear-to-r from-[#d9a55b] to-[#b97a29] mx-auto lg:mx-0 rounded-full shadow-[0_0_15px_rgba(217,165,91,0.4)]" />
-
-      <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-transparent bg-linear-to-r from-[#d9a55b] via-[#f3ebdd] to-[#d9a55b] bg-clip-text font-bold tracking-tight">
-        {myIntro.role}
+      <p className="text-sm sm:text-base md:text-lg text-[#b9ae9d] leading-relaxed max-w-2xl font-sans">
+        Hi, I&apos;m{" "}
+        <span className="text-[#f3ebdd] font-semibold">{myIntro.name}</span>. I
+        design scalable architectures in Go, cross-platform CLI engines,
+        autonomous agent protocols, and high-performance web systems with strict
+        test gates and zero downtime.
       </p>
 
-      <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#b9ae9d] leading-relaxed max-w-3xl mx-auto lg:mx-0 font-medium">
-        I am a Software Engineer, I work with{" "}
-        <span className="text-[#f3ebdd] font-semibold drop-shadow-md">
-          Linux
-        </span>
-        ,{" "}
-        <span className="text-[#f3ebdd] font-semibold drop-shadow-md">Git</span>
-        ,{" "}
-        <span className="text-[#f3ebdd] font-semibold drop-shadow-md">
-          Web Technologies
-        </span>
-        ,{" "}
-        <span className="text-[#f3ebdd] font-semibold drop-shadow-md">
-          Cloud Platforms
-        </span>{" "}
-        and{" "}
-        <span className="text-[#f3ebdd] font-semibold drop-shadow-md">
-          AI/ML
-        </span>
-        . I absolutely love Engineering solutions for problems.
-      </p>
+      {/* Action CTAs */}
+      <div className="flex flex-wrap items-center gap-3 pt-1">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#d9a55b] hover:bg-[#e6b56c] text-[#0e0c0a] font-semibold text-sm transition-all duration-200 shadow-[0_2px_12px_rgba(217,165,91,0.25)] hover:shadow-[0_4px_20px_rgba(217,165,91,0.35)]"
+        >
+          <span>Explore Projects</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+        <a
+          href="https://github.com/MishraShardendu22"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#413930] text-[#f3ebdd] font-semibold text-sm transition-all duration-200"
+        >
+          <GitHubIcon className="w-4 h-4 text-[#8e8374] group-hover:text-[#f3ebdd] transition-colors" />
+          <span>GitHub Profile</span>
+        </a>
+      </div>
 
-      {/* Social Links */}
-      <div className="flex gap-2 md:gap-3 lg:gap-4 justify-center lg:justify-start flex-wrap pt-2 md:pt-4 lg:pt-6">
+      {/* Metrics Stat Strip */}
+      <StatStrip
+        items={[
+          { value: "15+", label: "Production Repos" },
+          { value: "30", label: "Agent Protocols" },
+          { value: "100%", label: "Test Pass Rate" },
+          { value: "Go · TS · Python", label: "Core Toolchains" },
+        ]}
+      />
+
+      {/* Verified Channels Footer */}
+      <div className="flex gap-2 flex-wrap pt-2 items-center">
+        <span className="text-[11px] font-mono uppercase tracking-wider text-[#8e8374] mr-1">
+          Channels:
+        </span>
         {Object.entries(SocialLinks).map(([key, link]) => {
           const IconComponent = link.icon;
           const label = BUTTON_LABELS[key] || key;
@@ -48,15 +69,13 @@ export const TextContent = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-link group relative flex items-center gap-2 md:gap-2.5 lg:gap-3 px-4 md:px-5 lg:px-6 py-2.5 md:py-3 lg:py-3.5 bg-[#161311]/90 hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/60 rounded-xl transition-all duration-300 shadow-md hover:shadow-[0_0_15px_rgba(217,165,91,0.2)] backdrop-blur-md text-xs sm:text-sm md:text-base font-medium"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#413930] rounded-md transition-all duration-200 text-xs font-medium text-[#b9ae9d] hover:text-[#f3ebdd]"
               aria-label={label}
             >
               {IconComponent && (
-                <IconComponent className="w-4 h-4 md:w-5 md:h-5 text-[#8e8374] group-hover:text-[#d9a55b] group-hover:scale-110 transition-all duration-300 shrink-0" />
+                <IconComponent className="w-3.5 h-3.5 text-[#8e8374] group-hover:text-[#d9a55b] shrink-0" />
               )}
-              <span className="text-[#b9ae9d] group-hover:text-[#f3ebdd] transition-colors duration-300 whitespace-nowrap">
-                {label}
-              </span>
+              <span>{label}</span>
             </a>
           );
         })}

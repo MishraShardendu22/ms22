@@ -88,9 +88,9 @@ async function VolunteerContent({ searchParams }: PageProps) {
         resultLabel="volunteer experiences"
       />
 
-      {/* Volunteers Grid */}
+      {/* Volunteers List Surface */}
       {volunteers.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-xl">
           {volunteers.map((volunteer) => {
             const volunteerId = volunteer.inline?.id;
             if (!volunteerId) return null;
@@ -118,7 +118,7 @@ async function VolunteerContent({ searchParams }: PageProps) {
                 dateRange={dateRange}
                 technologies={volunteer.technologies}
                 isActive={volunteer.current}
-                maxTechDisplay={3}
+                maxTechDisplay={5}
               />
             );
           })}

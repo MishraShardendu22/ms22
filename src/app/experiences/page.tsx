@@ -88,9 +88,9 @@ async function ExperiencesContent({ searchParams }: PageProps) {
         resultLabel="experiences"
       />
 
-      {/* Experiences Grid */}
+      {/* Experiences List Surface */}
       {experiences.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-xl">
           {experiences.map((experience) => {
             const experienceId = experience.inline?.id as string;
             if (!experienceId) return null;
@@ -115,7 +115,7 @@ async function ExperiencesContent({ searchParams }: PageProps) {
                 description={experience.description}
                 dateRange={dateRange}
                 technologies={experience.technologies}
-                maxTechDisplay={3}
+                maxTechDisplay={5}
               />
             );
           })}

@@ -2,11 +2,24 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
+import {
+  IBM_Plex_Mono,
+  IBM_Plex_Sans,
+  Instrument_Serif,
+  Space_Grotesk,
+} from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import { BaseURL } from "@/static/data";
 import { getRootJsonLd } from "@/static/site";
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
@@ -219,7 +232,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <noscript>
           <div

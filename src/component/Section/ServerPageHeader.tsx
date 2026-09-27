@@ -68,8 +68,11 @@ export function ServerPageHeader({
         {/* Title, Search, and Pagination */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-[#f3ebdd]">{title}</h1>
-            <p className="text-sm text-[#8e8374] mt-1">
+            <div className="kicker mb-1">Observatory Registry</div>
+            <h1 className="page-title text-3xl sm:text-4xl text-[#f3ebdd] font-serif tracking-tight m-0">
+              {title}
+            </h1>
+            <p className="text-xs sm:text-sm text-[#8e8374] mt-1 font-mono">
               <span className="text-[#d9a55b] font-semibold">
                 {resultCount}
               </span>{" "}

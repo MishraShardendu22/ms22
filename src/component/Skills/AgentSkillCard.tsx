@@ -79,61 +79,57 @@ export function AgentSkillCard({ skill }: AgentSkillCardProps) {
   };
 
   return (
-    <div className="group relative rounded-2xl transition-all duration-300 hover:border-[#d9a55b]/40 h-full">
-      {/* Ambient Starlight Glow on Hover */}
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-[#d9a55b]/15 via-[rgba(217,165,91,0.04)] to-transparent blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-      <div className="relative h-full p-5 bg-[#161311] border border-[#2f2923] rounded-2xl flex flex-col justify-between overflow-hidden shadow-lg group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.45)] group-hover:border-[#d9a55b]/40 transition-all duration-300">
-        <div>
-          {/* Header Row: Category Badge & Scope Tag */}
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923]">
-              <CategoryIcon className="w-3 h-3 text-[#d9a55b]" />
-              <span>{skill.category}</span>
-            </span>
-
-            <span
-              className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-medium border ${scopeBadge.className}`}
-            >
-              {scopeBadge.label}
-            </span>
+    <div className="group relative block w-full p-4 sm:p-5 hover:bg-[#1e1a16]/70 transition-all duration-200">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        {/* Left Stack: Leading Icon Tile + Title + Scope + Description */}
+        <div className="flex items-start gap-4 min-w-0 flex-1">
+          <div className="w-10 h-10 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center shrink-0 text-[#d9a55b] group-hover:border-[#d9a55b]/40 transition-colors">
+            <CategoryIcon className="w-5 h-5" />
           </div>
 
-          {/* Skill Title: Clean Monospace without Truncation */}
-          <Link
-            href={`/skills/${skill.name}`}
-            className="block mb-2.5 group/link"
-          >
-            <h2 className="text-sm sm:text-base font-bold font-mono text-[#f3ebdd] group-hover/link:text-[#d9a55b] transition-colors leading-snug break-words">
-              {skill.name}
-            </h2>
-          </Link>
+          <div className="min-w-0 flex-1 space-y-1.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href={`/skills/${skill.name}`}
+                className="font-mono text-sm sm:text-base font-semibold text-[#f3ebdd] group-hover:text-[#d9a55b] transition-colors hover:underline underline-offset-4"
+              >
+                {skill.name}
+              </Link>
+              <span
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium border ${scopeBadge.className}`}
+              >
+                {scopeBadge.label}
+              </span>
+              <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#1e1a16] text-[#8e8374] border border-[#2f2923]">
+                {skill.category}
+              </span>
+            </div>
 
-          {/* Target Compatibility Agents */}
-          <div className="flex items-center gap-1.5 flex-wrap mb-3">
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#1e1a16] text-[10px] text-[#8e8374] border border-[#2f2923]">
-              <Bot className="w-2.5 h-2.5 text-[#d9a55b]" />
-              <span>AGY</span>
-            </span>
-            <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] text-[10px] text-[#8e8374] border border-[#2f2923]">
-              Claude Code
-            </span>
-            <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] text-[10px] text-[#8e8374] border border-[#2f2923]">
-              Cursor
-            </span>
+            <p className="text-xs sm:text-sm text-[#b9ae9d] leading-relaxed line-clamp-2 max-w-3xl">
+              {skill.description}
+            </p>
+
+            {/* Target Agent Compatibility Chips */}
+            <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#161311] text-[10px] font-mono text-[#8e8374] border border-[#2f2923]">
+                <Bot className="w-2.5 h-2.5 text-[#d9a55b]" />
+                <span>AGY</span>
+              </span>
+              <span className="px-1.5 py-0.5 rounded bg-[#161311] text-[10px] font-mono text-[#8e8374] border border-[#2f2923]">
+                Claude Code
+              </span>
+              <span className="px-1.5 py-0.5 rounded bg-[#161311] text-[10px] font-mono text-[#8e8374] border border-[#2f2923]">
+                Cursor
+              </span>
+            </div>
           </div>
-
-          {/* Description */}
-          <p className="text-xs text-[#b9ae9d] leading-relaxed line-clamp-3 mb-4">
-            {skill.description}
-          </p>
         </div>
 
-        {/* Action Strip: 1-Click CLI Pull & Runbook Link */}
-        <div className="pt-3.5 border-t border-[#2f2923] mt-2">
+        {/* Right Stack: 1-Click CLI Pull & Runbook Inspect Action */}
+        <div className="flex items-center gap-3 shrink-0 pt-2 lg:pt-0 self-end lg:self-center">
           {/* CLI Pull Command Pill */}
-          <div className="flex items-center justify-between gap-1.5 px-2.5 py-1 rounded-lg bg-[#1e1a16] border border-[#2f2923] mb-3 group-hover:border-[#413930] transition-colors">
-            <span className="text-[11px] font-mono text-[#d9a55b] truncate select-all">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1e1a16] border border-[#2f2923] group-hover:border-[#413930] transition-colors">
+            <span className="text-xs font-mono text-[#d9a55b] select-all truncate max-w-[200px] sm:max-w-none">
               {cliPullCommand}
             </span>
             <button
@@ -153,19 +149,13 @@ export function AgentSkillCard({ skill }: AgentSkillCardProps) {
             </button>
           </div>
 
-          {/* Direct Link to Runbook */}
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-mono text-[#8e8374]">
-              SKILL.md
-            </span>
-            <Link
-              href={`/skills/${skill.name}`}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#d9a55b] group-hover:text-[#f3ebdd] transition-colors"
-            >
-              <span>Inspect Runbook</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
+          <Link
+            href={`/skills/${skill.name}`}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#d9a55b] text-[#d9a55b] hover:text-[#0e0c0a] border border-[#2f2923] hover:border-[#d9a55b] text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm"
+          >
+            <span>Runbook</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </div>

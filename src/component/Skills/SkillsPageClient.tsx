@@ -128,21 +128,13 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
       {/* Observatory Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 pb-6 border-b border-[#2f2923]">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923]">
-              <Sparkles className="w-3 h-3 text-[#d9a55b]" />
-              <span>Production Standards</span>
-            </span>
-            <span className="text-xs text-[#8e8374]">
-              Autonomous Agent Directives
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#f3ebdd] font-heading tracking-tight">
-            Agent Skills Hub
+          <div className="kicker mb-1">Autonomous Systems Directives</div>
+          <h1 className="page-title text-3xl sm:text-4xl lg:text-5xl text-[#f3ebdd] font-serif tracking-tight m-0">
+            Agent Skills &amp; <em>Protocols</em>.
           </h1>
-          <p className="text-sm text-[#8e8374] mt-1.5">
-            Deterministic engineering runbooks, safety protocols, and CLI
-            workflows for Antigravity, Claude Code, and Cursor.
+          <p className="text-sm text-[#8e8374] mt-2 max-w-2xl">
+            Deterministic engineering runbooks, safety protocols, and
+            synchronization workflows for Antigravity, Claude Code, and Cursor.
           </p>
         </div>
 
@@ -162,18 +154,18 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
           >
             <GitHubIcon className="w-3.5 h-3.5" />
             <span>GitHub Hub</span>
-            <ArrowUpRight className="w-3 h-3 text-[#d9a55b]" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#d9a55b]" />
           </a>
         </div>
       </div>
 
       {/* Filter Tabs & Search Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === "all"
                 ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
                 : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
@@ -190,7 +182,7 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
                     : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
@@ -217,7 +209,7 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search runbooks, tags..."
-            className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b] focus:ring-1 focus:ring-[#d9a55b]/40 transition-all"
+            className="w-full pl-9 pr-8 py-2 rounded-lg bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b] focus:ring-1 focus:ring-[#d9a55b]/40 transition-all font-mono"
           />
           {searchQuery && (
             <button
@@ -232,9 +224,9 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
         </div>
       </div>
 
-      {/* Skills Grid */}
+      {/* Protocol Index List Surface */}
       {filteredSkills.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-2xl mb-16">
           {filteredSkills.map((skill) => (
             <AgentSkillCard key={skill.name} skill={skill} />
           ))}

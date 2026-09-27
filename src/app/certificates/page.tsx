@@ -89,9 +89,9 @@ async function CertificatesContent({ searchParams }: PageProps) {
         resultLabel="certifications"
       />
 
-      {/* Certificates Grid */}
+      {/* Certificates List Surface */}
       {certificates.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden divide-y divide-[#2f2923] shadow-xl">
           {certificates.map((certificate) => {
             const certificateId = certificate.inline?.id;
             if (!certificateId) return null;
@@ -121,7 +121,7 @@ async function CertificatesContent({ searchParams }: PageProps) {
                 dateRange={dateRange}
                 technologies={certificate.skills}
                 links={links}
-                maxTechDisplay={3}
+                maxTechDisplay={5}
               />
             );
           })}
