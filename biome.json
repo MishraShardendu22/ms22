@@ -32,7 +32,8 @@
     "rules": {
       "preset": "recommended",
       "suspicious": {
-        "noUnknownAtRules": "off"
+        "noUnknownAtRules": "off",
+        "noTemplateCurlyInString": "off"
       }
     },
     "domains": {

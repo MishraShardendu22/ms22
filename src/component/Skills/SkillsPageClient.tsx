@@ -1,15 +1,58 @@
 "use client";
 
-import { ArrowUpRight, Search, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Code2,
+  Cpu,
+  GitBranch,
+  Layers,
+  Palette,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Terminal,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { GitHubIcon } from "@/component/Icons";
-import { EmptyState, ListCard } from "@/component/Section";
+import { AgentSkillCard } from "@/component/Skills/AgentSkillCard";
 import type { AgentSkill, AgentSkillsData } from "@/lib/agentSkills";
 
 interface SkillsPageClientProps {
   initialData: AgentSkillsData;
+}
+
+const CATEGORY_ORDER = [
+  "Protocols",
+  "Git Ops",
+  "AI Engineering",
+  "DevOps & CI",
+  "Code Quality",
+  "Architecture",
+  "UI Design",
+];
+
+function getCategoryIcon(category: string) {
+  switch (category) {
+    case "Protocols":
+      return ShieldCheck;
+    case "Git Ops":
+      return GitBranch;
+    case "AI Engineering":
+      return Cpu;
+    case "DevOps & CI":
+      return Terminal;
+    case "Code Quality":
+      return Code2;
+    case "Architecture":
+      return Layers;
+    case "UI Design":
+      return Palette;
+    default:
+      return Sparkles;
+  }
 }
 
 export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
@@ -45,12 +88,16 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
     };
   }, [router, initialData.commit?.sha]);
 
+  // Unique categories ordered logically
   const categories = useMemo(() => {
     const set = new Set<string>();
     for (const s of skills) {
       if (s.category) set.add(s.category);
     }
-    return Array.from(set);
+    const found = Array.from(set);
+    return CATEGORY_ORDER.filter((c) => found.includes(c)).concat(
+      found.filter((c) => !CATEGORY_ORDER.includes(c)),
+    );
   }, [skills]);
 
   const filteredSkills = useMemo(() => {
@@ -62,142 +109,157 @@ export function SkillsPageClient({ initialData }: SkillsPageClientProps) {
         !q ||
         skill.name.toLowerCase().includes(q) ||
         skill.description.toLowerCase().includes(q) ||
-        skill.category.toLowerCase().includes(q);
+        skill.category.toLowerCase().includes(q) ||
+        skill.scope?.toLowerCase().includes(q);
       return matchesCat && matchesQ;
     });
   }, [skills, selectedCategory, searchQuery]);
 
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: skills.length };
+    for (const s of skills) {
+      counts[s.category] = (counts[s.category] || 0) + 1;
+    }
+    return counts;
+  }, [skills]);
+
   return (
     <div className="w-full relative z-10">
-      {/* Header matching portfolio standard */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      {/* Observatory Header Banner */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 pb-6 border-b border-[#2f2923]">
         <div>
-          <h1 className="text-2xl font-bold text-[#f3ebdd] font-heading">
-            Agent Skills
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923]">
+              <Sparkles className="w-3 h-3 text-[#d9a55b]" />
+              <span>Production Standards</span>
+            </span>
+            <span className="text-xs text-[#8e8374]">
+              Autonomous Agent Directives
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#f3ebdd] font-heading tracking-tight">
+            Agent Skills Hub
           </h1>
-          <p className="text-sm text-[#8e8374] mt-1">
-            <span className="text-[#d9a55b] font-medium">
-              {filteredSkills.length}
-            </span>{" "}
-            {filteredSkills.length === 1 ? "skill" : "skills"}
-            {selectedCategory !== "all"
-              ? ` in ${selectedCategory.replace(/^\d+\.\s*/, "")}`
-              : ` across ${categories.length} categories`}
+          <p className="text-sm text-[#8e8374] mt-1.5">
+            Deterministic engineering runbooks, safety protocols, and CLI
+            workflows for Antigravity, Claude Code, and Cursor.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2.5 flex-wrap shrink-0">
           <Link
             href="/skills/cli"
-            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all text-xs font-medium"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] text-[#b9ae9d] hover:text-[#f3ebdd] hover:border-[#413930] transition-all text-xs font-medium shadow-sm"
           >
+            <Terminal className="w-3.5 h-3.5 text-[#d9a55b]" />
             <span>skills-sync CLI</span>
           </Link>
           <a
             href="https://github.com/MishraShardendu22/agent-skills"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#d9a55b]/10 hover:bg-[#d9a55b]/20 border border-[#d9a55b]/30 text-[#d9a55b] hover:text-[#f3ebdd] transition-all text-xs font-medium"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#d9a55b]/10 hover:bg-[#d9a55b]/20 border border-[#d9a55b]/30 text-[#d9a55b] hover:text-[#f3ebdd] transition-all text-xs font-medium shadow-sm"
           >
             <GitHubIcon className="w-3.5 h-3.5" />
-            <span>GitHub</span>
+            <span>GitHub Hub</span>
             <ArrowUpRight className="w-3 h-3 text-[#d9a55b]" />
           </a>
         </div>
       </div>
 
-      {/* Category Filter Pills & Search Input */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+      {/* Filter Tabs & Search Controls */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-8">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === "all"
-                ? "bg-[#d9a55b]/20 text-[#d9a55b] border border-[#d9a55b]/40"
-                : "bg-[#161311] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
+                ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
+                : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
             }`}
           >
-            All ({skills.length})
+            All Runbooks ({categoryCounts.all ?? skills.length})
           </button>
           {categories.map((cat) => {
-            const count = skills.filter((s) => s.category === cat).length;
-            const shortName = cat.replace(/^\d+\.\s*/, "");
+            const count = categoryCounts[cat] ?? 0;
             const isSelected = selectedCategory === cat;
+            const CatIcon = getCategoryIcon(cat);
             return (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-[#d9a55b]/20 text-[#d9a55b] border border-[#d9a55b]/40"
-                    : "bg-[#161311] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
+                    ? "bg-[#d9a55b] text-[#0e0c0a] font-semibold shadow-[0_2px_12px_rgba(217,165,91,0.25)]"
+                    : "bg-[#161311] text-[#b9ae9d] hover:text-[#f3ebdd] border border-[#2f2923] hover:bg-[#1e1a16]"
                 }`}
               >
-                {shortName} ({count})
+                <CatIcon
+                  className={`w-3.5 h-3.5 ${isSelected ? "text-[#0e0c0a]" : "text-[#d9a55b]"}`}
+                />
+                <span>{cat}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded ${isSelected ? "bg-black/20 text-[#0e0c0a]" : "bg-[#1e1a16] text-[#8e8374]"}`}
+                >
+                  {count}
+                </span>
               </button>
             );
           })}
         </div>
 
-        <div className="relative w-full md:w-64 shrink-0">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#8e8374]" />
+        <div className="relative w-full md:w-72 shrink-0">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8e8374]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter skills..."
-            className="w-full pl-9 pr-8 py-1.5 rounded-lg bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b]/60 focus:ring-1 focus:ring-[#d9a55b]/60 transition-all"
+            placeholder="Search runbooks, tags..."
+            className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#161311] border border-[#2f2923] text-xs text-[#f3ebdd] placeholder-[#8e8374] focus:outline-none focus:border-[#d9a55b] focus:ring-1 focus:ring-[#d9a55b]/40 transition-all"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8e8374] hover:text-[#f3ebdd] p-0.5 cursor-pointer"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8e8374] hover:text-[#f3ebdd] p-1 cursor-pointer"
               title="Clear search"
             >
-              <X className="w-3 h-3" />
+              <X className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
       </div>
 
-      {/* Skills Grid - Using portfolio canonical ListCard component */}
+      {/* Skills Grid */}
       {filteredSkills.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
           {filteredSkills.map((skill) => (
-            <ListCard
-              key={skill.name}
-              id={skill.name}
-              href={`/skills/${skill.name}`}
-              theme="violet"
-              title={skill.name}
-              subtitle={skill.category.replace(/^\d+\.\s*/, "")}
-              description={skill.description}
-              technologies={[
-                "SKILL.md",
-                skill.category.replace(/^\d+\.\s*/, ""),
-              ]}
-              links={[
-                { label: "GitHub", url: skill.githubUrl },
-                { label: "Raw", url: skill.rawUrl },
-              ]}
-              maxTechDisplay={2}
-            />
+            <AgentSkillCard key={skill.name} skill={skill} />
           ))}
         </div>
       ) : (
-        <EmptyState
-          title="No matching skills found"
-          description="Try adjusting your search query or selecting another category."
-          theme="violet"
-          hasFilters={true}
-          onClearFilters={() => {
-            setSearchQuery("");
-            setSelectedCategory("all");
-          }}
-        />
+        <div className="text-center py-16 px-4 bg-[#161311] border border-[#2f2923] rounded-2xl mb-16">
+          <Search className="w-10 h-10 text-[#8e8374] mx-auto mb-3" />
+          <h3 className="text-lg font-bold text-[#f3ebdd] mb-1">
+            No matching runbooks found
+          </h3>
+          <p className="text-xs text-[#8e8374] mb-5">
+            We couldn't find any agent skills matching &ldquo;{searchQuery}
+            &rdquo;.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("all");
+            }}
+            className="px-4 py-2 rounded-xl bg-[#d9a55b] hover:bg-[#e6b56c] text-[#0e0c0a] text-xs font-bold transition-colors cursor-pointer"
+          >
+            Reset Filters
+          </button>
+        </div>
       )}
     </div>
   );

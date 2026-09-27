@@ -3,9 +3,13 @@
  * Connects directly to https://github.com/MishraShardendu22/agent-skills
  */
 
+import { MASTER_SKILLS_CATALOG } from "@/data/skillsCatalog";
+import { MASTER_SKILLS_RUNBOOKS } from "@/data/skillsRunbooks";
+
 export interface AgentSkill {
   name: string;
   category: string;
+  scope?: string;
   description: string;
   link: string;
   rawUrl: string;
@@ -43,220 +47,8 @@ export const AGENT_SKILLS_RAW_BASE =
 export const AGENT_SKILLS_GITHUB_BASE =
   "https://github.com/MishraShardendu22/agent-skills/tree/main";
 
-// Comprehensive fallback dataset ensures 100% uptime even if GitHub API is offline or rate-limited
-export const FALLBACK_SKILLS: AgentSkill[] = [
-  // 1. Communication Standards & Core Protocols
-  {
-    name: "professional-communication-standard",
-    category: "Communication Standards & Core Protocols",
-    description:
-      "Enforces strictly emoji-free, concise, objective, and technically rigorous responses without fluff or conversational preambles.",
-    link: ".agents/skills/professional-communication-standard/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/professional-communication-standard/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/professional-communication-standard`,
-  },
-
-  // 2. Autonomous Git & Version Control
-  {
-    name: "git-branch-management",
-    category: "Autonomous Git & Version Control",
-    description:
-      "Rules and procedures for creating, naming, structuring, and navigating Git branches.",
-    link: ".agents/skills/git-branch-management/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/git-branch-management/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/git-branch-management`,
-  },
-  {
-    name: "git-commit-workflow",
-    category: "Autonomous Git & Version Control",
-    description:
-      "Commit design taxonomy, semantic commit formatting, and mandatory GPG signing.",
-    link: ".agents/skills/git-commit-workflow/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/git-commit-workflow/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/git-commit-workflow`,
-  },
-  {
-    name: "pull-request-management",
-    category: "Autonomous Git & Version Control",
-    description:
-      "Runbooks for authoring and managing clean PRs targeting main with PR consolidation.",
-    link: ".agents/skills/pull-request-management/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/pull-request-management/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/pull-request-management`,
-  },
-  {
-    name: "github-pr-issue-automation",
-    category: "Autonomous Git & Version Control",
-    description:
-      "Auto-assignment, conventional label categorization, and GitHub markdown standards.",
-    link: ".agents/skills/github-pr-issue-automation/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/github-pr-issue-automation/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/github-pr-issue-automation`,
-  },
-  {
-    name: "git-post-merge-cleanup",
-    category: "Autonomous Git & Version Control",
-    description:
-      "Post-merge branch synchronization, stale branch pruning, and repository garbage collection.",
-    link: ".agents/skills/git-post-merge-cleanup/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/git-post-merge-cleanup/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/git-post-merge-cleanup`,
-  },
-
-  // 3. AI Engineering & Autonomous Review
-  {
-    name: "jules-ai-engineering-workflow",
-    category: "AI Engineering & Autonomous Review",
-    description:
-      "Autonomous Jules AI review loop across 38 architectural dimensions for Tech Lead delegation.",
-    link: ".agents/skills/jules-ai-engineering-workflow/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/jules-ai-engineering-workflow/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/jules-ai-engineering-workflow`,
-  },
-  {
-    name: "agent-observatory-workflow",
-    category: "AI Engineering & Autonomous Review",
-    description:
-      "LangChain tool-calling, Tool-Calling RAG workflows, pgvector search, and HITL protocols.",
-    link: ".agents/skills/agent-observatory-workflow/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/agent-observatory-workflow/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/agent-observatory-workflow`,
-  },
-  {
-    name: "doc-synchronization",
-    category: "AI Engineering & Autonomous Review",
-    description:
-      "Autonomous synchronization of documentation, changelogs, and skills without human prompting.",
-    link: ".agents/skills/doc-synchronization/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/doc-synchronization/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/doc-synchronization`,
-  },
-
-  // 4. DevOps, Tooling & CI/CD Pipelines
-  {
-    name: "docker-first-architecture",
-    category: "DevOps, Tooling & CI/CD Pipelines",
-    description:
-      "Enforces multi-stage production Dockerfiles, optimal toolchains (pnpm, uv, static Go), and Docker Hub automation.",
-    link: ".agents/skills/docker-first-architecture/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/docker-first-architecture/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/docker-first-architecture`,
-  },
-  {
-    name: "ci-cd-workflow",
-    category: "DevOps, Tooling & CI/CD Pipelines",
-    description:
-      "Multi-environment CI/CD workflows, Docker Hub publishing, Render & Vercel deployments.",
-    link: ".agents/skills/ci-cd-workflow/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/ci-cd-workflow/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/ci-cd-workflow`,
-  },
-  {
-    name: "cli-tooling-guide",
-    category: "DevOps, Tooling & CI/CD Pipelines",
-    description:
-      "Standard operating guide for authenticated CLI tools (gh, jules, vercel, neonctl, docker).",
-    link: ".agents/skills/cli-tooling-guide/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/cli-tooling-guide/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/cli-tooling-guide`,
-  },
-  {
-    name: "modern-toolchain-standard",
-    category: "DevOps, Tooling & CI/CD Pipelines",
-    description:
-      "Standard operating specification: mandatory pnpm over npm, mandatory uv over bare pip, Biome, and Vitest.",
-    link: ".agents/skills/modern-toolchain-standard/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/modern-toolchain-standard/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/modern-toolchain-standard`,
-  },
-  {
-    name: "precommit-workflow-management",
-    category: "DevOps, Tooling & CI/CD Pipelines",
-    description:
-      "Maintain, configure, and execute intelligent multi-language pre-commit hook suites.",
-    link: ".agents/skills/precommit-workflow-management/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/precommit-workflow-management/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/precommit-workflow-management`,
-  },
-
-  // 5. Code Quality, Testing & Simplification
-  {
-    name: "code-quality-and-validation",
-    category: "Code Quality, Testing & Simplification",
-    description:
-      "Standards, formatters, linters, and static type checking for Go, Python, and TypeScript.",
-    link: ".agents/skills/code-quality-and-validation/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/code-quality-and-validation/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/code-quality-and-validation`,
-  },
-  {
-    name: "codebase-simplification-guide",
-    category: "Code Quality, Testing & Simplification",
-    description:
-      "Architecture minimalism, dead code elimination, and abstraction reduction.",
-    link: ".agents/skills/codebase-simplification-guide/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/codebase-simplification-guide/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/codebase-simplification-guide`,
-  },
-  {
-    name: "test-creation-and-execution",
-    category: "Code Quality, Testing & Simplification",
-    description:
-      "Multi-layer test creation, mocks, integration testing, and agent eval test suites.",
-    link: ".agents/skills/test-creation-and-execution/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/test-creation-and-execution/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/test-creation-and-execution`,
-  },
-  {
-    name: "repository-maintenance",
-    category: "Code Quality, Testing & Simplification",
-    description:
-      "Database integrity, idempotent migrations, backup verification, and dependency management.",
-    link: ".agents/skills/repository-maintenance/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/repository-maintenance/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/repository-maintenance`,
-  },
-
-  // 6. System Architecture & SaaS Systems
-  {
-    name: "saas-and-mcp-architecture",
-    category: "System Architecture & SaaS Systems",
-    description:
-      "SaaS Connector Hub, encrypted secret vaults, cloud storage, and MCP tool expansions.",
-    link: ".agents/skills/saas-and-mcp-architecture/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/saas-and-mcp-architecture/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/saas-and-mcp-architecture`,
-  },
-  {
-    name: "polyglot-microservice-architecture",
-    category: "System Architecture & SaaS Systems",
-    description:
-      "Polyglot architecture guidelines, service boundaries, pgvector hybrid search, and cloud deployments.",
-    link: ".agents/skills/polyglot-microservice-architecture/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/polyglot-microservice-architecture/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/polyglot-microservice-architecture`,
-  },
-
-  // 7. UI Design & Engineering Standards
-  {
-    name: "ui-rules",
-    category: "UI Design & Engineering Standards",
-    description:
-      "Strict frontend UI invariants: bans hover levitation/translate-y, eliminates AI aesthetic bloat, and enforces grounded design tokens.",
-    link: ".agents/skills/ui-rules/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/ui-rules/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/ui-rules`,
-  },
-  {
-    name: "meridian-design-system",
-    category: "UI Design & Engineering Standards",
-    description:
-      "Canonical reference and token guidelines for the Meridian Claude Design System across the mishrashardendu22 product ecosystem.",
-    link: ".agents/skills/meridian-design-system/SKILL.md",
-    rawUrl: `${AGENT_SKILLS_RAW_BASE}/.agents/skills/meridian-design-system/SKILL.md`,
-    githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/meridian-design-system`,
-  },
-];
+// Complete 30-skill catalog ensures 100% uptime and instantaneous pre-rendering
+export const FALLBACK_SKILLS: AgentSkill[] = MASTER_SKILLS_CATALOG;
 
 export function groupSkillsByCategory(
   skills: AgentSkill[],
@@ -483,6 +275,18 @@ export async function fetchSkillRunbook(slug: string): Promise<{
   githubUrl: string;
 } | null> {
   const cleanSlug = slug.trim().toLowerCase();
+
+  // 1. Instant bundled runbook resolution (guarantees 100% uptime and full pre-rendering)
+  const bundled = MASTER_SKILLS_RUNBOOKS[cleanSlug];
+  if (bundled) {
+    return {
+      name: cleanSlug,
+      markdown: bundled,
+      githubUrl: `${AGENT_SKILLS_GITHUB_BASE}/.agents/skills/${cleanSlug}`,
+    };
+  }
+
+  // 2. Fallback to upstream GitHub repository for newly added skills
   const url = `${AGENT_SKILLS_RAW_BASE}/.agents/skills/${cleanSlug}/SKILL.md`;
 
   try {

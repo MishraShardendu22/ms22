@@ -65,5 +65,15 @@ export default async function SkillDetailPage({ params }: PageProps) {
   const markdown =
     runbook?.markdown || `# ${skill.name}\n\n${skill.description}`;
 
-  return <SkillDetailView skill={skill} markdown={markdown} />;
+  const relatedSkills = skills
+    .filter((s) => s.category === skill.category && s.name !== skill.name)
+    .slice(0, 3);
+
+  return (
+    <SkillDetailView
+      skill={skill}
+      markdown={markdown}
+      relatedSkills={relatedSkills}
+    />
+  );
 }
