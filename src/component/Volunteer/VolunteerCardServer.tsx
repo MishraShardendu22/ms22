@@ -12,6 +12,7 @@ import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
 import { VOLUNTEERS_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
+import { stripMarkdown } from "@/utils/text";
 
 interface VolunteerCardProps {
   volunteer: Volunteer;
@@ -60,7 +61,7 @@ export const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
       subtitle={volunteer.organisation}
       startDate={startDate}
       endDate={endDate}
-      description={volunteer.description}
+      description={stripMarkdown(volunteer.description || "")}
       technologies={volunteer.technologies}
       certificateUrl={volunteer.certificate_link}
       certificateLabel="Certificate"
@@ -88,8 +89,8 @@ export async function VolunteerDisplayMobile() {
   if (volunteers.length === 0) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-pink-400 mb-4">Volunteer</h2>
-        <p className="text-gray-400 text-sm">
+        <h2 className="text-2xl font-bold text-[#f3ebdd] mb-4">Volunteer</h2>
+        <p className="text-[#8e8374] text-sm">
           No volunteer experiences available
         </p>
       </section>
@@ -99,15 +100,15 @@ export async function VolunteerDisplayMobile() {
   return (
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-pink-400">Volunteer</h2>
+        <h2 className="text-2xl font-bold text-[#f3ebdd]">Volunteer</h2>
         <Link
           href="/volunteer"
-          className="text-sm text-gray-400 hover:text-pink-400"
+          className="text-sm text-[#8e8374] hover:text-[#d9a55b] transition-colors"
         >
           View All →
         </Link>
       </div>
-      <p className="text-gray-400 text-sm mb-4">
+      <p className="text-[#8e8374] text-sm mb-4">
         Community service and meaningful contributions
       </p>
       <div className="space-y-4">
@@ -130,7 +131,7 @@ export async function VolunteerDisplayMobile() {
           return (
             <div
               key={volId}
-              className="group relative bg-gray-900/80 border border-gray-800 rounded-xl p-4 hover:border-pink-500/40 transition-colors duration-200"
+              className="group relative bg-[#161311] border border-[#2f2923] rounded-xl p-4 hover:border-[#d9a55b]/40 transition-colors duration-200"
             >
               {volId && (
                 <Link
@@ -150,30 +151,30 @@ export async function VolunteerDisplayMobile() {
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-white line-clamp-1 group-hover:text-pink-400 transition-colors">
+                  <h3 className="text-base font-bold text-[#f3ebdd] line-clamp-1 group-hover:text-[#d9a55b] transition-colors">
                     {position}
                   </h3>
-                  <p className="text-sm text-gray-400">{vol.organisation}</p>
+                  <p className="text-sm text-[#b9ae9d]">{vol.organisation}</p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2 relative z-10">
+              <p className="text-xs text-[#8e8374] mb-2 relative z-10">
                 {startDate} - {endDate}
               </p>
-              <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2 relative z-10">
-                {vol.description}
+              <p className="text-sm text-[#8e8374] leading-relaxed mb-3 line-clamp-2 relative z-10">
+                {stripMarkdown(vol.description || "")}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
                 <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">
                   {vol.technologies?.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+                      className="px-2 py-0.5 text-xs bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded"
                     >
                       {tech}
                     </span>
                   ))}
                   {(vol.technologies?.length ?? 0) > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-pink-900/50 text-pink-400 rounded">
+                    <span className="px-2 py-0.5 text-xs bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded">
                       +{(vol.technologies?.length ?? 0) - 3}
                     </span>
                   )}
@@ -181,7 +182,7 @@ export async function VolunteerDisplayMobile() {
                 {volId && (
                   <Link
                     href={`/volunteer/${volId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-pink-500/10 text-pink-400 rounded border border-pink-500/30 shrink-0 self-end ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

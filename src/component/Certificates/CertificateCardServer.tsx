@@ -11,6 +11,7 @@ import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 import { CERTIFICATES_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
+import { stripMarkdown } from "@/utils/text";
 
 interface CertificateCardProps {
   certificate: Certificate;
@@ -44,7 +45,7 @@ export const CertificateCard = ({
       ) : (
         <>
           <span>•</span>
-          <span className="text-emerald-400 font-medium">No Expiration</span>
+          <span className="text-[#d9a55b] font-medium">No Expiration</span>
         </>
       )}
     </>
@@ -61,7 +62,7 @@ export const CertificateCard = ({
       title={certificate.title}
       subtitle={certificate.issuer}
       startDate={`Issued ${issueDate}`}
-      description={fullDescription}
+      description={stripMarkdown(fullDescription || "")}
       technologies={certificate.skills}
       certificateUrl={certificate.certificate_url}
       certificateLabel="Certificate"
@@ -90,10 +91,10 @@ export async function CertificatesDisplayMobile() {
   if (certificates.length === 0) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+        <h2 className="text-2xl font-bold text-[#f3ebdd] mb-4">
           Certifications
         </h2>
-        <p className="text-gray-400 text-sm">No certificates available</p>
+        <p className="text-[#8e8374] text-sm">No certificates available</p>
       </section>
     );
   }
@@ -101,15 +102,15 @@ export async function CertificatesDisplayMobile() {
   return (
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-emerald-400">Certifications</h2>
+        <h2 className="text-2xl font-bold text-[#f3ebdd]">Certifications</h2>
         <Link
           href="/certificates"
-          className="text-sm text-gray-400 hover:text-emerald-400"
+          className="text-sm text-[#8e8374] hover:text-[#d9a55b] transition-colors"
         >
           View All →
         </Link>
       </div>
-      <p className="text-gray-400 text-sm mb-4">
+      <p className="text-[#8e8374] text-sm mb-4">
         Professional certifications and credentials
       </p>
       <div className="space-y-4">
@@ -120,7 +121,7 @@ export async function CertificatesDisplayMobile() {
           return (
             <div
               key={certId}
-              className="group relative bg-gray-900/80 border border-gray-800 rounded-xl p-4 hover:border-emerald-500/40 transition-colors duration-200"
+              className="group relative bg-[#161311] border border-[#2f2923] rounded-xl p-4 hover:border-[#d9a55b]/40 transition-colors duration-200"
             >
               {certId && (
                 <Link
@@ -129,18 +130,18 @@ export async function CertificatesDisplayMobile() {
                   aria-label={`View ${cert.title}`}
                 />
               )}
-              <h3 className="text-base font-bold text-white mb-1 line-clamp-1 group-hover:text-emerald-400 transition-colors relative z-10">
+              <h3 className="text-base font-bold text-[#f3ebdd] mb-1 line-clamp-1 group-hover:text-[#d9a55b] transition-colors relative z-10">
                 {cert.title}
               </h3>
-              <p className="text-sm text-gray-400 mb-2 relative z-10">
+              <p className="text-sm text-[#b9ae9d] mb-2 relative z-10">
                 {cert.issuer}
               </p>
-              <p className="text-xs text-gray-500 mb-2 relative z-10">
+              <p className="text-xs text-[#8e8374] mb-2 relative z-10">
                 Issued {issueDate}
               </p>
               {cert.description && (
-                <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2 relative z-10">
-                  {cert.description}
+                <p className="text-sm text-[#8e8374] leading-relaxed mb-3 line-clamp-2 relative z-10">
+                  {stripMarkdown(cert.description)}
                 </p>
               )}
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
@@ -148,13 +149,13 @@ export async function CertificatesDisplayMobile() {
                   {cert.skills?.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+                      className="px-2 py-0.5 text-xs bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded"
                     >
                       {skill}
                     </span>
                   ))}
                   {(cert.skills?.length ?? 0) > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-emerald-900/50 text-emerald-400 rounded">
+                    <span className="px-2 py-0.5 text-xs bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded">
                       +{(cert.skills?.length ?? 0) - 3}
                     </span>
                   )}
@@ -162,7 +163,7 @@ export async function CertificatesDisplayMobile() {
                 {certId && (
                   <Link
                     href={`/certificates/${certId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/30 shrink-0 self-end ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

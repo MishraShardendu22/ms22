@@ -50,6 +50,15 @@ describe("pagination noindex behavior", () => {
     await expectIndex(experiencesMeta, true);
     await expectIndex(certificatesMeta, true);
     await expectIndex(volunteerMeta, true);
+
+    const projectsPage1 = await generateProjectsMetadata({
+      searchParams: { page: "1" },
+    });
+    const homePage1 = await generateHomeMetadata({
+      searchParams: { projectsPage: "1" },
+    });
+    await expectIndex(projectsPage1, true);
+    await expectIndex(homePage1, true);
   });
 
   it("sets index: false for paginated home sections", async () => {

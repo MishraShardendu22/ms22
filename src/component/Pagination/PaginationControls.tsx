@@ -1,9 +1,6 @@
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import Link from "next/link";
-import {
-  PAGINATION_THEME_CONFIG,
-  type PaginationTheme,
-} from "@/constants/theme";
+import type { PaginationTheme } from "@/constants/theme";
 
 export type { PaginationTheme } from "@/constants/theme";
 
@@ -18,20 +15,16 @@ interface PaginationControlsProps {
   showViewAll?: boolean;
 }
 
-const themeClasses = PAGINATION_THEME_CONFIG;
-
 export function PaginationControls({
   currentPage,
   totalPages,
   onPrevPage,
   onNextPage,
   isLoading = false,
-  theme = "violet",
+  theme: _theme = "violet",
   viewAllHref,
   showViewAll = true,
 }: PaginationControlsProps) {
-  const colors = themeClasses[theme];
-
   if (totalPages <= 1) return null;
 
   return (
@@ -40,26 +33,24 @@ export function PaginationControls({
         type="button"
         onClick={onPrevPage}
         disabled={currentPage === 1 || isLoading}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed`}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] hover:border-[#413930] hover:bg-[#1e1a16] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
         aria-label="Previous page"
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="w-4 h-4 text-[#d9a55b]" />
         <span className="text-xs font-medium">Previous</span>
       </button>
 
-      <span className="text-gray-400 text-xs font-medium px-2">
-        Page{" "}
-        <span className={`${colors.activeText} font-bold`}>{currentPage}</span>{" "}
-        of{" "}
-        <span className={`${colors.activeText} font-bold`}>{totalPages}</span>
+      <span className="text-[#8e8374] text-xs font-medium px-2">
+        Page <span className="text-[#d9a55b] font-bold">{currentPage}</span> of{" "}
+        <span className="text-[#d9a55b] font-bold">{totalPages}</span>
       </span>
 
       {showViewAll && viewAllHref && (
         <Link
           href={viewAllHref}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300`}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] hover:border-[#413930] hover:bg-[#1e1a16] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all duration-200"
         >
-          <Eye className="w-4 h-4" />
+          <Eye className="w-4 h-4 text-[#d9a55b]" />
           <span className="text-xs font-medium">View All</span>
         </Link>
       )}
@@ -68,11 +59,11 @@ export function PaginationControls({
         type="button"
         onClick={onNextPage}
         disabled={currentPage === totalPages || isLoading}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed`}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] hover:border-[#413930] hover:bg-[#1e1a16] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
         aria-label="Next page"
       >
         <span className="text-xs font-medium">Next</span>
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-4 h-4 text-[#d9a55b]" />
       </button>
     </div>
   );

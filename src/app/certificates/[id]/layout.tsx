@@ -6,6 +6,7 @@ import {
 } from "@/lib/structuredData";
 import { getCachedCertificateById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { stripMarkdown } from "@/utils/text";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -23,8 +24,9 @@ export async function generateMetadata({
 
     if (response.status === 200 && response.data) {
       const certificate = response.data;
+      const cleanDesc = stripMarkdown(certificate.description || "");
       const description =
-        `${certificate.title} certification from ${certificate.issuer}. ${certificate.description?.slice(0, 80) || "Professional certification by Shardendu Mishra."}`.slice(
+        `${certificate.title} certification from ${certificate.issuer}. ${cleanDesc.slice(0, 80) || "Professional certification by Shardendu Mishra."}`.slice(
           0,
           160,
         );

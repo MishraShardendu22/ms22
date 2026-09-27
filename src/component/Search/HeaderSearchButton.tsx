@@ -2,10 +2,7 @@
 
 import { Command, Search } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
-import {
-  SEARCH_BUTTON_THEME_CONFIG,
-  type SearchButtonTheme,
-} from "@/constants/theme";
+import type { SearchButtonTheme } from "@/constants/theme";
 import type { SearchResultType } from "@/static/api/api.types";
 
 let modalState = {
@@ -52,7 +49,7 @@ interface HeaderSearchButtonProps {
 export function HeaderSearchButton({
   filterType,
   label = "Search",
-  theme = "violet",
+  theme: _theme = "violet",
 }: HeaderSearchButtonProps) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -69,12 +66,12 @@ export function HeaderSearchButton({
     <button
       type="button"
       onClick={() => openSearchModal(filterType)}
-      className={`flex items-center gap-2 px-3 py-2 bg-gray-800/70 hover:bg-gray-800 border border-gray-700/70 rounded-lg text-gray-400 ${SEARCH_BUTTON_THEME_CONFIG[theme]} transition-colors`}
+      className="flex items-center gap-2 px-3.5 py-2 bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#413930] rounded-xl text-[#b9ae9d] hover:text-[#f3ebdd] transition-all cursor-pointer shadow-sm"
       aria-label="Search"
     >
-      <Search className="w-4 h-4" />
+      <Search className="w-4 h-4 text-[#d9a55b]" />
       <span className="text-sm font-medium">{label}</span>
-      <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-gray-900/80 rounded border border-gray-700/70 font-semibold text-gray-400">
+      <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-[#1e1a16] rounded-md border border-[#2f2923] font-semibold text-[#8e8374]">
         <Command className="w-2.5 h-2.5" />K
       </kbd>
     </button>

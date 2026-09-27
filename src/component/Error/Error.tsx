@@ -58,7 +58,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
           <Link
             href="/"
-            className="flex items-center gap-3 px-8 py-4 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-orange-500/30 text-gray-300 hover:text-orange-400 font-semibold text-lg transition-colors"
+            className="flex items-center gap-3 px-8 py-4 rounded-xl bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#f3ebdd] hover:text-[#d9a55b] font-semibold text-lg transition-colors"
           >
             <Home className="w-5 h-5" />
             <span>Go Home</span>

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
 import {
+  certificatesAPI,
   getCachedCertificateById,
   projectsAPI,
 } from "@/static/api/api.request";
@@ -8,6 +9,22 @@ import type { Project } from "@/static/api/api.types";
 import { normalizeCertificate } from "@/utils/detailNormalizers";
 
 export const revalidate = 3600;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const response = await certificatesAPI.getAllCertificates(1, 100);
+    const certificates = response.data?.certifications || [];
+    return certificates
+      .map((cert) => ({ id: String(cert.inline?.id) }))
+      .filter((item) =>
+        Boolean(item.id && item.id !== "undefined" && item.id !== "null"),
+      );
+  } catch (error) {
+    console.error("Error generating static params for certificates:", error);
+    return [];
+  }
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;

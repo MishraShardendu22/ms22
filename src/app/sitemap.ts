@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { FALLBACK_SKILLS } from "@/lib/agentSkills";
 import {
   certificatesAPI,
   experiencesAPI,
@@ -58,6 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   addRoute("/volunteer", "monthly", 0.7);
   addRoute("/skills", "weekly", 0.9);
   addRoute("/skills/cli", "monthly", 0.8);
+  FALLBACK_SKILLS.forEach((skill) => {
+    if (skill.name) {
+      addRoute(`/skills/${encodeURIComponent(skill.name)}`, "monthly", 0.8);
+    }
+  });
   addRoute("/links", "monthly", 0.9);
   addRoute("/contact", "yearly", 0.6);
   addRoute("/feed.xml", "monthly", 0.3);

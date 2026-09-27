@@ -87,11 +87,15 @@ export async function generateMetadata({
       };
 }): Promise<Metadata> {
   const params = searchParams ? await searchParams : undefined;
+  const parsePage = (val?: string) => {
+    const num = Number.parseInt(val || "1", 10);
+    return !Number.isNaN(num) && num > 1;
+  };
   const hasPageParams = Boolean(
-    params?.projectsPage ||
-      params?.experiencesPage ||
-      params?.volunteerPage ||
-      params?.certificatesPage,
+    parsePage(params?.projectsPage) ||
+      parsePage(params?.experiencesPage) ||
+      parsePage(params?.volunteerPage) ||
+      parsePage(params?.certificatesPage),
   );
 
   return generatePageMetadata({

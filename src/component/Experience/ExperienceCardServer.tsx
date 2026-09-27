@@ -12,6 +12,7 @@ import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
 import { EXPERIENCES_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
+import { stripMarkdown } from "@/utils/text";
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -36,7 +37,7 @@ export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
       subtitle={experience.company_name}
       startDate={startDate}
       endDate={endDate}
-      description={experience.description}
+      description={stripMarkdown(experience.description || "")}
       technologies={experience.technologies}
       certificateUrl={experience.certificate_url}
       certificateLabel="Certificate"
@@ -124,7 +125,7 @@ export async function ExperiencesDisplayMobile() {
                 {startDate} - {endDate}
               </p>
               <p className="text-sm text-[#8e8374] leading-relaxed mb-4 line-clamp-2 relative z-10">
-                {experience.description}
+                {stripMarkdown(experience.description || "")}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
                 <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">

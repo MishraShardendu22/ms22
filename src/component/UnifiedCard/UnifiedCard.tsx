@@ -7,6 +7,8 @@ import {
   type UnifiedCardTheme,
 } from "@/constants/theme";
 
+import { stripMarkdown } from "@/utils/text";
+
 interface UnifiedCardProps {
   index: number;
   theme: UnifiedCardTheme;
@@ -154,7 +156,7 @@ export const UnifiedCard = ({
 
             {description && (
               <p className="text-[#b9ae9d] text-xs sm:text-sm leading-relaxed mb-2.5 line-clamp-2 pointer-events-auto">
-                {description}
+                {stripMarkdown(description)}
               </p>
             )}
           </div>

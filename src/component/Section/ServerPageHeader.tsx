@@ -1,10 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { HeaderSearchButton, SearchModalContent } from "@/component/Search";
-import {
-  PAGE_HEADER_THEME_CONFIG,
-  type PageHeaderTheme,
-} from "@/constants/theme";
+import type { PageHeaderTheme } from "@/constants/theme";
 import { THEME_TO_SEARCH_FILTER } from "@/static/search";
 
 export type { PageHeaderTheme } from "@/constants/theme";
@@ -20,8 +17,6 @@ interface ServerPageHeaderProps {
   resultLabel: string;
   children?: ReactNode;
 }
-
-const themeConfig = PAGE_HEADER_THEME_CONFIG;
 
 function buildUrl(
   basePath: string,
@@ -57,8 +52,6 @@ export function ServerPageHeader({
   resultLabel,
   children,
 }: ServerPageHeaderProps) {
-  const colors = themeConfig[theme];
-
   const prevPageUrl = buildUrl(basePath, searchParams, {
     page: String(currentPage - 1),
   });
@@ -75,14 +68,14 @@ export function ServerPageHeader({
         {/* Title, Search, and Pagination */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-white">{title}</h1>
-            <p className="text-sm text-gray-500 mt-1">
-              <span className={`${colors.accentColor} font-medium`}>
+            <h1 className="text-2xl font-bold text-[#f3ebdd]">{title}</h1>
+            <p className="text-sm text-[#8e8374] mt-1">
+              <span className="text-[#d9a55b] font-semibold">
                 {resultCount}
               </span>{" "}
               {resultLabel}
               {totalPages > 1 && (
-                <span className="ml-2 text-gray-600">
+                <span className="ml-2 text-[#8e8374]">
                   • Page {currentPage} of {totalPages}
                 </span>
               )}
@@ -103,35 +96,31 @@ export function ServerPageHeader({
               {currentPage > 1 ? (
                 <Link
                   href={prevPageUrl}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300`}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] hover:border-[#413930] hover:bg-[#1e1a16] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all duration-200"
                 >
                   <span className="text-xs font-medium">← Prev</span>
                 </Link>
               ) : (
-                <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 text-gray-600 cursor-not-allowed opacity-50">
+                <span className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311]/40 border border-[#2f2923] text-[#8e8374] cursor-not-allowed opacity-40">
                   <span className="text-xs font-medium">← Prev</span>
                 </span>
               )}
 
-              <span className="text-gray-400 text-xs font-medium px-2">
-                <span className={`${colors.accentColor} font-bold`}>
-                  {currentPage}
-                </span>
+              <span className="text-[#8e8374] text-xs font-medium px-2">
+                <span className="text-[#d9a55b] font-bold">{currentPage}</span>
                 {" / "}
-                <span className={`${colors.accentColor} font-bold`}>
-                  {totalPages}
-                </span>
+                <span className="text-[#d9a55b] font-bold">{totalPages}</span>
               </span>
 
               {currentPage < totalPages ? (
                 <Link
                   href={nextPageUrl}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300`}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] hover:border-[#413930] hover:bg-[#1e1a16] text-[#b9ae9d] hover:text-[#f3ebdd] transition-all duration-200"
                 >
                   <span className="text-xs font-medium">Next →</span>
                 </Link>
               ) : (
-                <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 text-gray-600 cursor-not-allowed opacity-50">
+                <span className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161311]/40 border border-[#2f2923] text-[#8e8374] cursor-not-allowed opacity-40">
                   <span className="text-xs font-medium">Next →</span>
                 </span>
               )}

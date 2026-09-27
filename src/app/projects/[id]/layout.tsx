@@ -6,6 +6,7 @@ import {
 } from "@/lib/structuredData";
 import { getCachedProjectById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { stripMarkdown } from "@/utils/text";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -23,8 +24,11 @@ export async function generateMetadata({
 
     if (response.status === 200 && response.data) {
       const project = response.data;
+      const cleanDesc = stripMarkdown(
+        project.small_description || project.description || "",
+      );
       const description =
-        `${project.project_name} - ${project.small_description?.slice(0, 120) || "A software project by Shardendu Mishra."}`.slice(
+        `${project.project_name} - ${cleanDesc.slice(0, 120) || "A software project by Shardendu Mishra."}`.slice(
           0,
           160,
         );

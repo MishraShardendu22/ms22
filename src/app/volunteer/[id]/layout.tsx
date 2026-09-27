@@ -6,6 +6,7 @@ import {
 } from "@/lib/structuredData";
 import { getCachedVolunteerById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { stripMarkdown } from "@/utils/text";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -24,8 +25,9 @@ export async function generateMetadata({
     if (response.status === 200 && response.data) {
       const volunteer = response.data;
       const position = volunteer.position || "Volunteer";
+      const cleanDesc = stripMarkdown(volunteer.description || "");
       const description =
-        `${position} at ${volunteer.organisation}. ${volunteer.description?.slice(0, 80) || "Volunteer experience by Shardendu Mishra."}`.slice(
+        `${position} at ${volunteer.organisation}. ${cleanDesc.slice(0, 80) || "Volunteer experience by Shardendu Mishra."}`.slice(
           0,
           160,
         );

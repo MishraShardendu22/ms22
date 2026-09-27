@@ -6,6 +6,7 @@ import {
 } from "@/lib/structuredData";
 import { getCachedExperienceById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { stripMarkdown } from "@/utils/text";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -25,8 +26,9 @@ export async function generateMetadata({
       const experience = response.data;
       const position =
         experience.experience_time_line?.[0]?.position || "Software Developer";
+      const cleanDesc = stripMarkdown(experience.description || "");
       const description =
-        `${position} at ${experience.company_name}. ${experience.description?.slice(0, 100) || "Professional work experience by Shardendu Mishra."}`.slice(
+        `${position} at ${experience.company_name}. ${cleanDesc.slice(0, 100) || "Professional work experience by Shardendu Mishra."}`.slice(
           0,
           160,
         );

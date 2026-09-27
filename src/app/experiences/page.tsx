@@ -31,10 +31,11 @@ export async function generateMetadata({
   searchParams?: Promise<{ page?: string }> | { page?: string };
 }): Promise<Metadata> {
   const params = searchParams ? await searchParams : undefined;
-  const hasPageParam = typeof params?.page === "string";
+  const pageNum = Number.parseInt(params?.page || "1", 10);
+  const isPaginated = !Number.isNaN(pageNum) && pageNum > 1;
   return generatePageMetadata({
     ...EXPERIENCES_METADATA,
-    noIndex: hasPageParam,
+    noIndex: isPaginated,
   });
 }
 

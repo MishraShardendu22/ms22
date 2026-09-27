@@ -1,9 +1,28 @@
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
-import { getCachedExperienceById } from "@/static/api/api.request";
+import {
+  experiencesAPI,
+  getCachedExperienceById,
+} from "@/static/api/api.request";
 import { normalizeExperience } from "@/utils/detailNormalizers";
 
 export const revalidate = 3600;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const response = await experiencesAPI.getAllExperiences(1, 100);
+    const experiences = response.data?.experiences || [];
+    return experiences
+      .map((exp) => ({ id: String(exp.inline?.id) }))
+      .filter((item) =>
+        Boolean(item.id && item.id !== "undefined" && item.id !== "null"),
+      );
+  } catch (error) {
+    console.error("Error generating static params for experiences:", error);
+    return [];
+  }
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;

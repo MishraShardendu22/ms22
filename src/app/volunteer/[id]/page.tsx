@@ -1,9 +1,25 @@
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
-import { getCachedVolunteerById } from "@/static/api/api.request";
+import { getCachedVolunteerById, volunteerAPI } from "@/static/api/api.request";
 import { normalizeVolunteer } from "@/utils/detailNormalizers";
 
 export const revalidate = 3600;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const response = await volunteerAPI.getAllVolunteers(1, 100);
+    const volunteers = response.data?.volunteer_experiences || [];
+    return volunteers
+      .map((vol) => ({ id: String(vol.inline?.id) }))
+      .filter((item) =>
+        Boolean(item.id && item.id !== "undefined" && item.id !== "null"),
+      );
+  } catch (error) {
+    console.error("Error generating static params for volunteer:", error);
+    return [];
+  }
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;

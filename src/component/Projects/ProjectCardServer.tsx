@@ -10,6 +10,7 @@ import { UnifiedCard } from "@/component/UnifiedCard";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 import { PROJECTS_PER_PAGE } from "@/static/pagination";
+import { stripMarkdown } from "@/utils/text";
 
 interface ProjectCardProps {
   project: Project;
@@ -55,7 +56,9 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 
-  const displayDescription = project.small_description || project.description;
+  const displayDescription = stripMarkdown(
+    project.small_description || project.description || "",
+  );
   const projectId = project.inline?.id;
 
   return (
@@ -153,7 +156,9 @@ export async function ProjectsDisplayMobile() {
                 </div>
               </div>
               <p className="text-[#8e8374] text-xs leading-relaxed mb-3 line-clamp-2">
-                {project.small_description || project.description}
+                {stripMarkdown(
+                  project.small_description || project.description || "",
+                )}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
                 <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">
