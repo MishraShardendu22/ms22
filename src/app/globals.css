@@ -301,50 +301,6 @@ samp {
   margin-top: 8px;
 }
 
-/* Stat strip (Landing Hero & Surface Metrics) */
-.stat-strip {
-  display: flex;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 0;
-  background: var(--bg-100);
-  border-radius: var(--radius-md);
-  margin-top: 24px;
-}
-
-.stat-strip__item {
-  flex: 1;
-  min-width: 140px;
-  padding: 8px 24px;
-  border-left: 1px solid var(--border);
-  display: grid;
-  gap: 4px;
-}
-
-.stat-strip__item:first-child {
-  padding-left: 20px;
-  border-left: 0;
-}
-
-.stat-strip__value {
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 30px;
-  line-height: 34px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-
-.stat-strip__label {
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--ink-secondary);
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 /* List & ListRow Component System */
 .list {
   display: flex;

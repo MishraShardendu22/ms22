@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { StatStrip } from "@/component/Hero/StatStrip";
 import { GitHubIcon } from "@/component/Icons";
 import { Kicker } from "@/component/Section/PageHeader";
 import { myIntro, SocialLinks } from "@/static/info/header";
@@ -44,18 +43,8 @@ export const TextContent = () => {
         </a>
       </div>
 
-      {/* Metrics Stat Strip */}
-      <StatStrip
-        items={[
-          { value: "15+", label: "Production Repos" },
-          { value: "30", label: "Agent Protocols" },
-          { value: "100%", label: "Test Pass Rate" },
-          { value: "Go · TS · Python", label: "Core Toolchains" },
-        ]}
-      />
-
       {/* Verified Channels Footer */}
-      <div className="flex gap-2 flex-wrap pt-2 items-center">
+      <div className="flex gap-2 flex-wrap pt-3 items-center">
         <span className="text-[11px] font-mono uppercase tracking-wider text-[#8e8374] mr-1">
           Channels:
         </span>
