@@ -224,9 +224,9 @@ const page = async ({ searchParams }: PageProps) => {
             </Suspense>
           </section>
         )}
-        <footer id="contact">
+        <div id="contact">
           {isMobile ? <FooterSectionMobile /> : <FooterSection />}
-        </footer>
+        </div>
       </main>
     </>
   );

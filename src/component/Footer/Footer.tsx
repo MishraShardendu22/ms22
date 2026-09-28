@@ -64,7 +64,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function FooterSectionMobile() {
   return (
-    <footer className="relative overflow-hidden bg-[#0e0c0a] px-4 pb-8 pt-14 border-t border-[#2f2923]">
+    <footer className="relative overflow-hidden bg-transparent px-4 pb-12 pt-8">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-lines" />
         <div className="absolute -top-16 right-[-4rem] h-40 w-40 rounded-full bg-[#d9a55b]/5 blur-3xl" />
@@ -215,7 +215,7 @@ export function FooterSectionMobile() {
 
 export function FooterSection() {
   return (
-    <footer className="relative bg-[#0e0c0a] pt-20 pb-8 px-6 md:px-8 border-t border-[#2f2923] overflow-hidden">
+    <footer className="relative bg-transparent pt-10 md:pt-14 pb-12 px-6 md:px-8 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-grid-lines" />
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#d9a55b]/5 rounded-full blur-3xl" />
