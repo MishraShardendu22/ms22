@@ -20,6 +20,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
 
   return (
     <div className="h-screen flex flex-col relative z-10">
+      <div className="fixed inset-0 pointer-events-none z-0 bg-grid-lines opacity-40" />
       {/* VS Code-style Header Bar */}
       <header
         className={`shrink-0 px-4 py-3 ${colors.headerBg} border-b ${colors.headerBorder} backdrop-blur-sm`}
