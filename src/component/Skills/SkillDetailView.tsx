@@ -277,7 +277,7 @@ export function SkillDetailView({
         elements.push(
           <h1
             key={`h1-${keyIndex++}`}
-            className="text-2xl sm:text-3xl font-bold font-heading text-[#f3ebdd] mt-8 mb-4 tracking-tight"
+            className="text-2xl sm:text-3xl font-normal font-heading text-[#f3ebdd] mt-8 mb-4 tracking-tight"
           >
             {parseInlineMarkdown(line.replace("# ", ""))}
           </h1>,
@@ -289,7 +289,7 @@ export function SkillDetailView({
         elements.push(
           <h2
             key={`h2-${keyIndex++}`}
-            className="text-xl sm:text-2xl font-bold font-heading text-[#f3ebdd] mt-9 mb-3.5 border-b border-[#2f2923] pb-2.5 flex items-center gap-2"
+            className="text-xl sm:text-2xl font-normal font-heading text-[#f3ebdd] mt-9 mb-3.5 border-b border-[#2f2923] pb-2.5 flex items-center gap-2"
           >
             <span className="w-1.5 h-5 rounded-full bg-[#d9a55b] inline-block shrink-0" />
             <span>{parseInlineMarkdown(line.replace("## ", ""))}</span>
@@ -489,7 +489,7 @@ export function SkillDetailView({
       {relatedSkills && relatedSkills.length > 0 && (
         <div className="mb-16">
           <div className="flex items-center justify-between gap-4 mb-6">
-            <h3 className="text-lg font-bold text-[#f3ebdd] font-heading">
+            <h3 className="text-lg font-normal text-[#f3ebdd] font-heading">
               Related Runbooks in {skill.category}
             </h3>
             <Link

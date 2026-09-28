@@ -195,7 +195,7 @@ export function SkillsCliPageClient() {
             <span className="text-[#413930]">/</span>
             <span className="text-xs text-[#d9a55b] font-mono">CLI Guide</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#f3ebdd] font-heading tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-normal text-[#f3ebdd] font-heading tracking-tight">
             skills-sync CLI
           </h1>
           <p className="text-sm text-[#8e8374] mt-1.5">
@@ -268,7 +268,7 @@ export function SkillsCliPageClient() {
       <section aria-label="Architecture" className="mb-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="w-1.5 h-4 rounded-full bg-[#d9a55b]" />
-          <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+          <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
             Hub &amp; Spoke Architecture
           </h2>
         </div>
@@ -354,7 +354,7 @@ export function SkillsCliPageClient() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-4 rounded-full bg-[#d9a55b]" />
-            <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+            <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
               Installation Methods
             </h2>
           </div>
@@ -530,7 +530,7 @@ export function SkillsCliPageClient() {
       <section aria-label="Command Reference" className="mb-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="w-1.5 h-4 rounded-full bg-[#d9a55b]" />
-          <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+          <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
             Command Reference &amp; Terminal Engine
           </h2>
         </div>
@@ -657,7 +657,7 @@ export function SkillsCliPageClient() {
       <section aria-label="Environment Variables" className="mb-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="w-1.5 h-4 rounded-full bg-[#d9a55b]" />
-          <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+          <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
             Environment Variables
           </h2>
         </div>
@@ -729,7 +729,7 @@ export function SkillsCliPageClient() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-1.5 h-4 rounded-full bg-[#d9a55b]" />
-                <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+                <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
                   Automate Upstream Sync via GitHub Actions
                 </h2>
               </div>

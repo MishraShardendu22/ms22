@@ -22,9 +22,9 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
     >
       <div className="relative">
         <div
-          className={`w-4 h-4 rounded-full border-2 shadow-lg z-10 transition-all duration-300 ${
+          className={`w-4 h-4 rounded-full border-2 shadow-lg z-10 transition-colors duration-200 ${
             isCurrentMonth
-              ? "bg-[#d9a55b] border-[#e6b56c] animate-pulse ring-4 ring-[#d9a55b]/30 scale-125"
+              ? "bg-[#d9a55b] border-[#e6b56c] animate-pulse ring-4 ring-[#d9a55b]/30"
               : month.isYearStart
                 ? "bg-[#f3ebdd] border-[#d9a55b] ring-2 ring-[#d9a55b]/20"
                 : "bg-[#2f2923] border-[#413930]"
@@ -41,9 +41,9 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
 
       <div className="mt-3 text-center">
         <div
-          className={`text-xs sm:text-sm font-bold transition-all duration-300 px-2 py-1 rounded-md ${
+          className={`text-xs sm:text-sm font-bold transition-colors duration-200 px-2 py-1 rounded-md ${
             isCurrentMonth
-              ? "text-[#d9a55b] scale-110 bg-[#d9a55b]/20 shadow-lg shadow-[#d9a55b]/20"
+              ? "text-[#d9a55b] bg-[#d9a55b]/20 border border-[#d9a55b]/30 shadow-lg shadow-[#d9a55b]/20"
               : month.isYearStart
                 ? "text-[#f3ebdd] bg-[#1e1a16] border border-[#2f2923]"
                 : "text-[#8e8374]"

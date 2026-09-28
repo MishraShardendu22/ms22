@@ -35,10 +35,10 @@ export const EducationSection = () => {
                 href="https://iiitdwd.ac.in/website-team/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 w-8 h-8 rounded-lg bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 flex items-center justify-center transition-all group/link"
+                className="shrink-0 w-8 h-8 rounded-lg bg-[#1e1a16] hover:bg-[#27221c] border border-[#2f2923] hover:border-[#d9a55b]/40 flex items-center justify-center transition-colors group/link"
                 aria-label="Visit IIIT Dharwad Website Team"
               >
-                <ExternalLink className="w-3.5 h-3.5 text-[#d9a55b] group-hover/link:scale-110 transition-transform" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#d9a55b] group-hover/link:text-[#f3ebdd] transition-colors" />
               </Link>
             </div>
 

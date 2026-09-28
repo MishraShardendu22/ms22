@@ -77,7 +77,7 @@ export function FooterSectionMobile() {
               <Code2 className="w-5 h-5 text-[#d9a55b]" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-[#f3ebdd] font-heading">
+              <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
                 Shardendu Mishra
               </h2>
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#d9a55b]">
@@ -102,7 +102,7 @@ export function FooterSectionMobile() {
         </div>
 
         <div className="mb-8 rounded-2xl border border-[#2f2923] bg-[#161311]/60 p-5 shadow-[0_4px_24px_rgba(217,165,91,0.05)]">
-          <h3 className="text-lg font-bold text-[#f3ebdd] mb-4 font-heading">
+          <h3 className="text-lg font-normal text-[#f3ebdd] mb-4 font-heading">
             Let's Talk
           </h3>
           <div className="bg-[#0e0c0a]/80 p-3 rounded-xl border border-[#2f2923]">
@@ -225,7 +225,7 @@ export function FooterSection() {
           <div className="space-y-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <h2 className="text-3xl font-bold text-[#f3ebdd] font-heading">
+                <h2 className="text-3xl font-normal text-[#f3ebdd] font-heading">
                   Shardendu Mishra
                 </h2>
                 <span className="text-xs px-2.5 py-0.5 rounded-full border border-[#d9a55b]/30 bg-[#d9a55b]/10 text-[#d9a55b] font-mono">
@@ -297,7 +297,7 @@ export function FooterSection() {
 
           <div>
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-[#f3ebdd] mb-2 font-heading">
+              <h3 className="text-2xl font-normal text-[#f3ebdd] mb-2 font-heading">
                 Let's Talk
               </h3>
               <p className="text-[#8e8374] text-sm">Get in touch with me</p>
@@ -311,7 +311,7 @@ export function FooterSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20 lg:gap-24 mb-16 md:mb-24 lg:mb-32">
           <div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
               Quick Links
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
@@ -325,7 +325,7 @@ export function FooterSection() {
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-500 group"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:text-[#d9a55b] transition-colors" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>
@@ -336,7 +336,7 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
               My Websites
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
@@ -352,7 +352,7 @@ export function FooterSection() {
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-500 group"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:text-[#d9a55b] transition-colors" />
                       )}
                       <span className="font-medium">{data.name}</span>
                     </a>
@@ -363,7 +363,7 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
               Social Media
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
@@ -379,7 +379,7 @@ export function FooterSection() {
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-500 group"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:text-[#d9a55b] transition-colors" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>
@@ -390,7 +390,7 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#f3ebdd] mb-6 md:mb-10 tracking-wide font-heading">
               Coding
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
@@ -406,7 +406,7 @@ export function FooterSection() {
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-500 group"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:text-[#d9a55b] transition-colors" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>

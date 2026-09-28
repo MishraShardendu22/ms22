@@ -83,8 +83,8 @@ export const ExperienceCard = ({
           className={`
             w-14 h-14 rounded-xl bg-[#161311] 
             flex items-center justify-center cursor-pointer border-2
-            transition-transform duration-200 shadow-lg
-            ${isHovered ? "scale-125" : "hover:scale-105"}
+            transition-colors duration-150 shadow-lg
+            ${isHovered ? "ring-2 ring-[#d9a55b]/50" : ""}
           `}
           style={{
             borderColor: companyColor,

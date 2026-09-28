@@ -6,7 +6,6 @@ import {
   IBM_Plex_Mono,
   IBM_Plex_Sans,
   Instrument_Serif,
-  Space_Grotesk,
 } from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
@@ -19,16 +18,6 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-  fallback: ["system-ui", "Arial", "sans-serif"],
-  preload: true,
-  adjustFontFallback: true,
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -232,7 +221,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <noscript>
           <div

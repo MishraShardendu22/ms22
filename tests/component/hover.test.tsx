@@ -103,4 +103,30 @@ describe("Hover Translation Effects", () => {
     expect(element.props.className).not.toContain("hover:-translate-y-");
     expect(element.props.className).not.toContain("hover:translate-y-");
   });
+
+  it("should not contain scale magnification effects on hover in ImageContainer", () => {
+    const element = ImageContainer();
+    const containerDiv = element.props.children.find(
+      (child: React.ReactNode) =>
+        hasClassNameProp(child) &&
+        child.props.className?.includes("image-container"),
+    );
+
+    expect(containerDiv).toBeDefined();
+    if (!hasClassNameProp(containerDiv)) return;
+    const imgChild = containerDiv.props.children?.[0];
+    if (hasClassNameProp(imgChild)) {
+      expect(imgChild.props.className).not.toContain("hover:scale-");
+      expect(imgChild.props.className).not.toContain("group-hover:scale-");
+    }
+  });
+
+  it("should not contain hover scale or translation in BackButton", async () => {
+    const { BackButton } = await import("@/component/Navigation/BackButton");
+    const element = BackButton();
+    expect(element).toBeDefined();
+    const className = element.props.className || "";
+    expect(className).not.toContain("hover:scale-");
+    expect(className).not.toContain("hover:-translate-");
+  });
 });

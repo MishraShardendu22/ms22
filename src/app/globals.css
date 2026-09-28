@@ -73,6 +73,13 @@
   --warning: #d29922;
   --error: #f85149;
   --info: #58a6ff;
+
+  /* Typography Variables */
+  --font-serif: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-body);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 /* ------------------------------
@@ -126,9 +133,79 @@
   --color-info: var(--info);
 
   --font-sans: var(--font-body);
-  --font-heading: var(--font-heading);
+  --font-heading: var(--font-serif);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
+}
+
+/* ------------------------------
+   Global Base Typography & Elements
+------------------------------ */
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+h1 em,
+h2 em,
+h3 em,
+h4 em,
+h5 em,
+h6 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+p {
+  font-family:
+    var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.font-heading {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.font-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.subheading,
+.lede {
+  font-family:
+    var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ------------------------------
@@ -302,14 +379,11 @@
   place-items: center;
   color: var(--accent);
   flex-shrink: 0;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: border-color 0.15s ease;
 }
 
 .list-row:hover .list-row__icon {
   border-color: var(--border-glow);
-  transform: translateY(-1px);
 }
 
 .list-row__icon svg {
@@ -372,31 +446,6 @@
 .list-row:hover .list-row__chevron {
   color: var(--accent);
   transform: translateX(3px);
-}
-
-/* ------------------------------
-   Global Base Styles
------------------------------- */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading), system-ui, sans-serif;
-}
-
-html,
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family:
-    var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-  width: 100%;
 }
 
 /* Mobile optimizations */
@@ -634,11 +683,9 @@ p {
     0%,
     100% {
       opacity: 0.3;
-      transform: scale(1);
     }
     50% {
       opacity: 0.6;
-      transform: scale(1.05);
     }
   }
 }

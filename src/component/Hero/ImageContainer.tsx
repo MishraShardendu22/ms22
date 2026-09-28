@@ -16,7 +16,7 @@ export const ImageContainer = () => {
           fill
           priority
           sizes="(max-width: 960px) 100vw, 45vw"
-          className="object-cover transition-transform duration-700 hover:scale-105"
+          className="object-cover"
         />
 
         {/* Viewfinder Reticles */}
