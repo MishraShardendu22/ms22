@@ -3,12 +3,7 @@
 import { useMemo, useState } from "react";
 import { EmptyState } from "./EmptyState";
 import { TimelineHorizon } from "./TimelineHorizon";
-import { TimelineMilestoneCard } from "./TimelineMilestoneCard";
-import {
-  type TimelineFilter,
-  TimelineToolbar,
-  type TimelineViewMode,
-} from "./TimelineToolbar";
+import { type TimelineFilter, TimelineToolbar } from "./TimelineToolbar";
 import type { TimelineDisplayProps } from "./types";
 import { useIsMobile } from "./useIsMobile";
 import { processTimelineData } from "./utils";
@@ -19,7 +14,6 @@ export const TimelineDisplay = ({
 }: TimelineDisplayProps) => {
   const isMobile = useIsMobile();
   const [filter, setFilter] = useState<TimelineFilter>("all");
-  const [viewMode, setViewMode] = useState<TimelineViewMode>("stream");
 
   const processedData = useMemo(
     () => processTimelineData(experiences, volunteerExpProps),
@@ -48,6 +42,11 @@ export const TimelineDisplay = ({
     [processedData.allExperiences],
   );
 
+  const earliestYear =
+    processedData.months.length > 0 ? processedData.months[0].year : 2024;
+  const currentYear = new Date().getFullYear();
+  const horizonRange = `${earliestYear} — ${currentYear}`;
+
   if (processedData.allExperiences.length === 0) {
     return <EmptyState />;
   }
@@ -75,22 +74,21 @@ export const TimelineDisplay = ({
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-[#8e8374] max-w-2xl mx-auto leading-relaxed">
-            A comprehensive chronological registry of professional software
+            A comprehensive chronological roadmap of professional software
             engineering, systems architecture, and open source leadership over
             time.
           </p>
         </div>
 
-        {/* Interactive Toolbar: Filter Pills + View Switcher */}
+        {/* Interactive Toolbar: Filter Pills */}
         <TimelineToolbar
           filter={filter}
           setFilter={setFilter}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
           counts={counts}
+          horizonRange={horizonRange}
         />
 
-        {/* Timeline Content Area */}
+        {/* Timeline Content Area: Roadmap Horizon */}
         {filteredExperiences.length === 0 ? (
           <div className="rounded-2xl border border-[#2f2923] bg-[#161311] p-12 text-center my-6">
             <p className="text-sm text-[#8e8374] font-mono">
@@ -99,42 +97,12 @@ export const TimelineDisplay = ({
             <button
               type="button"
               onClick={() => setFilter("all")}
-              className="mt-4 px-4 py-2 rounded-lg bg-[#d9a55b] text-[#0e0c0a] font-semibold text-xs transition-colors hover:bg-[#e6b56c]"
+              className="mt-4 px-4 py-2 rounded-lg bg-[#d9a55b] text-[#0e0c0a] font-semibold text-xs transition-colors hover:bg-[#e6b56c] cursor-pointer"
             >
               Reset Filters
             </button>
           </div>
-        ) : viewMode === "stream" ? (
-          /* Stream View: Connected Milestone Cards with Vertical Spine */
-          <div className="max-w-4xl mx-auto pt-4 pb-8">
-            {filteredExperiences.map((exp, index) => {
-              const prevExp = index > 0 ? filteredExperiences[index - 1] : null;
-              const currentYear = exp.startMonth.getFullYear();
-              const prevYear = prevExp
-                ? prevExp.startMonth.getFullYear()
-                : null;
-              const isNewYear = prevYear !== currentYear;
-              const isLast = index === filteredExperiences.length - 1;
-
-              return (
-                <div key={`${exp.name}-${exp.position}-${exp.start_date}`}>
-                  {/* Year Breakpoint Marker */}
-                  {isNewYear && (
-                    <div className="flex items-center gap-4 mb-6 mt-4 first:mt-0">
-                      <div className="px-3 py-1 rounded-full bg-[#1e1a16] border border-[#2f2923] text-xs font-mono font-bold text-[#d9a55b] tracking-wider">
-                        {currentYear}
-                      </div>
-                      <div className="h-px flex-1 bg-linear-to-r from-[#2f2923] to-transparent" />
-                    </div>
-                  )}
-
-                  <TimelineMilestoneCard exp={exp} isLast={isLast} />
-                </div>
-              );
-            })}
-          </div>
         ) : (
-          /* Roadmap Horizon: Dense Horizontal View */
           <div className="pt-2 pb-8">
             <TimelineHorizon
               experiences={filteredExperiences}
@@ -162,7 +130,7 @@ export const TimelineDisplay = ({
           </div>
 
           <div className="text-[#8e8374]">
-            <span>Active Trajectory: 2025 — Present</span>
+            <span>Active Trajectory: {horizonRange}</span>
           </div>
         </div>
       </div>
