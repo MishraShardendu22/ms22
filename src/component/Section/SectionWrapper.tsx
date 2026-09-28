@@ -33,7 +33,7 @@ export function SectionWrapper({
         />
         <div className="absolute inset-0 bg-grid-lines" />
       </div>
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-400 relative z-10">
         {children}
       </div>
     </section>

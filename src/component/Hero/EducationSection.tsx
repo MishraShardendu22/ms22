@@ -4,7 +4,7 @@ import { Language } from "@/static/info/header";
 
 export const EducationSection = () => {
   return (
-    <section id="education" className="max-w-6xl mx-auto w-full pt-4">
+    <section id="education" className="w-full pt-4">
       {/* Academic Journey Header */}
       <div className="mb-6 text-left">
         <div className="kicker mb-1">Academic Foundations</div>

@@ -16,7 +16,7 @@ export const TextContent = () => {
         <em className="italic text-[#d9a55b]">autonomous</em> agents.
       </h1>
 
-      <p className="text-sm sm:text-base md:text-lg text-[#b9ae9d] leading-relaxed max-w-2xl font-sans">
+      <p className="text-sm sm:text-base md:text-lg text-[#b9ae9d] leading-relaxed max-w-3xl font-sans">
         Hi, I&apos;m{" "}
         <span className="text-[#f3ebdd] font-semibold">{myIntro.name}</span>. I
         design scalable architectures in Go, cross-platform CLI engines,

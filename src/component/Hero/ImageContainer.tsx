@@ -8,7 +8,7 @@ export const ImageContainer = () => {
       <div className="absolute -inset-4 bg-radial from-[#d9a55b]/15 via-transparent to-transparent blur-2xl pointer-events-none" />
 
       {/* Planetary Astronomical Canvas with image-container class */}
-      <div className="image-container relative w-full aspect-square max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] rounded-2xl overflow-hidden mx-auto bg-[#161311] border border-[#2f2923] shadow-2xl">
+      <div className="image-container relative w-full aspect-square max-w-[360px] sm:max-w-[420px] lg:max-w-[480px] xl:max-w-[540px] 2xl:max-w-[580px] rounded-2xl overflow-hidden mx-auto bg-[#161311] border border-[#2f2923] shadow-2xl">
         {/* Planetary Hero Art */}
         <Image
           src="/images/hero.webp"

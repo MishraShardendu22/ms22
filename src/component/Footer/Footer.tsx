@@ -222,7 +222,7 @@ export function FooterSection() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#d9a55b]/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-400 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 mb-16">
           <div className="space-y-8">
             <div>

@@ -104,7 +104,7 @@ export const TimelineDisplay = ({
         <div className="absolute inset-0 bg-grid-lines"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-400 relative z-10">
         <div className="text-center mb-20 space-y-6">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal font-serif">
             <span className="bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(217,165,91,0.25)]">
