@@ -61,7 +61,7 @@ export const TimelineDisplay = ({
         <div className="absolute inset-0 bg-grid-lines" />
       </div>
 
-      <div className="container mx-auto max-w-400 relative z-10">
+      <div className="container mx-auto max-w-7xl w-full relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2f2923] bg-[#161311] text-[11px] font-mono font-bold tracking-[0.14em] text-[#d9a55b] uppercase">

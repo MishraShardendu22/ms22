@@ -249,9 +249,11 @@ export default function RootLayout({
         </noscript>
         <Analytics />
         <SpeedInsights />
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen w-full max-w-full overflow-x-clip">
           <SidebarWrapper />
-          {children}
+          <div className="flex-1 min-w-0 w-full max-w-full overflow-x-clip">
+            {children}
+          </div>
         </div>
       </body>
     </html>

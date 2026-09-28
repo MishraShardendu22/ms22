@@ -42,7 +42,7 @@ export const TimelineMilestoneCard = ({
       </div>
 
       {/* Milestone Card Surface */}
-      <div className="flex-1 pb-10 sm:pb-12">
+      <div className="flex-1 min-w-0 pb-10 sm:pb-12">
         <div
           className="rounded-2xl border border-[#2f2923] bg-[#161311] p-5 sm:p-6 transition-colors duration-200 hover:border-[#413930] hover:bg-[#181412] shadow-xl"
           style={{

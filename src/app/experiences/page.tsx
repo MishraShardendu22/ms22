@@ -140,7 +140,7 @@ export default async function ExperiencesPage({ searchParams }: PageProps) {
         <div className="absolute top-0 -right-4 w-72 h-72 bg-[#4caf7d]/3 rounded-full filter blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
+      <div className="container mx-auto px-4 py-6 relative z-10 max-w-7xl">
         <Suspense
           fallback={
             <LoadingStateLight

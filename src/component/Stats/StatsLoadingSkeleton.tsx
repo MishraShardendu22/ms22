@@ -7,7 +7,7 @@ export function StatsLoadingSkeleton() {
         <div className="absolute inset-0 bg-grid-lines" />
       </div>
 
-      <div className="container mx-auto max-w-400 relative z-10">
+      <div className="container mx-auto max-w-7xl w-full relative z-10">
         <div className="text-center mb-6 md:mb-8 px-2">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-serif bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent mb-3 md:mb-4">
             Coding Statistics

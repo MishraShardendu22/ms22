@@ -45,7 +45,7 @@ export function Sidebar() {
         </div>
       </nav>
 
-      <div className="w-16" aria-hidden="true" />
+      <div className="w-16 shrink-0" aria-hidden="true" />
     </>
   );
 }

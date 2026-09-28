@@ -133,7 +133,10 @@ const page = async ({ searchParams }: PageProps) => {
           faqSchema,
         ]}
       />
-      <main className="flex-1 lg:ml-0" aria-label="Main content">
+      <main
+        className="flex-1 min-w-0 w-full max-w-full overflow-x-clip lg:ml-0"
+        aria-label="Main content"
+      >
         <HeroSection />
         <section id="timeline" aria-label="Professional timeline">
           <Suspense
