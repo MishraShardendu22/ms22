@@ -116,3 +116,57 @@ export const arrangeExperiences = (allExperiences: ProcessedExperience[]) => ({
     (exp) => exp.type === "volunteer",
   ),
 });
+
+export const formatDuration = (startDate: string, endDate?: string): string => {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+    return "";
+  }
+
+  let months =
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    (end.getMonth() - start.getMonth()) +
+    1;
+  if (months < 1) months = 1;
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  if (years > 0 && remainingMonths > 0) {
+    return `${years} yr${years > 1 ? "s" : ""} ${remainingMonths} mo${remainingMonths > 1 ? "s" : ""}`;
+  }
+  if (years > 0) {
+    return `${years} yr${years > 1 ? "s" : ""}`;
+  }
+  return `${months} mo${months > 1 ? "s" : ""}`;
+};
+
+export const formatDateSpan = (
+  startDate: string,
+  endDate?: string,
+): { spanText: string; isCurrent: boolean; durationText: string } => {
+  const start = new Date(startDate);
+  const isCurrent = !endDate;
+
+  const startFormatted = !Number.isNaN(start.getTime())
+    ? start.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+    : startDate;
+
+  let endFormatted = "Present";
+  if (endDate) {
+    const end = new Date(endDate);
+    endFormatted = !Number.isNaN(end.getTime())
+      ? end.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+      : endDate;
+  }
+
+  const durationText = formatDuration(startDate, endDate);
+
+  return {
+    spanText: `${startFormatted} — ${endFormatted}`,
+    isCurrent,
+    durationText,
+  };
+};

@@ -135,24 +135,15 @@ const page = async ({ searchParams }: PageProps) => {
       />
       <main className="flex-1 lg:ml-0" aria-label="Main content">
         <HeroSection />
-        {!isMobile && (
-          <section
-            id="timeline"
-            className="hidden lg:block"
-            aria-label="Professional timeline"
+        <section id="timeline" aria-label="Professional timeline">
+          <Suspense
+            fallback={
+              <LoadingStateLight message="Loading timeline..." variant="blue" />
+            }
           >
-            <Suspense
-              fallback={
-                <LoadingStateLight
-                  message="Loading timeline..."
-                  variant="blue"
-                />
-              }
-            >
-              <Time />
-            </Suspense>
-          </section>
-        )}
+            <Time />
+          </Suspense>
+        </section>
         <section id="projects" aria-label="Featured projects and work">
           <Suspense
             fallback={
