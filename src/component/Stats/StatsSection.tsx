@@ -104,12 +104,12 @@ export async function StatsSection() {
       <div className="absolute inset-0 pointer-events-none will-change-auto">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-[#d9a55b]/5 rounded-full blur-2xl" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-[#e6b56c]/3 rounded-full blur-2xl" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]" />
+        <div className="absolute inset-0 bg-grid-lines" />
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-6 md:mb-8 px-2">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent mb-3 md:mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-serif bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent mb-3 md:mb-4">
             Coding Statistics
           </h2>
           <p className="text-[#8e8374] text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-4">

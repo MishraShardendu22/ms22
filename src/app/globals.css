@@ -208,6 +208,13 @@ samp {
     var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.bg-grid-lines {
+  background-image:
+    linear-gradient(to right, #4f4f4f50 1px, transparent 1px),
+    linear-gradient(to bottom, #4f4f4f50 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
 /* ------------------------------
    Observatory Typography & Surfaces
 ------------------------------ */

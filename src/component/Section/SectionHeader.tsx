@@ -22,7 +22,7 @@ export function SectionHeader({
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
           <div className="text-center lg:text-left">
             <h2
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r ${gradient} bg-clip-text text-transparent`}
+              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-serif bg-linear-to-r ${gradient} bg-clip-text text-transparent`}
             >
               {title}
             </h2>

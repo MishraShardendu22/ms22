@@ -101,12 +101,12 @@ export const TimelineDisplay = ({
       <div className="absolute inset-0 pointer-events-none will-change-auto">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d9a55b]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#e6b56c]/3 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+        <div className="absolute inset-0 bg-grid-lines"></div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-20 space-y-6">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal font-serif">
             <span className="bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(217,165,91,0.25)]">
               Experience Timeline
             </span>

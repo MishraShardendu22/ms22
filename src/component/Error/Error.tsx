@@ -9,7 +9,8 @@ interface ErrorPageProps {
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
   return (
     <div className="flex items-center justify-center w-full min-h-screen bg-[#0e0c0a] px-6 py-12 relative overflow-hidden">
-      {/* Ambient Starlight Glow */}
+      {/* Ambient Starlight Glow & Background Grid */}
+      <div className="absolute inset-0 pointer-events-none bg-grid-lines" />
       <div className="absolute -inset-4 bg-radial from-[#d9a55b]/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative w-full max-w-xl mx-auto text-center z-10 space-y-8">

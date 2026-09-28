@@ -31,7 +31,7 @@ export function SectionWrapper({
         <div
           className={`absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 ${gradients.secondary} rounded-full blur-2xl`}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]" />
+        <div className="absolute inset-0 bg-grid-lines" />
       </div>
       <div className="container mx-auto max-w-7xl relative z-10">
         {children}
