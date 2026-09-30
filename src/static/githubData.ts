@@ -36,12 +36,6 @@ export const GITHUB_ORGANIZATIONS = [
     avatarUrl: "https://avatars.githubusercontent.com/u/320166382?v=4",
   },
   {
-    name: "is-a-dev",
-    login: "is-a-dev",
-    url: "https://github.com/is-a-dev",
-    avatarUrl: "https://avatars.githubusercontent.com/u/74644086?v=4",
-  },
-  {
     name: "ai-needl",
     login: "ai-needl",
     url: "https://github.com/ai-needl",

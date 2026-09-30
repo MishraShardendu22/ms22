@@ -8,7 +8,6 @@ import {
 import type { GitHubData } from "@/types/stats";
 import { GitHubContributionGraph } from "./GitHubContributionGraph";
 import { GitHubProfileCard } from "./GitHubProfileCard";
-import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
 
 async function fetchWithTimeout(url: string, ms = 8000) {
   const controller = new AbortController();
@@ -75,14 +74,6 @@ async function GitHubProfileSection() {
   return <GitHubProfileCard github={finalProfile} stars={starsCount} />;
 }
 
-async function LeetCodeSection() {
-  const lc = await fetchWithTimeout(`${API_BASE_URL}/api/leetcode`);
-
-  if (!lc?.data?.matchedUser) return null;
-
-  return <LeetCodeStatsCard leetcode={lc.data.matchedUser} />;
-}
-
 async function ContributionGraphSection() {
   let calData: GitHubCalendarResponse | null = null;
 
@@ -140,6 +131,21 @@ function WideCardSkeleton() {
   );
 }
 
+function LinkedInEmbed() {
+  return (
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden hover:border-[#d9a55b]/40 transition-all duration-300 h-full flex flex-col">
+      <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7496237227417616385"
+        className="w-full flex-1 border-0"
+        style={{ minHeight: "500px" }}
+        allowFullScreen
+        title="LinkedIn Post"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
 export async function StatsSection() {
   return (
     <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-transparent">
@@ -149,8 +155,7 @@ export async function StatsSection() {
             Coding Statistics &amp; Activity
           </h2>
           <p className="text-[#8e8374] text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-4">
-            Live telemetry of GitHub contributions, open-source microservices,
-            and LeetCode problem solving
+            Live telemetry of GitHub contributions and open-source activity
           </p>
         </div>
 
@@ -159,9 +164,7 @@ export async function StatsSection() {
             <GitHubProfileSection />
           </Suspense>
 
-          <Suspense fallback={<CardSkeleton />}>
-            <LeetCodeSection />
-          </Suspense>
+          <LinkedInEmbed />
 
           <Suspense fallback={<WideCardSkeleton />}>
             <div className="lg:col-span-2">

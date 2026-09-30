@@ -259,20 +259,20 @@ export function GitHubContributionGraph({
             <GitCommit className="w-5 h-5 text-[#d9a55b]" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-lg font-bold text-[#f3ebdd] font-heading">
-                Contribution Activity
-              </h3>
+            <h3 className="text-lg font-bold text-[#f3ebdd] font-heading">
+              Contribution Activity
+            </h3>
+            <div className="flex items-center gap-2 mt-0.5">
+              <p className="text-xs text-[#8e8374]">
+                <span className="text-[#f3ebdd] font-semibold text-sm">
+                  {totalYearContributions.toLocaleString()}
+                </span>{" "}
+                contributions in {selectedYear}
+              </p>
               <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#39d353]/10 text-[#39d353] border border-[#39d353]/30">
                 Verified GitHub
               </span>
             </div>
-            <p className="text-xs text-[#8e8374]">
-              <span className="text-[#f3ebdd] font-semibold text-sm">
-                {totalYearContributions.toLocaleString()}
-              </span>{" "}
-              contributions in {selectedYear}
-            </p>
           </div>
         </div>
 
@@ -345,8 +345,8 @@ export function GitHubContributionGraph({
       </div>
 
       {/* Calendar Heatmap Container */}
-      <div className="relative overflow-x-auto pb-2 scrollbar-thin">
-        <div className="min-w-[760px] select-none">
+      <div className="relative w-full overflow-x-auto pb-2 scrollbar-thin">
+        <div className="w-full select-none" style={{ minWidth: "640px" }}>
           {/* Months Header */}
           <div className="flex text-[11px] text-[#8e8374] font-mono mb-2 pl-8">
             <div className="grid grid-flow-col auto-cols-[13px] gap-[3px] w-full relative h-4">
@@ -363,7 +363,7 @@ export function GitHubContributionGraph({
           </div>
 
           {/* Days Grid with Weekday Labels on Left */}
-          <div className="flex gap-2 items-start">
+          <div className="flex gap-2 items-start w-full">
             {/* Weekday labels */}
             <div className="grid grid-rows-7 gap-[3px] text-[10px] text-[#8e8374] font-mono pt-[1px] select-none w-6 shrink-0">
               {DAY_LABELS.map((day) => (
@@ -373,8 +373,8 @@ export function GitHubContributionGraph({
               ))}
             </div>
 
-            {/* Weeks columns */}
-            <div className="flex gap-[3px]">
+            {/* Weeks columns — fill remaining width */}
+            <div className="flex gap-[3px] flex-1">
               {weeks.map((week) => (
                 <div key={week.id} className="grid grid-rows-7 gap-[3px]">
                   {week.days.map((day) => {
