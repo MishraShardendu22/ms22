@@ -90,5 +90,3 @@ export const Time = async () => {
     );
   }
 };
-
-export default Time;

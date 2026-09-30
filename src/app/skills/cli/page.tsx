@@ -1,4 +1,4 @@
-import { SkillsCliPageClient } from "@/component/Skills/SkillsCliPageClient";
+import { SkillsCliPageClient } from "@/component/Skills";
 
 export default function SkillsCliPage() {
   return <SkillsCliPageClient />;

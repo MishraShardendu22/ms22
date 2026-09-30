@@ -12,7 +12,7 @@ interface MarkdownRendererProps {
 /**
  * Parses inline markdown: bold, italic, inline code, and links
  */
-export function parseInlineMarkdown(text: string): ReactNode[] {
+function parseInlineMarkdown(text: string): ReactNode[] {
   const parts: ReactNode[] = [];
   // Matches **bold**, `code`, [label](url), *italic*
   const regex = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|\*[^*]+\*)/g;

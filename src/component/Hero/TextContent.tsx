@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { GitHubIcon } from "@/component/Icons";
-import { Kicker } from "@/component/Section/PageHeader";
+import { Kicker } from "@/component/Section";
 import { myIntro, SocialLinks } from "@/static/info/header";
 import { BUTTON_LABELS } from "@/static/ui";
 

@@ -32,13 +32,13 @@ export const closeSearchModal = () => {
   notify();
 };
 
-export const subscribeModal = (cb: () => void) => {
+const subscribeModal = (cb: () => void) => {
   listeners.add(cb);
   return () => listeners.delete(cb);
 };
 
-export const getModalSnapshot = () => modalState;
-export const getServerModalSnapshot = () => serverModalSnapshot;
+const getModalSnapshot = () => modalState;
+const getServerModalSnapshot = () => serverModalSnapshot;
 
 interface HeaderSearchButtonProps {
   filterType?: SearchResultType;

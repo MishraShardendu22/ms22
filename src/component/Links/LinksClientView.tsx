@@ -23,12 +23,8 @@ import {
   TwitterXIcon,
   YouTubeIcon,
 } from "@/component/Icons";
-import {
-  CDN_SHARDENDU_QR_AVIF,
-  LINK_CATEGORIES,
-  SOCIAL_LINKS,
-  type SocialLink,
-} from "@/constants";
+import { LINK_CATEGORIES, SOCIAL_LINKS, type SocialLink } from "@/constants";
+import { CDN_SHARDENDU_QR_AVIF } from "@/static/cdn";
 
 interface PlatformStyle {
   icon: React.ComponentType<{ className?: string }>;

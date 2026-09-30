@@ -12,18 +12,6 @@ export interface GitHubData {
   html_url: string;
 }
 
-export interface Repository {
-  name: string;
-  description: string;
-  html_url: string;
-  stargazers_count: number;
-  language: string;
-  forks_count: number;
-  open_issues_count: number;
-  created_at: string;
-  updated_at: string;
-}
-
 // LeetCode Types
 export interface LeetCodeData {
   profile: {

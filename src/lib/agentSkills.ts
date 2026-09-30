@@ -42,9 +42,9 @@ export interface AgentSkillsData {
 }
 
 export const AGENT_SKILLS_REPO = "MishraShardendu22/agent-skills";
-export const AGENT_SKILLS_RAW_BASE =
+const AGENT_SKILLS_RAW_BASE =
   "https://raw.githubusercontent.com/MishraShardendu22/agent-skills/main";
-export const AGENT_SKILLS_GITHUB_BASE =
+const AGENT_SKILLS_GITHUB_BASE =
   "https://github.com/MishraShardendu22/agent-skills/tree/main";
 
 // Complete 30-skill catalog ensures 100% uptime and instantaneous pre-rendering
@@ -169,7 +169,7 @@ export function parseSkillsFromReadme(markdown: string): AgentSkill[] {
 /**
  * Fetches the latest commit on the main branch of MishraShardendu22/agent-skills
  */
-export async function fetchLatestCommit(): Promise<AgentRepoCommit | null> {
+async function fetchLatestCommit(): Promise<AgentRepoCommit | null> {
   try {
     const headers: Record<string, string> = {
       Accept: "application/vnd.github.v3+json",

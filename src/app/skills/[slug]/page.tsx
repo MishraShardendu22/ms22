@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SkillDetailView } from "@/component/Skills/SkillDetailView";
+import { SkillDetailView } from "@/component/Skills";
 import {
   FALLBACK_SKILLS,
   fetchSkillRunbook,

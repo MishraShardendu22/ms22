@@ -27,7 +27,7 @@ export interface DetailLink {
 // =============================================================================
 
 /** Types of tree nodes that determine rendering behavior */
-export type TreeNodeType =
+type TreeNodeType =
   | "folder" // Collapsible container node (like a folder in VS Code)
   | "file" // Leaf node (like a file in VS Code)
   | "property" // Key-value property display
@@ -110,7 +110,7 @@ export interface TreeSection {
   defaultExpanded?: boolean;
 }
 
-export type TreeSectionContent =
+type TreeSectionContent =
   | { type: "text"; value: string }
   | { type: "list"; items: string[] }
   | { type: "timeline"; items: TimelineItem[] }
@@ -133,7 +133,7 @@ export interface MetadataField {
   icon?: string;
 }
 
-export interface RelatedProject {
+interface RelatedProject {
   id: string;
   name: string;
   description?: string;

@@ -10,7 +10,7 @@ import {
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import { BaseURL } from "@/static/data";
-import { getRootJsonLd } from "@/static/site";
+import { getRootJsonLd, SEO_KEYWORDS } from "@/static/site";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-serif",
@@ -61,22 +61,7 @@ export const metadata: Metadata = {
   description:
     "Software Developer specializing in Go, React, Next.js & TypeScript. Building scalable web applications with Docker, Kubernetes & cloud-native tech.",
   applicationName: "Shardendu Mishra Portfolio",
-  keywords: [
-    "Shardendu Mishra",
-    "Software Engineer",
-    "Software Developer",
-    "Go Developer",
-    "React Developer",
-    "Next.js Developer",
-    "TypeScript Developer",
-    "Portfolio",
-    "Web Development",
-    "IIIT Dharwad",
-    "Full Stack Developer",
-    "Cloud Native Development",
-    "Docker",
-    "Kubernetes",
-  ],
+  keywords: SEO_KEYWORDS,
   authors: [{ name: "Shardendu Mishra", url: BaseURL }],
   creator: "Shardendu Mishra",
   publisher: "Shardendu Mishra",

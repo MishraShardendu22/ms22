@@ -147,5 +147,3 @@ export const LINK_CATEGORIES = {
   social: "Connect With Me",
   coding: "Coding Platforms",
 } as const;
-
-export { CDN_PROFESSIONAL_AVIF, CDN_SHARDENDU_QR_AVIF } from "@/static/cdn";

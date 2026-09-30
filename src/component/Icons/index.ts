@@ -1,7 +1,6 @@
 export {
   DiscordIcon,
   GitHubIcon,
-  type IconProps,
   InstagramIcon,
   LeetCodeIcon,
   LinkedInIcon,

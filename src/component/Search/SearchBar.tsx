@@ -379,52 +379,6 @@ function useGlobalShortcut() {
   }
 }
 
-// SearchBar - top bar with filters
-export function SearchBar() {
-  const pathname = usePathname();
-  const pageFilter = getPageFilter(pathname);
-  useGlobalShortcut();
-
-  return (
-    <>
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[#2f2923] bg-[#161311] px-2.5 py-2 shadow-lg sm:flex-nowrap sm:gap-3 sm:px-3">
-        <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto sm:flex-initial sm:overflow-visible sm:gap-2">
-          {FILTER_TYPES.map((type) => {
-            const c = FILTER_CONFIG[type];
-            const Icon = c.icon;
-            const active = pageFilter === type;
-            return (
-              <button
-                key={type}
-                type="button"
-                onClick={() => openSearchModal(type)}
-                className={`flex shrink-0 items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-medium sm:px-3 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-[#1e1a16] text-[#8e8374] border border-transparent hover:bg-[#27221c] hover:text-[#f3ebdd]"}`}
-              >
-                <Icon className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">{c.label}</span>
-              </button>
-            );
-          })}
-        </div>
-        <div className="hidden h-6 w-px bg-[#2f2923] sm:block" />
-        <button
-          type="button"
-          onClick={() => openSearchModal(pageFilter)}
-          className="ml-auto flex shrink-0 items-center gap-2 rounded-lg border border-[#2f2923] bg-[#1e1a16] px-3 py-2 text-[#b9ae9d] hover:bg-[#27221c] hover:text-[#f3ebdd]"
-          aria-label="Search"
-        >
-          <Search className="w-4 h-4" />
-          <span className="hidden text-sm font-medium md:inline">Search</span>
-          <kbd className="hidden md:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] bg-[#161311] rounded border border-[#2f2923] font-semibold text-[#8e8374]">
-            <Command className="w-2.5 h-2.5" />K
-          </kbd>
-        </button>
-      </div>
-      <SearchModalContent />
-    </>
-  );
-}
-
 // Sidebar button
 export function SidebarSearchButton() {
   const pathname = usePathname();

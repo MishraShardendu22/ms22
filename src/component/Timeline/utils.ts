@@ -110,14 +110,7 @@ export const getCompanyColor = (
   return colors[Math.abs(hash) % colors.length];
 };
 
-export const arrangeExperiences = (allExperiences: ProcessedExperience[]) => ({
-  workExperiences: allExperiences.filter((exp) => exp.type === "work"),
-  volunteerExperiences: allExperiences.filter(
-    (exp) => exp.type === "volunteer",
-  ),
-});
-
-export const formatDuration = (startDate: string, endDate?: string): string => {
+const formatDuration = (startDate: string, endDate?: string): string => {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
 

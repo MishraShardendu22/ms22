@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Clock, Tag, X } from "lucide-react";
+import { AlignJustify, Calendar, Clock, Layers, Tag, X } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ProcessedExperience, ProcessedTimelineData } from "./types";
@@ -25,8 +25,8 @@ interface LayoutTrackItem {
 
 /**
  * Greedy interval track assignment (coloring)
- * Guarantees that items that overlap in time are placed into separate vertical sub-lanes.
- * The one that started earlier is on Track 0 (top), so it is NEVER hidden or occluded.
+ * Guarantees that items that overlap in time are placed into separate logical tracks.
+ * Track 0 is assigned to the one that started earliest.
  */
 function computeTrackLayout(
   roles: ProcessedExperience[],
@@ -91,10 +91,6 @@ function computeTrackLayout(
   };
 }
 
-const CARD_HEIGHT = 82;
-const TRACK_GAP = 8;
-const PADDING_Y = 10;
-
 export const TimelineHorizon = ({
   experiences,
   timelineData,
@@ -105,6 +101,10 @@ export const TimelineHorizon = ({
   const [selectedExp, setSelectedExp] = useState<ProcessedExperience | null>(
     null,
   );
+  const [layoutMode, setLayoutMode] = useState<"overlap" | "expanded">(
+    "overlap",
+  );
+  const [hoveredExpKey, setHoveredExpKey] = useState<string | null>(null);
 
   const workRoles = useMemo(
     () => experiences.filter((e) => e.type === "work"),
@@ -148,7 +148,7 @@ export const TimelineHorizon = ({
     [getMonthIndex, now, totalMonths, monthWidth, isMobile],
   );
 
-  // Compute multi-track layouts for work and volunteer lanes
+  // Compute track layouts for work and volunteer lanes
   const workLayout = useMemo(
     () => computeTrackLayout(workRoles, getCapsuleLayout),
     [workRoles, getCapsuleLayout],
@@ -159,34 +159,25 @@ export const TimelineHorizon = ({
     [volunteerRoles, getCapsuleLayout],
   );
 
-  const workTrackRows = useMemo(
-    () =>
-      Array.from({ length: workLayout.trackCount }, (_, i) => ({
-        id: `work-row-${i}`,
-        index: i,
-      })),
-    [workLayout.trackCount],
-  );
+  const isOverlap = layoutMode === "overlap";
+  const cardHeight = isMobile ? 66 : 72;
+  const overlapOffset = isMobile ? 30 : 34;
+  const trackGap = 8;
+  const paddingY = 12;
 
-  const volunteerTrackRows = useMemo(
-    () =>
-      Array.from({ length: volunteerLayout.trackCount }, (_, i) => ({
-        id: `volunteer-row-${i}`,
-        index: i,
-      })),
-    [volunteerLayout.trackCount],
-  );
+  // Calculate dynamic container heights:
+  // In overlapping mode: only small vertical step (overlapOffset) per overlapping item.
+  // In expanded mode: full separate row heights with gap.
+  const computeLaneHeight = (trackCount: number) => {
+    if (trackCount <= 1) return paddingY * 2 + cardHeight;
+    if (isOverlap) {
+      return paddingY * 2 + (trackCount - 1) * overlapOffset + cardHeight;
+    }
+    return paddingY * 2 + trackCount * cardHeight + (trackCount - 1) * trackGap;
+  };
 
-  // Calculate dynamic container heights based on track counts
-  const workLaneHeight =
-    PADDING_Y * 2 +
-    workLayout.trackCount * CARD_HEIGHT +
-    (workLayout.trackCount - 1) * TRACK_GAP;
-
-  const volunteerLaneHeight =
-    PADDING_Y * 2 +
-    volunteerLayout.trackCount * CARD_HEIGHT +
-    (volunteerLayout.trackCount - 1) * TRACK_GAP;
+  const workLaneHeight = computeLaneHeight(workLayout.trackCount);
+  const volunteerLaneHeight = computeLaneHeight(volunteerLayout.trackCount);
 
   // Auto-scroll to Current Month on mount
   useEffect(() => {
@@ -286,9 +277,34 @@ export const TimelineHorizon = ({
                 <div className="flex items-center gap-2 text-[11px] font-mono text-[#8e8374]">
                   <span>{workRoles.length} roles</span>
                   {workLayout.trackCount > 1 && (
-                    <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] border border-[#2f2923] text-[#d9a55b] text-[10px]">
-                      {workLayout.trackCount} parallel tracks
-                    </span>
+                    <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#14110f] border border-[#2f2923]">
+                      <button
+                        type="button"
+                        onClick={() => setLayoutMode("overlap")}
+                        className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                          isOverlap
+                            ? "bg-[#1e1a16] text-[#d9a55b] font-bold border border-[#2f2923]"
+                            : "text-[#8e8374] hover:text-[#f3ebdd]"
+                        }`}
+                        title="Compact overlapping view"
+                      >
+                        <Layers className="w-3 h-3" />
+                        <span>Stacked</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setLayoutMode("expanded")}
+                        className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                          !isOverlap
+                            ? "bg-[#1e1a16] text-[#d9a55b] font-bold border border-[#2f2923]"
+                            : "text-[#8e8374] hover:text-[#f3ebdd]"
+                        }`}
+                        title="Expanded parallel rows"
+                      >
+                        <AlignJustify className="w-3 h-3" />
+                        <span>Expanded</span>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -298,52 +314,73 @@ export const TimelineHorizon = ({
                 style={{ height: `${workLaneHeight}px` }}
                 className="relative bg-[#100d0b] rounded-xl border border-[#2f2923]/60 p-2 overflow-hidden transition-all duration-300"
               >
-                {/* Visual Sub-lane Track Guides */}
-                {workTrackRows.map((row) => (
+                {/* Vertical Month Grid Guidelines */}
+                {timelineData.months.map((m, idx) => (
                   <div
-                    key={row.id}
-                    style={{
-                      top: `${PADDING_Y + row.index * (CARD_HEIGHT + TRACK_GAP)}px`,
-                      height: `${CARD_HEIGHT}px`,
-                    }}
-                    className="absolute inset-x-2 rounded-lg border border-dashed border-[#2f2923]/25 pointer-events-none"
+                    key={`work-grid-${m.year}-${m.month}`}
+                    style={{ left: `${idx * monthWidth}px` }}
+                    className={`absolute top-0 bottom-0 pointer-events-none transition-opacity ${
+                      m.isYearStart
+                        ? "border-l border-[#2f2923]/40"
+                        : "border-l border-[#2f2923]/15"
+                    }`}
                   />
                 ))}
 
                 {/* Work Role Capsules */}
                 {workLayout.items.map((item) => {
-                  const top =
-                    PADDING_Y + item.trackIndex * (CARD_HEIGHT + TRACK_GAP);
+                  const top = isOverlap
+                    ? paddingY + item.trackIndex * overlapOffset
+                    : paddingY + item.trackIndex * (cardHeight + trackGap);
+                  const itemKey = `work-${item.exp.name}-${item.exp.position}-${item.exp.start_date}`;
+                  const isHovered = hoveredExpKey === itemKey;
+                  const zIndex = isHovered
+                    ? 50
+                    : isOverlap
+                      ? 10 + item.trackIndex
+                      : 10;
 
                   return (
                     <button
-                      key={`${item.exp.name}-${item.exp.position}-${item.exp.start_date}`}
+                      key={itemKey}
                       type="button"
                       onClick={() => setSelectedExp(item.exp)}
+                      onMouseEnter={() => setHoveredExpKey(itemKey)}
+                      onMouseLeave={() => setHoveredExpKey(null)}
+                      onFocus={() => setHoveredExpKey(itemKey)}
+                      onBlur={() => setHoveredExpKey(null)}
                       style={{
                         left: `${item.left}px`,
                         width: `${item.width}px`,
                         top: `${top}px`,
-                        height: `${CARD_HEIGHT}px`,
+                        height: `${cardHeight}px`,
+                        zIndex,
+                        transform: isHovered ? "translateY(-4px)" : "none",
                       }}
-                      className="absolute text-left rounded-xl border border-[#2f2923] bg-[#161311] p-2.5 flex flex-col justify-between hover:border-[#d9a55b] hover:shadow-[0_0_24px_rgba(217,165,91,0.18)] transition-all shadow-md overflow-hidden group cursor-pointer hover:z-20 select-none focus:outline-none"
+                      className={`absolute text-left rounded-xl border bg-[#161311] px-3 py-2 flex flex-col justify-between transition-all duration-200 shadow-md overflow-hidden group cursor-pointer select-none focus:outline-none ${
+                        isHovered
+                          ? "border-[#d9a55b] shadow-[0_16px_36px_rgba(0,0,0,0.95),0_0_24px_rgba(217,165,91,0.28)] ring-1 ring-[#d9a55b]/40"
+                          : hoveredExpKey !== null
+                            ? "border-[#2f2923] opacity-70"
+                            : "border-[#2f2923] hover:border-[#d9a55b]"
+                      }`}
                       title={`${item.exp.position} at ${item.exp.name} (${item.spanText})`}
                     >
-                      {/* Top Row: Logo, Role, Company */}
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center p-1 overflow-hidden">
+                      {/* Top Row: Logo, Role, Company, Duration, Status (visible in overlapping strip) */}
+                      <div className="flex items-center gap-2.5 min-w-0 h-[26px]">
+                        <div className="shrink-0 w-6 h-6 rounded-md bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center p-0.5 overflow-hidden">
                           {item.exp.logo ? (
                             <Image
                               src={item.exp.logo}
                               alt={item.exp.name}
-                              width={24}
-                              height={24}
+                              width={20}
+                              height={20}
                               className="object-contain"
-                              sizes="24px"
+                              sizes="20px"
                             />
                           ) : (
                             <span
-                              className="text-[10px] font-bold"
+                              className="text-[9px] font-bold"
                               style={{ color: item.companyColor }}
                             >
                               {item.exp.name.slice(0, 2)}
@@ -351,31 +388,39 @@ export const TimelineHorizon = ({
                           )}
                         </div>
 
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 flex-1 leading-none">
                           <p className="text-xs font-semibold text-[#f3ebdd] truncate group-hover:text-[#f3ebdd] transition-colors">
                             {item.exp.position}
                           </p>
-                          <p className="text-[11px] font-mono text-[#d9a55b] truncate">
+                          <p className="text-[10px] font-mono text-[#d9a55b] truncate mt-0.5">
                             {item.exp.name}
                           </p>
                         </div>
 
-                        {item.isCurrent && (
-                          <span
-                            className="shrink-0 w-2 h-2 rounded-full bg-[#d9a55b] animate-pulse"
-                            title="Active Role"
-                          />
-                        )}
+                        <div className="shrink-0 flex items-center gap-1.5">
+                          {item.durationText && (
+                            <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] border border-[#2f2923]/60 text-[9px] font-mono text-[#b9ae9d] hidden sm:inline-block">
+                              {item.durationText}
+                            </span>
+                          )}
+                          {item.isCurrent && (
+                            <span
+                              className="w-2 h-2 rounded-full bg-[#d9a55b] animate-pulse"
+                              title="Active Role"
+                            />
+                          )}
+                        </div>
                       </div>
 
                       {/* Bottom Row: Date Range & Duration */}
-                      <div className="flex items-center justify-between text-[10px] font-mono text-[#8e8374] mt-1 pt-1 border-t border-[#2f2923]/40">
+                      <div className="flex items-center justify-between text-[10px] font-mono text-[#8e8374] pt-1.5 border-t border-[#2f2923]/40 mt-auto">
                         <span className="truncate">{item.spanText}</span>
-                        {item.durationText && (
-                          <span className="shrink-0 ml-2 px-1.5 py-0.2 rounded bg-[#1e1a16] border border-[#2f2923]/60 text-[#b9ae9d]">
-                            {item.durationText}
+                        <span className="shrink-0 ml-2 text-[9px] text-[#b9ae9d] flex items-center gap-1">
+                          <span>{item.durationText}</span>
+                          <span className="opacity-0 group-hover:opacity-100 text-[#d9a55b] transition-opacity">
+                            ↗
                           </span>
-                        )}
+                        </span>
                       </div>
                     </button>
                   );
@@ -397,9 +442,34 @@ export const TimelineHorizon = ({
                 <div className="flex items-center gap-2 text-[11px] font-mono text-[#8e8374]">
                   <span>{volunteerRoles.length} roles</span>
                   {volunteerLayout.trackCount > 1 && (
-                    <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] border border-[#2f2923] text-[#4caf7d] text-[10px]">
-                      {volunteerLayout.trackCount} parallel tracks
-                    </span>
+                    <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#14110f] border border-[#2f2923]">
+                      <button
+                        type="button"
+                        onClick={() => setLayoutMode("overlap")}
+                        className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                          isOverlap
+                            ? "bg-[#1e1a16] text-[#4caf7d] font-bold border border-[#2f2923]"
+                            : "text-[#8e8374] hover:text-[#f3ebdd]"
+                        }`}
+                        title="Compact overlapping view"
+                      >
+                        <Layers className="w-3 h-3" />
+                        <span>Stacked</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setLayoutMode("expanded")}
+                        className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                          !isOverlap
+                            ? "bg-[#1e1a16] text-[#4caf7d] font-bold border border-[#2f2923]"
+                            : "text-[#8e8374] hover:text-[#f3ebdd]"
+                        }`}
+                        title="Expanded parallel rows"
+                      >
+                        <AlignJustify className="w-3 h-3" />
+                        <span>Expanded</span>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -409,52 +479,73 @@ export const TimelineHorizon = ({
                 style={{ height: `${volunteerLaneHeight}px` }}
                 className="relative bg-[#100d0b] rounded-xl border border-[#2f2923]/60 p-2 overflow-hidden transition-all duration-300"
               >
-                {/* Visual Sub-lane Track Guides */}
-                {volunteerTrackRows.map((row) => (
+                {/* Vertical Month Grid Guidelines */}
+                {timelineData.months.map((m, idx) => (
                   <div
-                    key={row.id}
-                    style={{
-                      top: `${PADDING_Y + row.index * (CARD_HEIGHT + TRACK_GAP)}px`,
-                      height: `${CARD_HEIGHT}px`,
-                    }}
-                    className="absolute inset-x-2 rounded-lg border border-dashed border-[#2f2923]/25 pointer-events-none"
+                    key={`volunteer-grid-${m.year}-${m.month}`}
+                    style={{ left: `${idx * monthWidth}px` }}
+                    className={`absolute top-0 bottom-0 pointer-events-none transition-opacity ${
+                      m.isYearStart
+                        ? "border-l border-[#2f2923]/40"
+                        : "border-l border-[#2f2923]/15"
+                    }`}
                   />
                 ))}
 
                 {/* Volunteer Role Capsules */}
                 {volunteerLayout.items.map((item) => {
-                  const top =
-                    PADDING_Y + item.trackIndex * (CARD_HEIGHT + TRACK_GAP);
+                  const top = isOverlap
+                    ? paddingY + item.trackIndex * overlapOffset
+                    : paddingY + item.trackIndex * (cardHeight + trackGap);
+                  const itemKey = `volunteer-${item.exp.name}-${item.exp.position}-${item.exp.start_date}`;
+                  const isHovered = hoveredExpKey === itemKey;
+                  const zIndex = isHovered
+                    ? 50
+                    : isOverlap
+                      ? 10 + item.trackIndex
+                      : 10;
 
                   return (
                     <button
-                      key={`${item.exp.name}-${item.exp.position}-${item.exp.start_date}`}
+                      key={itemKey}
                       type="button"
                       onClick={() => setSelectedExp(item.exp)}
+                      onMouseEnter={() => setHoveredExpKey(itemKey)}
+                      onMouseLeave={() => setHoveredExpKey(null)}
+                      onFocus={() => setHoveredExpKey(itemKey)}
+                      onBlur={() => setHoveredExpKey(null)}
                       style={{
                         left: `${item.left}px`,
                         width: `${item.width}px`,
                         top: `${top}px`,
-                        height: `${CARD_HEIGHT}px`,
+                        height: `${cardHeight}px`,
+                        zIndex,
+                        transform: isHovered ? "translateY(-4px)" : "none",
                       }}
-                      className="absolute text-left rounded-xl border border-[#2f2923] bg-[#161311] p-2.5 flex flex-col justify-between hover:border-[#4caf7d] hover:shadow-[0_0_24px_rgba(76,175,125,0.18)] transition-all shadow-md overflow-hidden group cursor-pointer hover:z-20 select-none focus:outline-none"
+                      className={`absolute text-left rounded-xl border bg-[#161311] px-3 py-2 flex flex-col justify-between transition-all duration-200 shadow-md overflow-hidden group cursor-pointer select-none focus:outline-none ${
+                        isHovered
+                          ? "border-[#4caf7d] shadow-[0_16px_36px_rgba(0,0,0,0.95),0_0_24px_rgba(76,175,125,0.28)] ring-1 ring-[#4caf7d]/40"
+                          : hoveredExpKey !== null
+                            ? "border-[#2f2923] opacity-70"
+                            : "border-[#2f2923] hover:border-[#4caf7d]"
+                      }`}
                       title={`${item.exp.position} at ${item.exp.name} (${item.spanText})`}
                     >
-                      {/* Top Row: Logo, Role, Organization */}
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center p-1 overflow-hidden">
+                      {/* Top Row: Logo, Role, Organization, Duration, Status (visible in overlapping strip) */}
+                      <div className="flex items-center gap-2.5 min-w-0 h-[26px]">
+                        <div className="shrink-0 w-6 h-6 rounded-md bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center p-0.5 overflow-hidden">
                           {item.exp.logo ? (
                             <Image
                               src={item.exp.logo}
                               alt={item.exp.name}
-                              width={24}
-                              height={24}
+                              width={20}
+                              height={20}
                               className="object-contain"
-                              sizes="24px"
+                              sizes="20px"
                             />
                           ) : (
                             <span
-                              className="text-[10px] font-bold"
+                              className="text-[9px] font-bold"
                               style={{ color: item.companyColor }}
                             >
                               {item.exp.name.slice(0, 2)}
@@ -462,31 +553,39 @@ export const TimelineHorizon = ({
                           )}
                         </div>
 
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 flex-1 leading-none">
                           <p className="text-xs font-semibold text-[#f3ebdd] truncate group-hover:text-[#f3ebdd] transition-colors">
                             {item.exp.position}
                           </p>
-                          <p className="text-[11px] font-mono text-[#4caf7d] truncate">
+                          <p className="text-[10px] font-mono text-[#4caf7d] truncate mt-0.5">
                             {item.exp.name}
                           </p>
                         </div>
 
-                        {item.isCurrent && (
-                          <span
-                            className="shrink-0 w-2 h-2 rounded-full bg-[#4caf7d] animate-pulse"
-                            title="Active Role"
-                          />
-                        )}
+                        <div className="shrink-0 flex items-center gap-1.5">
+                          {item.durationText && (
+                            <span className="px-1.5 py-0.5 rounded bg-[#1e1a16] border border-[#2f2923]/60 text-[9px] font-mono text-[#b9ae9d] hidden sm:inline-block">
+                              {item.durationText}
+                            </span>
+                          )}
+                          {item.isCurrent && (
+                            <span
+                              className="w-2 h-2 rounded-full bg-[#4caf7d] animate-pulse"
+                              title="Active Role"
+                            />
+                          )}
+                        </div>
                       </div>
 
                       {/* Bottom Row: Date Range & Duration */}
-                      <div className="flex items-center justify-between text-[10px] font-mono text-[#8e8374] mt-1 pt-1 border-t border-[#2f2923]/40">
+                      <div className="flex items-center justify-between text-[10px] font-mono text-[#8e8374] pt-1.5 border-t border-[#2f2923]/40 mt-auto">
                         <span className="truncate">{item.spanText}</span>
-                        {item.durationText && (
-                          <span className="shrink-0 ml-2 px-1.5 py-0.2 rounded bg-[#1e1a16] border border-[#2f2923]/60 text-[#b9ae9d]">
-                            {item.durationText}
+                        <span className="shrink-0 ml-2 text-[9px] text-[#b9ae9d] flex items-center gap-1">
+                          <span>{item.durationText}</span>
+                          <span className="opacity-0 group-hover:opacity-100 text-[#4caf7d] transition-opacity">
+                            ↗
                           </span>
-                        )}
+                        </span>
                       </div>
                     </button>
                   );

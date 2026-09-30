@@ -1,4 +1,3 @@
-import { Mail } from "lucide-react";
 import {
   GitHubIcon,
   InstagramIcon,
@@ -6,16 +5,7 @@ import {
   ResumeIcon,
   TwitterXIcon,
 } from "@/component/Icons";
-import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
-import type { Introduction, SocialLink } from "./types";
-
-export const Icon: string = CDN_ICON_AVIF;
-export const professionalImage: string = CDN_PROFESSIONAL_AVIF;
-
-export const mail: SocialLink = {
-  url: "mishrashardendu22@gmail.com",
-  icon: Mail,
-};
+import type { Introduction } from "./types";
 
 export const SocialLinks = {
   GitHub: {

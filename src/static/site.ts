@@ -37,7 +37,7 @@ export const SAME_AS_URLS = [
   "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
 ];
 
-export const KNOWS_ABOUT = [
+const KNOWS_ABOUT = [
   "Software Development",
   "Go Programming",
   "React",

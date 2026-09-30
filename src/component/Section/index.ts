@@ -1,7 +1,7 @@
-export type { SectionTheme } from "@/constants/theme";
 export { ContentGrid } from "./ContentGrid";
 export { EmptyState } from "./EmptyState";
-export { ListCard, type ListCardTheme } from "./ListCard";
+export { ListCard } from "./ListCard";
+export { Kicker } from "./PageHeader";
 export { SectionHeader } from "./SectionHeader";
 export { SectionWrapper } from "./SectionWrapper";
-export { type PageHeaderTheme, ServerPageHeader } from "./ServerPageHeader";
+export { ServerPageHeader } from "./ServerPageHeader";
