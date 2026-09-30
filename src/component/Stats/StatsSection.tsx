@@ -100,13 +100,7 @@ function WideCardSkeleton() {
 
 export async function StatsSection() {
   return (
-    <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-br from-transparent via-[#161311]/40 to-transparent overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none will-change-auto">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-[#d9a55b]/5 rounded-full blur-2xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-[#e6b56c]/3 rounded-full blur-2xl" />
-        <div className="absolute inset-0 bg-grid-lines" />
-      </div>
-
+    <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-transparent">
       <div className="container mx-auto max-w-7xl w-full relative z-10">
         <div className="text-center mb-6 md:mb-8 px-2">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-serif bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent mb-3 md:mb-4">

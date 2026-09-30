@@ -193,10 +193,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
   }, [treeNodes, activeNode]);
 
   return (
-    <div className="h-screen flex flex-col relative z-10 bg-[#0e0c0a] text-[#f3ebdd] overflow-hidden">
-      {/* Background starlight ambient grid */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-grid-lines opacity-40" />
-
+    <div className="h-screen flex flex-col relative z-10 bg-transparent text-[#f3ebdd] overflow-hidden">
       {/* Top IDE Application Bar */}
       <header className="shrink-0 px-3 sm:px-4 py-2.5 bg-[#161311] border-b border-[#2f2923] relative z-20 select-none">
         <div className="flex items-center justify-between gap-3 max-w-full">

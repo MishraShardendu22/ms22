@@ -249,7 +249,13 @@ export default function RootLayout({
         </noscript>
         <Analytics />
         <SpeedInsights />
-        <div className="flex min-h-screen w-full max-w-full overflow-x-clip">
+        {/* Unified Continuous Global Canvas (Grid & Ambient Glow) */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-lines" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d9a55b]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#e6b56c]/3 rounded-full blur-3xl" />
+        </div>
+        <div className="relative z-10 flex min-h-screen w-full max-w-full overflow-x-clip">
           <SidebarWrapper />
           <div className="flex-1 min-w-0 w-full max-w-full overflow-x-clip">
             {children}

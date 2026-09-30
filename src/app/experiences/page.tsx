@@ -133,14 +133,7 @@ async function ExperiencesContent({ searchParams }: PageProps) {
 
 export default async function ExperiencesPage({ searchParams }: PageProps) {
   return (
-    <main className="flex-1 min-h-screen bg-[#0e0c0a] relative overflow-hidden">
-      {/* Subtle Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute inset-0 bg-grid-lines" />
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-[#d9a55b]/5 rounded-full filter blur-3xl" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-[#e6b56c]/3 rounded-full filter blur-3xl" />
-      </div>
-
+    <main className="flex-1 min-h-screen bg-transparent relative">
       <div className="container mx-auto px-4 py-6 relative z-10 max-w-7xl">
         <Suspense
           fallback={
