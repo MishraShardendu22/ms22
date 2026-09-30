@@ -434,11 +434,11 @@ export function SidebarSearchButton() {
       <button
         type="button"
         onClick={() => openSearchModal(getPageFilter(pathname))}
-        className="group relative flex items-center justify-center p-3 rounded-xl text-[#8e8374] hover:bg-[#1e1a16] hover:text-[#d9a55b]"
+        className="nav-tooltip group relative flex items-center justify-center w-10 h-10 rounded-xl text-[#8e8374] hover:bg-[#1e1a16] hover:text-[#d9a55b] transition-all cursor-pointer border border-transparent hover:border-[#2f2923]"
         data-tooltip="Search (⌘K)"
         aria-label="Search"
       >
-        <Search className="w-5 h-5 shrink-0" />
+        <Search className="w-[18px] h-[18px] shrink-0" />
       </button>
       <SearchModalContent />
     </>

@@ -715,18 +715,20 @@ p {
 .nav-tooltip::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: calc(100% + 0.75rem);
+  left: calc(100% + 0.5rem);
   top: 50%;
-  transform: translateY(-50%) translateX(-8px);
+  transform: translateY(-50%) translateX(-6px);
   white-space: nowrap;
-  background: #1a1f28;
-  color: #e5eaf0;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
+  background: #181411;
+  color: #f3ebdd;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
   font-weight: 500;
-  border: 1px solid rgba(75, 85, 99, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.02em;
+  border: 1px solid #2f2923;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
   opacity: 0;
   visibility: hidden;
   transition:
