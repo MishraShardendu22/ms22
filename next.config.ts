@@ -62,7 +62,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "frame-src https://www.linkedin.com;",
+            value:
+              "frame-src 'self' https://www.linkedin.com https://*.linkedin.com https://*.licdn.com;",
           },
         ],
       },

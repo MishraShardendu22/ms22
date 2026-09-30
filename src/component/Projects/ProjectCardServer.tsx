@@ -1,5 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe, Play } from "lucide-react";
 import Link from "next/link";
+import { GitHubIcon } from "@/component/Icons";
 import { PaginationLinks } from "@/component/Pagination";
 import {
   ContentGrid,
@@ -25,10 +26,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_repository}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
-          aria-label="View repository"
+          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          aria-label="View source repository"
+          title="Source repository"
         >
-          <span>Code</span>
+          <GitHubIcon className="w-3.5 h-3.5" />
         </Link>
       )}
       {project.project_live_link && (
@@ -36,10 +38,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_live_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#d9a55b] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
           aria-label="View live project"
+          title="Live system"
         >
-          <span>Live</span>
+          <Globe className="w-3.5 h-3.5" />
         </Link>
       )}
       {project.project_video && (
@@ -47,10 +50,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_video}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-[#1e1a16] hover:bg-[#d9a55b]/20 text-[#b9ae9d] hover:text-[#d9a55b] rounded-md border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
-          aria-label="Watch video"
+          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#e6b56c] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          aria-label="Watch demo video"
+          title="Demo video"
         >
-          <span>Demo</span>
+          <Play className="w-3.5 h-3.5" />
         </Link>
       )}
     </div>

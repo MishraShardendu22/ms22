@@ -5,8 +5,10 @@ import {
   Camera,
   Code,
   Code2,
+  Coffee,
   Cpu,
   Folder,
+  Heart,
   MapPin,
   Package,
   Play,
@@ -60,7 +62,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   LeetCode: LeetCodeIcon,
 };
 
-// Shared link row used in every nav column
 function NavLink({
   href,
   label,
@@ -79,14 +80,14 @@ function NavLink({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
-        className="group flex items-center gap-2.5 py-1 text-sm text-[#8e8374] hover:text-[#f3ebdd] transition-colors duration-200"
+        className="group flex items-center gap-3 py-2 text-sm sm:text-base text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-200"
       >
         {IconComponent && (
-          <IconComponent className="w-3.5 h-3.5 shrink-0 text-[#3d3530] group-hover:text-[#d9a55b] transition-colors" />
+          <IconComponent className="w-4 h-4 shrink-0 text-[#6e6356] group-hover:text-[#d9a55b] transition-colors" />
         )}
-        <span className="leading-snug">{label}</span>
+        <span className="font-sans font-medium">{label}</span>
         {external && (
-          <ArrowUpRight className="w-3 h-3 ml-auto shrink-0 opacity-0 group-hover:opacity-60 transition-opacity" />
+          <ArrowUpRight className="w-3.5 h-3.5 ml-auto shrink-0 opacity-0 group-hover:opacity-75 transition-opacity" />
         )}
       </a>
     </li>
@@ -95,7 +96,7 @@ function NavLink({
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#d9a55b] mb-4">
+    <h3 className="text-2xl sm:text-3xl font-normal text-[#f3ebdd] font-serif tracking-tight mb-4 sm:mb-6">
       {children}
     </h3>
   );
@@ -111,16 +112,16 @@ export function FooterSectionMobile() {
               <Code2 className="w-5 h-5 text-[#d9a55b]" />
             </div>
             <div>
-              <h2 className="text-lg font-normal text-[#f3ebdd] font-heading">
-                Shardendu Mishra
+              <h2 className="text-2xl font-normal text-[#f3ebdd] font-serif tracking-tight">
+                Shardendu <span className="italic text-[#d9a55b]">Mishra</span>
               </h2>
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#d9a55b]">
                 Software Engineer
               </p>
             </div>
           </div>
-          <p className="mt-3 text-sm text-[#8e8374] leading-relaxed">
-            Building things that matter — in Go, mostly.
+          <p className="mt-3 text-sm text-[#b9ae9d] leading-relaxed">
+            Software Engineer engineering modern, high-impact systems.
           </p>
           <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.2em]">
             <span className="rounded-full border border-[#2f2923] bg-[#1e1a16] px-2.5 py-1 text-[#b9ae9d]">
@@ -136,8 +137,8 @@ export function FooterSectionMobile() {
         </div>
 
         <div className="mb-8 rounded-2xl border border-[#2f2923] bg-[#161311]/60 p-5 shadow-[0_4px_24px_rgba(217,165,91,0.05)]">
-          <h3 className="text-lg font-normal text-[#f3ebdd] mb-4 font-heading">
-            Let's Talk
+          <h3 className="text-2xl font-normal text-[#f3ebdd] mb-3 font-serif tracking-tight">
+            Let&apos;s <span className="italic text-[#d9a55b]">Talk</span>
           </h3>
           <div className="bg-[#0e0c0a]/80 p-3 rounded-xl border border-[#2f2923]">
             <ContactFormWrapper variant="compact" includeSubject={false} />
@@ -204,89 +205,93 @@ export function FooterSection() {
     <footer className="relative bg-transparent pt-10 md:pt-14 pb-12 px-6 md:px-8">
       <div className="container mx-auto max-w-7xl w-full relative z-10">
         {/* Top row: Identity + Contact */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 mb-14 md:mb-16">
-          {/* Left: identity block */}
-          <div className="space-y-7">
-            {/* Name + tagline */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 mb-14 md:mb-20">
+          {/* Left: identity */}
+          <div className="space-y-6 sm:space-y-8">
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <h2 className="text-2xl sm:text-3xl font-normal text-[#f3ebdd] font-heading tracking-tight">
-                  Shardendu Mishra
+              <div className="flex items-center gap-3.5 mb-4">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#f3ebdd] font-serif tracking-tight leading-none">
+                  Shardendu{" "}
+                  <span className="italic text-[#d9a55b]">Mishra</span>
                 </h2>
-                <span className="text-[10px] px-2.5 py-0.5 rounded-full border border-[#d9a55b]/30 bg-[#d9a55b]/10 text-[#d9a55b] font-mono uppercase tracking-wider">
-                  Open to work
+                <span className="text-xs px-2.5 py-0.5 rounded-full border border-[#d9a55b]/30 bg-[#d9a55b]/10 text-[#d9a55b] font-mono">
+                  Ecosystem
                 </span>
               </div>
-              <p className="text-[#8e8374] text-sm sm:text-base leading-relaxed max-w-sm">
-                Software Engineer. Building things that matter — in Go, mostly.
+              <p className="text-[#b9ae9d] text-base sm:text-lg lg:text-xl font-sans leading-relaxed max-w-xl">
+                Software Engineer engineering modern, high-impact systems.
               </p>
             </div>
 
-            {/* Tech stack chips */}
-            <div className="flex flex-wrap gap-2">
-              {["Go", "Next.js", "Kubernetes", "AI / ML"].map((tag) => (
-                <span
-                  key={tag}
-                  className={`px-3 py-1 rounded-md text-xs font-mono border ${
-                    tag === "Next.js"
-                      ? "border-[#d9a55b]/30 bg-[#d9a55b]/8 text-[#d9a55b]"
-                      : "border-[#2f2923] bg-[#1e1a16] text-[#6b6058]"
-                  }`}
-                >
-                  {tag}
+            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base text-[#8e8374]">
+              <span>Made with</span>
+              <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+              <span>and</span>
+              <Coffee className="w-4 h-4 text-[#d9a55b]" />
+              <span>
+                by{" "}
+                <span className="font-serif italic text-base sm:text-lg text-[#f3ebdd]">
+                  Shardendu Mishra
                 </span>
-              ))}
+              </span>
             </div>
 
-            {/* Copyright */}
-            <p className="text-xs text-[#3d3530]">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3">
+              <span className="px-3.5 py-1.5 bg-[#1e1a16] border border-[#2f2923] rounded-lg text-xs text-[#b9ae9d] font-semibold">
+                Go
+              </span>
+              <span className="px-3.5 py-1.5 bg-[#d9a55b]/10 border border-[#d9a55b]/25 rounded-lg text-xs text-[#d9a55b] font-semibold">
+                Next.js
+              </span>
+              <span className="px-3.5 py-1.5 bg-[#1e1a16] border border-[#2f2923] rounded-lg text-xs text-[#b9ae9d] font-semibold">
+                Kubernetes
+              </span>
+              <span className="px-3.5 py-1.5 bg-[#1e1a16] border border-[#2f2923] rounded-lg text-xs text-[#b9ae9d] font-semibold">
+                AI/ML
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm text-[#8e8374]">
               © 2026 Shardendu Mishra. All rights reserved.
             </p>
 
-            {/* Made with line + Back to Top */}
-            <div className="flex items-center gap-5 flex-wrap">
-              <span className="flex items-center gap-2 text-xs text-[#3d3530]">
-                Built with
-                <span className="inline-flex items-center gap-1.5">
-                  <div className="relative w-4 h-4 shrink-0">
-                    <Image
-                      src={images.go.loc}
-                      alt={images.go.alt}
-                      fill
-                      unoptimized
-                      className="object-contain"
-                      sizes="16px"
-                    />
-                  </div>
-                  <span className="text-[#6b6058]">Go</span>
-                </span>
-                <span className="text-[#2f2923]">·</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <div className="relative w-4 h-4 shrink-0">
-                    <Image
-                      src={images.fedora.loc}
-                      alt={images.fedora.alt}
-                      fill
-                      unoptimized
-                      className="object-contain"
-                      sizes="16px"
-                    />
-                  </div>
-                  <span className="text-[#6b6058]">Fedora</span>
-                </span>
-              </span>
-
+            <div className="flex items-center gap-4 md:gap-6 flex-wrap">
+              <div className="flex items-center gap-2 sm:gap-2.5 text-xs sm:text-sm text-[#b9ae9d]">
+                <span>Made</span>
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
+                  <Image
+                    src={images.go.loc}
+                    alt={images.go.alt}
+                    fill
+                    unoptimized
+                    className="object-contain"
+                    sizes="28px"
+                  />
+                </div>
+                <span>in mind and</span>
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
+                  <Image
+                    src={images.fedora.loc}
+                    alt={images.fedora.alt}
+                    fill
+                    unoptimized
+                    className="object-contain"
+                    sizes="28px"
+                  />
+                </div>
+                <span>in Machine.</span>
+              </div>
               <ScrollToTop variant="desktop" />
             </div>
           </div>
 
-          {/* Right: contact form */}
+          {/* Right: contact */}
           <div>
-            <div className="mb-5">
-              <h3 className="text-xl sm:text-2xl font-normal text-[#f3ebdd] mb-1 font-heading">
-                Let's Talk
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#f3ebdd] mb-2 font-serif tracking-tight leading-none">
+                Let&apos;s <span className="italic text-[#d9a55b]">Talk</span>
               </h3>
-              <p className="text-[#4a4340] text-xs sm:text-sm">
+              <p className="text-[#8e8374] text-sm sm:text-base">
                 Get in touch with me
               </p>
             </div>
@@ -296,14 +301,11 @@ export function FooterSection() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-[#1e1a16] mb-12 sm:mb-14" />
-
-        {/* Bottom nav columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
+        {/* Nav link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-14 sm:mb-20">
           <div>
             <ColumnHeading>Quick Links</ColumnHeading>
-            <ul className="space-y-1">
+            <ul className="space-y-3">
               {Object.entries(QuickLinks).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -317,7 +319,7 @@ export function FooterSection() {
 
           <div>
             <ColumnHeading>My Websites</ColumnHeading>
-            <ul className="space-y-1">
+            <ul className="space-y-3">
               {Object.entries(MyWebsites).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -332,7 +334,7 @@ export function FooterSection() {
 
           <div>
             <ColumnHeading>Social Media</ColumnHeading>
-            <ul className="space-y-1">
+            <ul className="space-y-3">
               {Object.entries(SocialMedia).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -347,7 +349,7 @@ export function FooterSection() {
 
           <div>
             <ColumnHeading>Coding</ColumnHeading>
-            <ul className="space-y-1">
+            <ul className="space-y-3">
               {Object.entries(CodingProfiles).map(([key, data]) => (
                 <NavLink
                   key={key}

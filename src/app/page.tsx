@@ -219,13 +219,11 @@ const page = async ({ searchParams }: PageProps) => {
             )}
           </Suspense>
         </section>
-        {!isMobile && (
-          <section className="hidden lg:block" aria-label="Coding statistics">
-            <Suspense fallback={<StatsLoadingSkeleton />}>
-              <StatsSection />
-            </Suspense>
-          </section>
-        )}
+        <section id="stats" aria-label="Coding statistics">
+          <Suspense fallback={<StatsLoadingSkeleton />}>
+            <StatsSection />
+          </Suspense>
+        </section>
         <div id="contact">
           {isMobile ? <FooterSectionMobile /> : <FooterSection />}
         </div>

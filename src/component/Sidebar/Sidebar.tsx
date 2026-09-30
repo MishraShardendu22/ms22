@@ -49,13 +49,13 @@ export function Sidebar() {
     if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     hideTimeoutRef.current = setTimeout(() => {
       setIsOpen(false);
-    }, 380);
+    }, 420);
   }, [isPinned]);
 
-  // Global mousemove trigger: hovering towards left (within 28px of the left screen edge) reveals the dock
+  // Global mousemove trigger: hovering towards left (within 32px of the left screen edge) reveals the dock
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (e.clientX <= 28) {
+      if (e.clientX <= 32) {
         if (hideTimeoutRef.current) {
           clearTimeout(hideTimeoutRef.current);
           hideTimeoutRef.current = null;
@@ -78,13 +78,13 @@ export function Sidebar() {
       {/* Invisible edge trigger strip on the left of viewport */}
       <div
         onMouseEnter={handleMouseEnter}
-        className="fixed left-0 top-0 bottom-0 w-7 z-40 bg-transparent"
+        className="fixed left-0 top-0 bottom-0 w-8 z-40 bg-transparent"
         aria-hidden="true"
       />
 
       {/* Subtle edge peek indicator when dock is hidden */}
       <div
-        className={`fixed left-0 top-1/2 -translate-y-1/2 w-1 h-14 rounded-r-full bg-[#d9a55b]/30 transition-all duration-300 z-30 pointer-events-none ${
+        className={`fixed left-0 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-r-full bg-[#d9a55b]/40 shadow-[0_0_12px_rgba(217,165,91,0.4)] transition-all duration-300 z-30 pointer-events-none ${
           isDockVisible
             ? "opacity-0 -translate-x-full"
             : "opacity-100 translate-x-0"
@@ -92,15 +92,20 @@ export function Sidebar() {
         aria-hidden="true"
       />
 
-      {/* Ubuntu-style Floating Dock */}
+      {/* Ubuntu-style Floating Dock with physical swoop in/out */}
       <nav
         aria-label="Main navigation"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`fixed left-3 top-1/2 -translate-y-1/2 z-50 w-[58px] max-h-[calc(100vh-2.5rem)] bg-[#120f0d]/92 backdrop-blur-xl border border-[#2f2923] rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.85),0_0_24px_rgba(0,0,0,0.5)] flex flex-col items-center py-2 px-1.5 select-none transition-all duration-300 ease-out ${
+        style={{
+          transition:
+            "transform 380ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 380ms ease",
+          willChange: "transform, opacity",
+        }}
+        className={`fixed left-3 top-1/2 -translate-y-1/2 z-50 w-[58px] max-h-[calc(100vh-2.5rem)] bg-[#120f0d]/94 backdrop-blur-2xl border border-[#2f2923] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.92),0_0_32px_rgba(217,165,91,0.08)] flex flex-col items-center py-2 px-1.5 select-none ${
           isDockVisible
-            ? "translate-x-0 opacity-100 scale-100 pointer-events-auto"
-            : "-translate-x-[calc(100%+24px)] opacity-0 scale-95 pointer-events-none"
+            ? "translate-x-0 opacity-100 pointer-events-auto"
+            : "-translate-x-[calc(100%+24px)] opacity-0 pointer-events-none"
         }`}
       >
         {/* Top Logo / Home Link */}

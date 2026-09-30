@@ -101,13 +101,13 @@ async function ProjectsContent({ searchParams }: PageProps) {
             const links: Array<{ label: string; url: string }> = [];
             if (project.project_live_link) {
               links.push({
-                label: "Live Demo",
+                label: "Live",
                 url: project.project_live_link,
               });
             }
             if (project.project_repository) {
               links.push({
-                label: "Repository",
+                label: "Code",
                 url: project.project_repository,
               });
             }

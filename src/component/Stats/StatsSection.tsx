@@ -1,4 +1,6 @@
+import { ArrowUpRight } from "lucide-react";
 import { Suspense } from "react";
+import { LinkedInIcon } from "@/component/Icons";
 import { API_BASE_URL } from "@/constants/url";
 import {
   FALLBACK_GITHUB_CALENDAR,
@@ -133,15 +135,43 @@ function WideCardSkeleton() {
 
 function LinkedInEmbed() {
   return (
-    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden hover:border-[#d9a55b]/40 transition-all duration-300 h-full flex flex-col">
-      <iframe
-        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7496237227417616385"
-        className="w-full flex-1 border-0"
-        style={{ minHeight: "500px" }}
-        allowFullScreen
-        title="LinkedIn Post"
-        loading="lazy"
-      />
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl overflow-hidden hover:border-[#d9a55b]/40 transition-all duration-300 flex flex-col justify-between p-4 sm:p-5 h-full">
+      <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-[#2f2923]">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-lg bg-[#0077b5]/10 border border-[#0077b5]/25 text-[#0077b5]">
+            <LinkedInIcon className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-[#f3ebdd] font-heading">
+              Platform Engineering Update
+            </h4>
+            <p className="text-[11px] font-mono text-[#8e8374]">
+              @shardendumishra22 · Needl.ai
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://www.linkedin.com/feed/update/urn:li:activity:7496408268563570688"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium rounded-lg bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] transition-all"
+        >
+          <span>View Post</span>
+          <ArrowUpRight className="w-3 h-3" />
+        </a>
+      </div>
+
+      <div className="w-full flex-1 flex justify-center items-center overflow-hidden rounded-xl bg-[#120f0d] border border-[#2f2923]/60 min-h-[460px]">
+        <iframe
+          src="https://www.linkedin.com/embed/feed/update/urn:li:share:7496237227417616385"
+          height="775"
+          width="504"
+          className="w-full max-w-[504px] border-0 rounded-xl"
+          style={{ height: "560px", minHeight: "460px" }}
+          allowFullScreen
+          title="Embedded post"
+        />
+      </div>
     </div>
   );
 }
