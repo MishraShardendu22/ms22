@@ -410,23 +410,6 @@ export const SECTION_HEADER_GRADIENTS: Record<SectionTheme, string> = {
   violet: "from-[#f3ebdd] via-[#d9a55b] to-[#b9ae9d]",
 };
 
-// Section wrapper theme configuration
-export interface SectionWrapperThemeConfig {
-  primary: string;
-  secondary: string;
-}
-
-export const SECTION_WRAPPER_THEME_CONFIG: Record<
-  SectionTheme,
-  SectionWrapperThemeConfig
-> = {
-  blue: { primary: "bg-[#d9a55b]/[0.02]", secondary: "bg-[#d9a55b]/[0.03]" },
-  emerald: { primary: "bg-[#d9a55b]/[0.02]", secondary: "bg-[#d9a55b]/[0.03]" },
-  pink: { primary: "bg-[#d9a55b]/[0.02]", secondary: "bg-[#d9a55b]/[0.03]" },
-  purple: { primary: "bg-[#d9a55b]/[0.02]", secondary: "bg-[#d9a55b]/[0.03]" },
-  violet: { primary: "bg-[#d9a55b]/[0.02]", secondary: "bg-[#d9a55b]/[0.03]" },
-};
-
 // Unified card theme configuration
 export type UnifiedCardTheme =
   | "blue"

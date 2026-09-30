@@ -9,9 +9,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
-  transpilePackages: ["lucide-react", "recharts"],
+  transpilePackages: ["lucide-react"],
   experimental: {
-    optimizePackageImports: ["lucide-react", "recharts"],
+    optimizePackageImports: ["lucide-react"],
     optimizeCss: true,
   },
   images: {
