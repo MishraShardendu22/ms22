@@ -2,7 +2,7 @@ import { LoadingStateLight } from "@/component/Loading";
 
 export default function VolunteerLoading() {
   return (
-    <main className="flex-1 min-h-screen bg-[#0e0c0a] relative overflow-hidden">
+    <main className="flex-1 min-h-screen bg-transparent relative flex items-center justify-center">
       <LoadingStateLight
         variant="pink"
         message="Loading volunteer experiences..."

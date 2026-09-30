@@ -144,7 +144,13 @@
 
 html,
 body {
-  background: var(--background);
+  background-color: var(--bg-000);
+  background-image:
+    linear-gradient(to right, #4f4f4f50 1px, transparent 1px),
+    linear-gradient(to bottom, #4f4f4f50 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  background-position: top left;
+  background-attachment: fixed;
   color: var(--foreground);
   font-family:
     var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -152,6 +158,7 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
   width: 100%;
+  min-height: 100vh;
 }
 
 h1,
@@ -549,11 +556,6 @@ p {
   [class*="shadow-blue"],
   [class*="shadow-purple"] {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Force simple backgrounds */
-  .absolute.inset-0.pointer-events-none {
-    display: none;
   }
 }
 

@@ -41,7 +41,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const treeData = normalizeProject(response.data);
 
   return (
-    <main className="flex-1 min-h-screen bg-[#0e0c0a]">
+    <main className="flex-1 min-h-screen bg-transparent">
       <DetailTreeView data={treeData} />
     </main>
   );

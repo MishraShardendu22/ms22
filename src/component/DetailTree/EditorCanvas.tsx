@@ -116,7 +116,7 @@ export function EditorCanvas({
   const languageMode = getLanguageMode(activeNode);
 
   return (
-    <div className="flex-1 flex flex-col min-w-0 bg-[#0e0c0a] h-full overflow-hidden">
+    <div className="flex-1 flex flex-col min-w-0 bg-transparent h-full overflow-hidden">
       {/* Tab Strip */}
       <div className="shrink-0 flex items-center bg-[#14110f] border-b border-[#2f2923] overflow-x-auto select-none [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-[#2f2923]">
         {/* Toggle Explorer Button (mobile/small screen or when closed) */}
@@ -146,7 +146,7 @@ export function EditorCanvas({
                 key={tab.id}
                 className={`group flex items-center h-9 border-r border-[#2f2923] max-w-56 shrink-0 ${
                   isActive
-                    ? "bg-[#0e0c0a] text-[#f3ebdd] border-t-2 border-t-[#d9a55b] font-medium"
+                    ? "bg-[#161311] text-[#f3ebdd] border-t-2 border-t-[#d9a55b] font-medium"
                     : "bg-[#14110f] text-[#8e8374] hover:text-[#b9ae9d] hover:bg-[#161311] border-t-2 border-t-transparent"
                 }`}
               >

@@ -10,7 +10,7 @@ export default function VolunteerError({
   reset: () => void;
 }) {
   return (
-    <main className="flex-1 min-h-screen bg-[#0e0c0a] relative overflow-hidden">
+    <main className="flex-1 min-h-screen bg-transparent relative overflow-hidden">
       <ErrorState
         title="Failed to load volunteer experiences"
         message={
