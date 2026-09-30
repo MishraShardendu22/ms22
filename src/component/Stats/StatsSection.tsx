@@ -3,14 +3,12 @@ import { API_BASE_URL } from "@/constants/url";
 import {
   FALLBACK_GITHUB_CALENDAR,
   FALLBACK_GITHUB_PROFILE,
-  FALLBACK_PINNED_REPOSITORIES,
   type GitHubCalendarResponse,
 } from "@/static/githubData";
-import type { GitHubData, Repository } from "@/types/stats";
+import type { GitHubData } from "@/types/stats";
 import { GitHubContributionGraph } from "./GitHubContributionGraph";
 import { GitHubProfileCard } from "./GitHubProfileCard";
 import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
-import { TopRepositoriesCard } from "./TopRepositoriesCard";
 
 async function fetchWithTimeout(url: string, ms = 8000) {
   const controller = new AbortController();
@@ -105,23 +103,6 @@ async function ContributionGraphSection() {
   return <GitHubContributionGraph calendar={finalCalendar} />;
 }
 
-async function TopReposSection() {
-  let repos: Repository[] | null = null;
-
-  try {
-    const top = await fetchWithTimeout(`${API_BASE_URL}/api/github/top-repos`);
-    if (top && Array.isArray(top) && top.length > 0) {
-      repos = top as Repository[];
-    }
-  } catch {
-    // Proceed to fallback
-  }
-
-  const finalRepos =
-    repos && repos.length > 0 ? repos : FALLBACK_PINNED_REPOSITORIES;
-  return <TopRepositoriesCard topRepos={finalRepos} />;
-}
-
 function CardSkeleton() {
   return (
     <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
@@ -143,7 +124,7 @@ function CardSkeleton() {
   );
 }
 
-// Wide card skeleton for contribution graph and repos sections
+// Wide card skeleton for contribution graph section
 function WideCardSkeleton() {
   return (
     <div className="lg:col-span-2 bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
@@ -185,12 +166,6 @@ export async function StatsSection() {
           <Suspense fallback={<WideCardSkeleton />}>
             <div className="lg:col-span-2">
               <ContributionGraphSection />
-            </div>
-          </Suspense>
-
-          <Suspense fallback={<WideCardSkeleton />}>
-            <div className="lg:col-span-2">
-              <TopReposSection />
             </div>
           </Suspense>
         </div>

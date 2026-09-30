@@ -69,24 +69,6 @@ export function StatsLoadingSkeleton() {
             </div>
             <div className="h-80 bg-[#1e1a16] rounded-lg" />
           </div>
-
-          {/* Top Repositories skeleton */}
-          <div className="lg:col-span-2 bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-11 h-11 bg-[#4caf7d]/10 rounded-lg" />
-              <div className="space-y-2">
-                <div className="w-36 h-4 bg-[#1e1a16] rounded" />
-                <div className="w-32 h-3 bg-[#1e1a16] rounded" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {Array.from({ length: 6 }, (_, i) => `skeleton-repo-${i}`).map(
-                (key) => (
-                  <div key={key} className="h-24 bg-[#1e1a16] rounded-lg" />
-                ),
-              )}
-            </div>
-          </div>
         </div>
       </div>
     </section>
