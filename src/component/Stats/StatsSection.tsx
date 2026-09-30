@@ -1,6 +1,13 @@
 import { Suspense } from "react";
 import { API_BASE_URL } from "@/constants/url";
-import { CommitsActivityCard } from "./CommitsActivityCard";
+import {
+  FALLBACK_GITHUB_CALENDAR,
+  FALLBACK_GITHUB_PROFILE,
+  FALLBACK_PINNED_REPOSITORIES,
+  type GitHubCalendarResponse,
+} from "@/static/githubData";
+import type { GitHubData, Repository } from "@/types/stats";
+import { GitHubContributionGraph } from "./GitHubContributionGraph";
 import { GitHubProfileCard } from "./GitHubProfileCard";
 import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
 import { TopRepositoriesCard } from "./TopRepositoriesCard";
@@ -13,6 +20,10 @@ async function fetchWithTimeout(url: string, ms = 8000) {
     const res = await fetch(url, {
       signal: controller.signal,
       next: { revalidate: 3600 },
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "Mozilla/5.0 (Portfolio)",
+      },
     });
     clearTimeout(timeoutId);
     if (!res.ok) return null;
@@ -24,14 +35,46 @@ async function fetchWithTimeout(url: string, ms = 8000) {
 }
 
 async function GitHubProfileSection() {
-  const [gh, starsData] = await Promise.all([
-    fetchWithTimeout(`${API_BASE_URL}/api/github`),
-    fetchWithTimeout(`${API_BASE_URL}/api/github/stars`),
-  ]);
+  let profileData: GitHubData | null = null;
+  let starsCount = 684;
 
-  if (!gh) return null;
+  try {
+    const [gh, starsData] = await Promise.all([
+      fetchWithTimeout(`${API_BASE_URL}/api/github`),
+      fetchWithTimeout(`${API_BASE_URL}/api/github/stars`),
+    ]);
 
-  return <GitHubProfileCard github={gh} stars={starsData?.stars || 0} />;
+    if (gh && typeof gh === "object" && gh.login && !gh.message) {
+      profileData = gh as GitHubData;
+    }
+
+    if (
+      starsData?.stars &&
+      typeof starsData.stars === "number" &&
+      starsData.stars > 0
+    ) {
+      starsCount = starsData.stars;
+    }
+  } catch {
+    // Proceed to fallback
+  }
+
+  // If backend returned an error / 401, try direct GitHub API or fallback
+  if (!profileData) {
+    try {
+      const publicGh = await fetchWithTimeout(
+        "https://api.github.com/users/MishraShardendu22",
+      );
+      if (publicGh?.login && !publicGh.message) {
+        profileData = publicGh as GitHubData;
+      }
+    } catch {
+      // Proceed to fallback
+    }
+  }
+
+  const finalProfile = profileData || FALLBACK_GITHUB_PROFILE;
+  return <GitHubProfileCard github={finalProfile} stars={starsCount} />;
 }
 
 async function LeetCodeSection() {
@@ -42,23 +85,41 @@ async function LeetCodeSection() {
   return <LeetCodeStatsCard leetcode={lc.data.matchedUser} />;
 }
 
-async function CommitsSection() {
-  const [commits, cal] = await Promise.all([
-    fetchWithTimeout(`${API_BASE_URL}/api/github/commits`),
-    fetchWithTimeout(`${API_BASE_URL}/api/github/calendar`),
-  ]);
+async function ContributionGraphSection() {
+  let calData: GitHubCalendarResponse | null = null;
 
-  if (!commits || commits.length === 0) return null;
+  try {
+    const cal = await fetchWithTimeout(`${API_BASE_URL}/api/github/calendar`);
+    if (
+      cal?.contributions &&
+      Array.isArray(cal.contributions) &&
+      cal.contributions.length > 0
+    ) {
+      calData = cal as GitHubCalendarResponse;
+    }
+  } catch {
+    // Proceed to fallback
+  }
 
-  return <CommitsActivityCard commits={commits} calendar={cal || {}} />;
+  const finalCalendar = calData || FALLBACK_GITHUB_CALENDAR;
+  return <GitHubContributionGraph calendar={finalCalendar} />;
 }
 
 async function TopReposSection() {
-  const top = await fetchWithTimeout(`${API_BASE_URL}/api/github/top-repos`);
+  let repos: Repository[] | null = null;
 
-  if (!top || top.length === 0) return null;
+  try {
+    const top = await fetchWithTimeout(`${API_BASE_URL}/api/github/top-repos`);
+    if (top && Array.isArray(top) && top.length > 0) {
+      repos = top as Repository[];
+    }
+  } catch {
+    // Proceed to fallback
+  }
 
-  return <TopRepositoriesCard topRepos={top} />;
+  const finalRepos =
+    repos && repos.length > 0 ? repos : FALLBACK_PINNED_REPOSITORIES;
+  return <TopRepositoriesCard topRepos={finalRepos} />;
 }
 
 function CardSkeleton() {
@@ -82,7 +143,7 @@ function CardSkeleton() {
   );
 }
 
-// Wide card skeleton for commits and repos sections
+// Wide card skeleton for contribution graph and repos sections
 function WideCardSkeleton() {
   return (
     <div className="lg:col-span-2 bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
@@ -104,10 +165,11 @@ export async function StatsSection() {
       <div className="container mx-auto max-w-7xl w-full relative z-10">
         <div className="text-center mb-6 md:mb-8 px-2">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-serif bg-linear-to-r from-[#f3ebdd] via-[#d9a55b] to-[#e6b56c] bg-clip-text text-transparent mb-3 md:mb-4">
-            Coding Statistics
+            Coding Statistics &amp; Activity
           </h2>
           <p className="text-[#8e8374] text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-4">
-            Overview of my coding activity and achievements across platforms
+            Live telemetry of GitHub contributions, open-source microservices,
+            and LeetCode problem solving
           </p>
         </div>
 
@@ -122,7 +184,7 @@ export async function StatsSection() {
 
           <Suspense fallback={<WideCardSkeleton />}>
             <div className="lg:col-span-2">
-              <CommitsSection />
+              <ContributionGraphSection />
             </div>
           </Suspense>
 

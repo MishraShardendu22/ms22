@@ -1,4 +1,4 @@
-export { CommitsActivityCard } from "./CommitsActivityCard";
+export { GitHubContributionGraph } from "./GitHubContributionGraph";
 export { GitHubProfileCard } from "./GitHubProfileCard";
 export { LeetCodeStatsCard } from "./LeetCodeStatsCard";
 export { StatsLoadingSkeleton } from "./StatsLoadingSkeleton";
