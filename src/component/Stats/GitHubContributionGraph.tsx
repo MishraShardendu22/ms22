@@ -376,7 +376,10 @@ export function GitHubContributionGraph({
             {/* Weeks columns — fill remaining width */}
             <div className="flex gap-[3px] flex-1">
               {weeks.map((week) => (
-                <div key={week.id} className="grid grid-rows-7 gap-[3px]">
+                <div
+                  key={week.id}
+                  className="grid grid-rows-7 gap-[3px] flex-1"
+                >
                   {week.days.map((day) => {
                     const isHovered =
                       hoveredCell?.date === day.date && day.date !== "";
@@ -391,7 +394,7 @@ export function GitHubContributionGraph({
                             ? `${day.count} contributions on ${formatDate(day.date)}`
                             : undefined
                         }
-                        className={`w-[13px] h-[13px] rounded-[2px] transition-transform duration-100 ${
+                        className={`w-full aspect-square rounded-[2px] transition-transform duration-100 ${
                           day.inCurrentYear
                             ? LEVEL_CLASSES[day.level] || LEVEL_CLASSES[0]
                             : "bg-transparent pointer-events-none"
