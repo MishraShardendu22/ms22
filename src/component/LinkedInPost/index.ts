@@ -1,1 +1,0 @@
-export { LinkedInPost } from "./LinkedInPost";

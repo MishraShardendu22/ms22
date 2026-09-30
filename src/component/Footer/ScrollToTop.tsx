@@ -31,10 +31,10 @@ export function ScrollToTop({ variant = "desktop" }: ScrollToTopProps) {
     <button
       type="button"
       onClick={handleScrollToTop}
-      className="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] hover:text-[#e6b56c] transition-colors duration-300 cursor-pointer"
+      className="group flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] hover:text-[#e6b56c] transition-colors duration-300 cursor-pointer"
     >
-      <span className="text-sm font-medium">Back to Top</span>
-      <ArrowUp className="w-4 h-4 text-[#d9a55b] group-hover:text-[#e6b56c]" />
+      <span className="text-base font-semibold">Back to Top</span>
+      <ArrowUp className="w-4 h-4 text-[#d9a55b] group-hover:text-[#e6b56c] transition-transform group-hover:-translate-y-0.5" />
     </button>
   );
 }

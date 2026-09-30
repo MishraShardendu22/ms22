@@ -31,10 +31,10 @@ export function ContactForm({
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-[#b9ae9d] mb-2"
+            className="block text-sm sm:text-base font-semibold text-[#f3ebdd] mb-2.5"
           >
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-[#d9a55b]" />
+              <User className="w-4 h-4 sm:w-5 sm:h-5 text-[#d9a55b]" />
               Name
             </div>
           </label>
@@ -43,7 +43,13 @@ export function ContactForm({
             id="name"
             name="name"
             required
-            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${state?.errors?.name ? "border-red-500" : ""}`}
+            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${
+              isCompact
+                ? "px-4 py-3 text-sm"
+                : "px-4 sm:px-5 py-3.5 text-base sm:text-lg"
+            } border rounded-xl text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${
+              state?.errors?.name ? "border-red-500" : ""
+            }`}
             placeholder={isCompact ? "Full name" : "Your name"}
           />
           {state?.errors?.name && (
@@ -55,10 +61,10 @@ export function ContactForm({
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-[#b9ae9d] mb-2"
+            className="block text-sm sm:text-base font-semibold text-[#f3ebdd] mb-2.5"
           >
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#d9a55b]" />
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-[#d9a55b]" />
               Email
             </div>
           </label>
@@ -67,7 +73,13 @@ export function ContactForm({
             id="email"
             name="email"
             required
-            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${state?.errors?.email ? "border-red-500" : ""}`}
+            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${
+              isCompact
+                ? "px-4 py-3 text-sm"
+                : "px-4 sm:px-5 py-3.5 text-base sm:text-lg"
+            } border rounded-xl text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${
+              state?.errors?.email ? "border-red-500" : ""
+            }`}
             placeholder={isCompact ? "Email address" : "your.email@example.com"}
           />
           {state?.errors?.email && (
@@ -81,10 +93,10 @@ export function ContactForm({
         <div>
           <label
             htmlFor="subject"
-            className="block text-sm font-medium text-[#b9ae9d] mb-2"
+            className="block text-sm sm:text-base font-semibold text-[#f3ebdd] mb-2.5"
           >
             <div className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#d9a55b]" />
+              <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-[#d9a55b]" />
               Subject
             </div>
           </label>
@@ -93,7 +105,13 @@ export function ContactForm({
             id="subject"
             name="subject"
             required
-            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${state?.errors?.subject ? "border-red-500" : ""}`}
+            className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${
+              isCompact
+                ? "px-4 py-3 text-sm"
+                : "px-4 sm:px-5 py-3.5 text-base sm:text-lg"
+            } border rounded-xl text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all ${
+              state?.errors?.subject ? "border-red-500" : ""
+            }`}
             placeholder="What's this about?"
           />
           {state?.errors?.subject && (
@@ -111,10 +129,10 @@ export function ContactForm({
       <div>
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-[#b9ae9d] mb-2"
+          className="block text-sm sm:text-base font-semibold text-[#f3ebdd] mb-2.5"
         >
           <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-[#d9a55b]" />
+            <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-[#d9a55b]" />
             Message
           </div>
         </label>
@@ -124,7 +142,13 @@ export function ContactForm({
           required
           minLength={10}
           rows={isCompact ? 4 : 5}
-          className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all resize-none ${state?.errors?.message ? "border-red-500" : ""}`}
+          className={`w-full bg-[#161311] border-[#2f2923] focus:border-[#d9a55b] focus:ring-2 focus:ring-[#d9a55b]/20 ${
+            isCompact
+              ? "px-4 py-3 text-sm"
+              : "px-4 sm:px-5 py-3.5 text-base sm:text-lg"
+          } border rounded-xl text-[#f3ebdd] placeholder-[#8e8374] outline-none transition-all resize-none ${
+            state?.errors?.message ? "border-red-500" : ""
+          }`}
           placeholder={
             isCompact
               ? "Share details or say hello..."

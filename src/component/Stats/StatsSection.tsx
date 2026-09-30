@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { LinkedInPost } from "@/component/LinkedInPost";
 import { API_BASE_URL } from "@/constants/url";
 import {
   FALLBACK_GITHUB_CALENDAR,
@@ -119,7 +118,7 @@ function CardSkeleton() {
 // Wide card skeleton for contribution graph section
 function WideCardSkeleton() {
   return (
-    <div className="lg:col-span-2 bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse h-full">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-11 h-11 bg-[#1e1a16] rounded-lg" />
         <div className="space-y-2">
@@ -145,18 +144,19 @@ export async function StatsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 items-start">
-          <Suspense fallback={<CardSkeleton />}>
-            <GitHubProfileSection />
-          </Suspense>
+        {/* 20% - 80% Side-by-Side Ratio Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6 items-stretch">
+          <div className="lg:col-span-1 h-full flex flex-col">
+            <Suspense fallback={<CardSkeleton />}>
+              <GitHubProfileSection />
+            </Suspense>
+          </div>
 
-          <LinkedInPost />
-
-          <Suspense fallback={<WideCardSkeleton />}>
-            <div className="lg:col-span-2">
+          <div className="lg:col-span-4 h-full flex flex-col">
+            <Suspense fallback={<WideCardSkeleton />}>
               <ContributionGraphSection />
-            </div>
-          </Suspense>
+            </Suspense>
+          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-export { LinkedInPost } from "../LinkedInPost";
 export { GitHubContributionGraph } from "./GitHubContributionGraph";
 export { GitHubProfileCard } from "./GitHubProfileCard";
 export { LeetCodeStatsCard } from "./LeetCodeStatsCard";
