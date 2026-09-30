@@ -27,7 +27,11 @@ export function ContentGrid({
         }`}
         style={{ minHeight }}
       >
-        <LoadingStateLight message={loadingMessage} variant={loadingVariant} />
+        <LoadingStateLight
+          message={loadingMessage}
+          variant={loadingVariant}
+          className="min-h-0"
+        />
       </div>
       <div
         className={`grid ${GRID_COLS[columns]} gap-4 md:gap-6 transition-opacity duration-300 ${

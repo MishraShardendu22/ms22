@@ -141,7 +141,11 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="timeline" aria-label="Professional timeline">
           <Suspense
             fallback={
-              <LoadingStateLight message="Loading timeline..." variant="blue" />
+              <LoadingStateLight
+                message="Loading timeline..."
+                variant="blue"
+                className="min-h-[400px]"
+              />
             }
           >
             <Time />
@@ -153,6 +157,7 @@ const page = async ({ searchParams }: PageProps) => {
               <LoadingStateLight
                 message="Loading projects..."
                 variant="violet"
+                className="min-h-[400px]"
               />
             }
           >
@@ -169,6 +174,7 @@ const page = async ({ searchParams }: PageProps) => {
               <LoadingStateLight
                 message="Loading experiences..."
                 variant="blue"
+                className="min-h-[400px]"
               />
             }
           >
@@ -185,6 +191,7 @@ const page = async ({ searchParams }: PageProps) => {
               <LoadingStateLight
                 message="Loading volunteer experiences..."
                 variant="pink"
+                className="min-h-[400px]"
               />
             }
           >
@@ -201,6 +208,7 @@ const page = async ({ searchParams }: PageProps) => {
               <LoadingStateLight
                 message="Loading certifications..."
                 variant="emerald"
+                className="min-h-[400px]"
               />
             }
           >

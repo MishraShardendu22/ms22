@@ -6,6 +6,7 @@ export default function VolunteerLoading() {
       <LoadingStateLight
         variant="pink"
         message="Loading volunteer experiences..."
+        className="min-h-0"
       />
     </main>
   );

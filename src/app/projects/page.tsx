@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { ErrorState } from "@/component/Error";
-import { LoadingStateLight } from "@/component/Loading";
 import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { projectsAPI } from "@/static/api/api.request";
@@ -147,13 +145,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
   return (
     <main className="flex-1 min-h-screen bg-transparent relative">
       <div className="container mx-auto px-4 py-6 relative z-10 max-w-7xl">
-        <Suspense
-          fallback={
-            <LoadingStateLight message="Loading projects..." variant="violet" />
-          }
-        >
-          <ProjectsContent searchParams={searchParams} />
-        </Suspense>
+        <ProjectsContent searchParams={searchParams} />
       </div>
     </main>
   );

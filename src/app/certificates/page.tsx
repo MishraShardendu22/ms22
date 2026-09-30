@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { LoadingStateLight } from "@/component/Loading";
 import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI } from "@/static/api/api.request";
@@ -141,16 +139,7 @@ export default async function CertificatesPage({ searchParams }: PageProps) {
   return (
     <main className="flex-1 min-h-screen bg-transparent relative">
       <div className="container mx-auto px-4 py-6 relative z-10 max-w-7xl">
-        <Suspense
-          fallback={
-            <LoadingStateLight
-              message="Loading certifications..."
-              variant="violet"
-            />
-          }
-        >
-          <CertificatesContent searchParams={searchParams} />
-        </Suspense>
+        <CertificatesContent searchParams={searchParams} />
       </div>
     </main>
   );

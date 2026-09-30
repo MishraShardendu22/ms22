@@ -12,6 +12,7 @@ type LoadingVariant = "blue" | "purple" | "pink" | "emerald" | "violet";
 interface LoadingStateLightProps {
   variant?: LoadingVariant;
   message?: string;
+  className?: string;
 }
 
 function LoadingSpinner({ variant = "violet" }: { variant?: LoadingVariant }) {
@@ -38,12 +39,17 @@ function LoadingSpinner({ variant = "violet" }: { variant?: LoadingVariant }) {
 export function LoadingStateLight({
   variant = "violet",
   message = "Loading...",
+  className = "",
 }: LoadingStateLightProps) {
   const colors =
     VARIANT_COLORS[variant as keyof typeof VARIANT_COLORS] ||
     VARIANT_COLORS.violet;
   return (
-    <div className="flex items-center justify-center min-h-[400px]">
+    <div
+      className={`flex items-center justify-center ${
+        className || "min-h-[calc(100vh-10rem)] w-full"
+      }`}
+    >
       <div className="flex flex-col items-center gap-4">
         <LoadingSpinner variant={variant} />
         <p className={`text-sm font-medium ${colors.text}`}>{message}</p>
