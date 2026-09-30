@@ -17,10 +17,11 @@ export const TextContent = () => {
 
       <p className="text-sm sm:text-base md:text-lg text-[#b9ae9d] leading-relaxed max-w-3xl font-sans">
         Hi, I&apos;m{" "}
-        <span className="text-[#f3ebdd] font-semibold">{myIntro.name}</span>. I
-        design scalable architectures in Go, cross-platform CLI engines,
-        autonomous agent protocols, and high-performance web systems with strict
-        test gates and zero downtime.
+        <span className="text-[#f3ebdd] font-semibold">{myIntro.name}</span>.
+        Software Engineer and Life Long Science Student —{" "}
+        <em className="italic text-[#d9a55b]">
+          Knowledge is Power but Powerless if got it but do not acknowledge it.
+        </em>
       </p>
 
       {/* Action CTAs */}
