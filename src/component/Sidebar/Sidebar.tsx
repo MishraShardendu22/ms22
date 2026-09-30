@@ -15,6 +15,15 @@ export function Sidebar() {
   const [isPinned, setIsPinned] = useState(false);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Restore pinned state from localStorage on mount (client-only)
+  useEffect(() => {
+    try {
+      setIsPinned(localStorage.getItem("dock-pinned") === "true");
+    } catch {
+      // localStorage unavailable (private browsing, etc.)
+    }
+  }, []);
+
   const isItemActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href.startsWith("/#")) return false;
@@ -197,7 +206,15 @@ export function Sidebar() {
         <div className="w-6 border-t border-[#2f2923]/60 shrink-0 my-1" />
         <button
           type="button"
-          onClick={() => setIsPinned((prev) => !prev)}
+          onClick={() => {
+            const next = !isPinned;
+            setIsPinned(next);
+            try {
+              localStorage.setItem("dock-pinned", String(next));
+            } catch {
+              // localStorage unavailable
+            }
+          }}
           className="nav-tooltip group relative flex items-center justify-center w-8 h-8 rounded-lg text-[#8e8374] hover:text-[#f3ebdd] hover:bg-[#1a1613] transition-colors cursor-pointer"
           data-tooltip={isPinned ? "Unpin (Auto-hide)" : "Pin Dock"}
           aria-label={isPinned ? "Unpin Dock" : "Pin Dock"}
