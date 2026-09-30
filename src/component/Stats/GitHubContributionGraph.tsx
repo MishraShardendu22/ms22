@@ -253,7 +253,7 @@ export function GitHubContributionGraph({
   return (
     <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-5 sm:p-6 hover:border-[#d9a55b]/40 transition-all duration-300">
       {/* Top Header & Year Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-[#2f2923]">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6 pb-5 border-b border-[#2f2923]">
         <div className="flex items-center gap-3">
           <div className="p-2.5 bg-[#d9a55b]/10 rounded-xl border border-[#d9a55b]/30">
             <GitCommit className="w-5 h-5 text-[#d9a55b]" />
@@ -277,7 +277,7 @@ export function GitHubContributionGraph({
         </div>
 
         {/* Year Selector Tabs */}
-        <div className="flex items-center gap-1.5 self-start sm:self-auto p-1 bg-[#1e1a16] rounded-xl border border-[#2f2923]">
+        <div className="flex items-center gap-1.5 p-1 bg-[#1e1a16] rounded-xl border border-[#2f2923] shrink-0">
           {availableYears.map((year) => {
             const isActive = year === selectedYear;
             return (
