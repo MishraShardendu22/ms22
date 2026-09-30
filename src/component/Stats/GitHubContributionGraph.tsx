@@ -262,17 +262,12 @@ export function GitHubContributionGraph({
             <h3 className="text-lg font-bold text-[#f3ebdd] font-heading">
               Contribution Activity
             </h3>
-            <div className="flex items-center gap-2 mt-0.5">
-              <p className="text-xs text-[#8e8374]">
-                <span className="text-[#f3ebdd] font-semibold text-sm">
-                  {totalYearContributions.toLocaleString()}
-                </span>{" "}
-                contributions in {selectedYear}
-              </p>
-              <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#39d353]/10 text-[#39d353] border border-[#39d353]/30">
-                Verified GitHub
-              </span>
-            </div>
+            <p className="text-xs text-[#8e8374] mt-0.5">
+              <span className="text-[#f3ebdd] font-semibold text-sm">
+                {totalYearContributions.toLocaleString()}
+              </span>{" "}
+              contributions in {selectedYear}
+            </p>
           </div>
         </div>
 
@@ -476,26 +471,31 @@ export function GitHubContributionGraph({
         </div>
 
         {/* Less -> More Legend */}
-        <div className="flex items-center gap-2 self-end md:self-auto font-mono text-[11px]">
-          <span>Less</span>
-          <div className="flex gap-[3px]">
-            <div
-              className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[0]}`}
-            />
-            <div
-              className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[1]}`}
-            />
-            <div
-              className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[2]}`}
-            />
-            <div
-              className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[3]}`}
-            />
-            <div
-              className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[4]}`}
-            />
+        <div className="flex items-center gap-3 self-end md:self-auto font-mono text-[11px]">
+          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#39d353]/10 text-[#39d353] border border-[#39d353]/30">
+            Verified GitHub
+          </span>
+          <div className="flex items-center gap-1.5">
+            <span>Less</span>
+            <div className="flex gap-[3px]">
+              <div
+                className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[0]}`}
+              />
+              <div
+                className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[1]}`}
+              />
+              <div
+                className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[2]}`}
+              />
+              <div
+                className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[3]}`}
+              />
+              <div
+                className={`w-[11px] h-[11px] rounded-[2px] ${LEVEL_CLASSES[4]}`}
+              />
+            </div>
+            <span>More</span>
           </div>
-          <span>More</span>
         </div>
       </div>
     </div>
