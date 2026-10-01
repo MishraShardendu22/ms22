@@ -45,7 +45,7 @@ export function ListCard({
         {/* Left Stack: Leading Icon + Info */}
         <div className="flex items-start gap-3.5 min-w-0 flex-1">
           {logo ? (
-            <div className="shrink-0 w-10 h-10 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden group-hover:border-[#413930] transition-colors p-1">
+            <div className="shrink-0 w-10 h-10 rounded-2xl bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden group-hover:border-[#413930] transition-colors p-1">
               <Image
                 src={logo}
                 alt={title}
@@ -57,7 +57,7 @@ export function ListCard({
               />
             </div>
           ) : (
-            <div className="shrink-0 w-10 h-10 rounded-lg bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center text-[#d9a55b] font-mono text-sm font-bold group-hover:border-[#d9a55b]/40 transition-colors">
+            <div className="shrink-0 w-10 h-10 rounded-2xl bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center text-[#d9a55b] font-mono text-sm font-bold group-hover:border-[#d9a55b]/40 transition-colors">
               {title.slice(0, 2).toUpperCase()}
             </div>
           )}
@@ -71,7 +71,7 @@ export function ListCard({
                 {title}
               </Link>
               {isActive && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-medium rounded bg-[#4caf7d]/10 text-[#4caf7d] border border-[#4caf7d]/30">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-full bg-[#4caf7d]/10 text-[#4caf7d] border border-[#4caf7d]/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d] animate-pulse" />
                   Active
                 </span>
@@ -99,13 +99,13 @@ export function ListCard({
                 {technologies.slice(0, maxTechDisplay).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-0.5 bg-[#161311] text-[#b9ae9d] text-[11px] font-mono rounded border border-[#2f2923] hover:border-[#413930] hover:text-[#f3ebdd] transition-colors"
+                    className="px-2.5 py-0.5 bg-[#161311] text-[#b9ae9d] text-[11px] font-mono rounded-full border border-[#2f2923] hover:border-[#413930] hover:text-[#f3ebdd] transition-colors"
                   >
                     {tech}
                   </span>
                 ))}
                 {technologies.length > maxTechDisplay && (
-                  <span className="px-1.5 py-0.5 text-[11px] font-mono text-[#8e8374]">
+                  <span className="px-2 py-0.5 text-[11px] font-mono text-[#8e8374] rounded-full bg-[#1e1a16] border border-[#2f2923]">
                     +{technologies.length - maxTechDisplay}
                   </span>
                 )}
@@ -115,16 +115,16 @@ export function ListCard({
         </div>
 
         {/* Right Stack: Action Links & Detail Chevron */}
-        <div className="flex items-center gap-3 shrink-0 pt-2 md:pt-0 self-end md:self-center">
+        <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 self-end md:self-center">
           {links && links.length > 0 && (
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5">
               {links.map((link) => (
                 <a
                   key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#1e1a16] hover:bg-[#27221c] border border-[#2f2923] hover:border-[#413930] text-[#d9a55b] text-xs font-mono font-medium transition-colors"
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#1e1a16] hover:bg-[#27221c] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] text-xs font-mono font-medium transition-colors"
                 >
                   <span>{link.label}</span>
                   <ArrowUpRight className="w-3 h-3" />
@@ -135,10 +135,11 @@ export function ListCard({
 
           <Link
             href={href}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e8374] group-hover:text-[#d9a55b] transition-all pl-2"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e8374] group-hover:text-[#d9a55b] transition-all p-1.5 rounded-full hover:bg-[#1e1a16]"
+            aria-label={`View details for ${title}`}
           >
             <span className="hidden sm:inline">Details</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
       </div>

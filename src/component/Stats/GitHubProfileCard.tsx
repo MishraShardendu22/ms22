@@ -1,6 +1,5 @@
 import {
   BookOpen,
-  Building2,
   Code,
   ExternalLink,
   MapPin,
@@ -27,10 +26,10 @@ const StatsCard = ({
   icon: Icon,
   iconColor = "text-[#d9a55b]",
 }: StatsCardProps) => (
-  <div className="p-2 sm:p-2.5 bg-[#1e1a16] rounded-xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
+  <div className="p-2 sm:p-2.5 bg-[#1e1a16] rounded-2xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
     <div className="flex items-center gap-2">
       <div
-        className={`p-1.5 rounded-lg bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
+        className={`p-1.5 rounded-xl bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
       >
         <Icon className="w-3.5 h-3.5" />
       </div>
@@ -106,7 +105,7 @@ export const GitHubProfileCard = ({
         </div>
 
         {/* Bio */}
-        <div className="p-2.5 sm:p-3 bg-[#1e1a16] rounded-xl border border-[#2f2923]">
+        <div className="p-2.5 sm:p-3 bg-[#1e1a16] rounded-2xl border border-[#2f2923]">
           <div className="flex items-start gap-2">
             <BookOpen className="w-3.5 h-3.5 text-[#d9a55b] mt-0.5 shrink-0" />
             <p className="text-xs text-[#b9ae9d] leading-relaxed line-clamp-3">
@@ -145,24 +144,34 @@ export const GitHubProfileCard = ({
           />
         </div>
 
-        {/* Metadata Details Strip */}
-        <div className="flex flex-wrap items-center gap-2 text-[11px] sm:text-xs text-[#8e8374]">
-          <div className="flex items-center gap-1.5 truncate">
+        {/* Metadata Details Strip: Places & Images/Organizations */}
+        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+          {/* Location / Place Chip */}
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1e1a16] border border-[#2f2923] text-[11px] sm:text-xs text-[#b9ae9d] shrink-0 max-w-full">
             <MapPin className="w-3.5 h-3.5 text-[#d9a55b] shrink-0" />
             <span className="truncate">{location}</span>
           </div>
-          <span className="text-[#2f2923]">•</span>
-          <div className="flex items-center gap-1.5">
-            <Building2 className="w-3.5 h-3.5 text-[#d9a55b] shrink-0" />
-            <Link
-              href="https://github.com/ai-needl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#b9ae9d] hover:text-[#d9a55b] transition-colors truncate"
-            >
+
+          {/* Organization / Image Chip */}
+          <Link
+            href="https://github.com/ai-needl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[11px] sm:text-xs text-[#b9ae9d] hover:text-[#f3ebdd] transition-colors shrink-0"
+            title="ai-needl organization"
+          >
+            <Image
+              src="https://avatars.githubusercontent.com/u/167732448?v=4"
+              alt="ai-needl"
+              width={16}
+              height={16}
+              className="w-3.5 h-3.5 rounded-full object-cover shrink-0"
+              unoptimized
+            />
+            <span className="font-mono text-[11px] text-[#d9a55b]">
               @ai-needl
-            </Link>
-          </div>
+            </span>
+          </Link>
         </div>
       </div>
 
@@ -171,7 +180,7 @@ export const GitHubProfileCard = ({
         href={github.html_url || `https://github.com/${login}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full mt-4 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-xs font-mono text-[#f3ebdd] transition-all group cursor-pointer"
+        className="w-full mt-4 inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-2xl bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-xs font-mono text-[#f3ebdd] transition-all group cursor-pointer"
       >
         <span>View GitHub</span>
         <ExternalLink className="w-3.5 h-3.5 text-[#8e8374] group-hover:text-[#d9a55b] transition-colors" />
