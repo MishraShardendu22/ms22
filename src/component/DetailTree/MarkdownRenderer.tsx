@@ -340,7 +340,7 @@ export function MarkdownRenderer({
             </span>
           )}
           <div className="flex items-start gap-2.5 flex-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b] mt-2 shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b] mt-[5px] shrink-0" />
             <span className="text-[#b9ae9d] leading-relaxed">
               {parseInlineMarkdown(trimmed.replace(/^[-*]\s+/, ""))}
             </span>
