@@ -255,13 +255,22 @@ function MobileNodeRenderer({ node }: { node: TreeNode | null }) {
         <div className="space-y-2">
           {payload.items.map((item, idx) => (
             <div
-              key={item}
+              key={idx}
               className="flex items-start gap-2.5 p-3 rounded-2xl bg-[#1e1a16] border border-[#2f2923] text-xs text-[#b9ae9d]"
             >
               <span className="px-2 py-0.5 rounded-full bg-[#d9a55b]/10 text-[#d9a55b] text-[10px] font-mono shrink-0">
                 #{idx + 1}
               </span>
-              <span className="leading-relaxed">{item}</span>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-[#f3ebdd] leading-snug">{item.title}</div>
+                {item.subtitle && (
+                  <div className="text-[#8e8374] mt-0.5">{item.subtitle}</div>
+                )}
+                <div className="text-[#8e8374] mt-1 font-mono text-[10px]">
+                  {item.startDate}
+                  {item.endDate ? ` – ${item.endDate}` : item.isCurrent ? " – Present" : ""}
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -376,7 +385,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
   }, [readableNodes, mobileActiveNode]);
 
   const techItems = useMemo<string[]>(() => {
-    if (data.skills && data.skills.length > 0) return data.skills;
+    if (data.technologies && data.technologies.length > 0) return data.technologies;
     const tagNode = treeNodes.find(
       (n) =>
         n.payload?.type === "tags" || n.label.toLowerCase().includes("tech"),
@@ -385,7 +394,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
       return tagNode.payload.items;
     }
     return [];
-  }, [data.skills, treeNodes]);
+  }, [data.technologies, treeNodes]);
 
   return (
     <div className="min-h-screen md:h-screen flex flex-col relative z-10 bg-transparent text-[#f3ebdd] overflow-y-auto md:overflow-hidden">
@@ -490,14 +499,14 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
           </div>
 
           {/* Tech Stack Pills */}
-          {((data.skills && data.skills.length > 0) ||
+          {((data.technologies && data.technologies.length > 0) ||
             techItems.length > 0) && (
             <div className="space-y-1.5">
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#8e8374]">
                 Tech Stack
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {(data.skills || techItems).map((tech) => (
+                {(data.technologies || techItems).map((tech) => (
                   <span
                     key={tech}
                     className="px-2.5 py-1 text-xs font-mono bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-full"
