@@ -26,10 +26,10 @@ const StatsCard = ({
   icon: Icon,
   iconColor = "text-[#d9a55b]",
 }: StatsCardProps) => (
-  <div className="p-2 sm:p-2.5 bg-[#1e1a16] rounded-2xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
-    <div className="flex items-center gap-2">
+  <div className="p-3 bg-[#1e1a16] rounded-2xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
+    <div className="flex items-center gap-2.5">
       <div
-        className={`p-1.5 rounded-xl bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
+        className={`p-2 rounded-xl bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
       >
         <Icon className="w-3.5 h-3.5" />
       </div>
@@ -105,7 +105,7 @@ export const GitHubProfileCard = ({
         </div>
 
         {/* Bio */}
-        <div className="p-2.5 sm:p-3 bg-[#1e1a16] rounded-2xl border border-[#2f2923]">
+        <div className="p-3 bg-[#1e1a16] rounded-2xl border border-[#2f2923]">
           <div className="flex items-start gap-2">
             <BookOpen className="w-3.5 h-3.5 text-[#d9a55b] mt-0.5 shrink-0" />
             <p className="text-xs text-[#b9ae9d] leading-relaxed line-clamp-3">
@@ -147,7 +147,7 @@ export const GitHubProfileCard = ({
         {/* Metadata Details Strip: Places & Images/Organizations */}
         <div className="flex flex-wrap items-center gap-2 pt-0.5">
           {/* Location / Place Chip */}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1e1a16] border border-[#2f2923] text-[11px] sm:text-xs text-[#b9ae9d] shrink-0 max-w-full">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1e1a16] border border-[#2f2923] text-[11px] sm:text-xs text-[#b9ae9d] shrink-0 max-w-full">
             <MapPin className="w-3.5 h-3.5 text-[#d9a55b] shrink-0" />
             <span className="truncate">{location}</span>
           </div>
@@ -157,7 +157,7 @@ export const GitHubProfileCard = ({
             href="https://github.com/ai-needl"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[11px] sm:text-xs text-[#b9ae9d] hover:text-[#f3ebdd] transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[11px] sm:text-xs text-[#b9ae9d] hover:text-[#f3ebdd] transition-colors shrink-0"
             title="ai-needl organization"
           >
             <Image
@@ -165,7 +165,7 @@ export const GitHubProfileCard = ({
               alt="ai-needl"
               width={16}
               height={16}
-              className="w-3.5 h-3.5 rounded-full object-cover shrink-0"
+              className="w-4 h-4 rounded-full object-cover shrink-0"
               unoptimized
             />
             <span className="font-mono text-[11px] text-[#d9a55b]">
