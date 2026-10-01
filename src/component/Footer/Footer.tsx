@@ -67,11 +67,13 @@ function NavLink({
   label,
   icon,
   external = false,
+  compact = false,
 }: {
   href: string;
   label: string;
   icon?: string;
   external?: boolean;
+  compact?: boolean;
 }) {
   const IconComponent = icon ? iconMap[icon as keyof typeof iconMap] : null;
   return (
@@ -80,14 +82,26 @@ function NavLink({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
-        className="group flex items-center gap-3.5 py-2.5 sm:py-3 text-base sm:text-lg lg:text-xl text-[#b9ae9d] hover:text-[#d9a55b] transition-colors duration-200"
+        className={`group flex items-center min-w-0 transition-colors duration-200 ${
+          compact
+            ? "gap-2 py-2 px-2.5 text-xs sm:text-sm text-[#b9ae9d] hover:text-[#d9a55b] bg-[#1e1a16]/50 hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 rounded-xl"
+            : "gap-3.5 py-2.5 sm:py-3 text-base sm:text-lg lg:text-xl text-[#b9ae9d] hover:text-[#d9a55b]"
+        }`}
       >
         {IconComponent && (
-          <IconComponent className="w-5 h-5 shrink-0 text-[#8e8374] group-hover:text-[#d9a55b] transition-colors" />
+          <IconComponent
+            className={`shrink-0 text-[#8e8374] group-hover:text-[#d9a55b] transition-colors ${
+              compact ? "w-4 h-4" : "w-5 h-5"
+            }`}
+          />
         )}
-        <span className="font-sans font-medium">{label}</span>
+        <span className="font-sans font-medium truncate">{label}</span>
         {external && (
-          <ArrowUpRight className="w-4 h-4 ml-auto shrink-0 opacity-0 group-hover:opacity-75 transition-opacity" />
+          <ArrowUpRight
+            className={`ml-auto shrink-0 opacity-0 group-hover:opacity-75 transition-opacity ${
+              compact ? "w-3.5 h-3.5" : "w-4 h-4"
+            }`}
+          />
         )}
       </a>
     </li>
@@ -148,13 +162,14 @@ export function FooterSectionMobile() {
         <div className="grid gap-5 sm:grid-cols-2">
           <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5">
             <ColumnHeading>Quick Links</ColumnHeading>
-            <ul className="space-y-1.5">
+            <ul className="grid grid-cols-2 gap-2">
               {Object.entries(QuickLinks).map(([key, data]) => (
                 <NavLink
                   key={key}
                   href={data.url}
                   label={key}
                   icon={data.icon}
+                  compact
                 />
               ))}
             </ul>
@@ -162,7 +177,7 @@ export function FooterSectionMobile() {
 
           <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5">
             <ColumnHeading>My Websites</ColumnHeading>
-            <ul className="space-y-1.5">
+            <ul className="grid grid-cols-2 gap-2">
               {Object.entries(MyWebsites).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -170,14 +185,15 @@ export function FooterSectionMobile() {
                   label={data.name}
                   icon={data.icon}
                   external
+                  compact
                 />
               ))}
             </ul>
           </section>
 
-          <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5 sm:col-span-2">
+          <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5">
             <ColumnHeading>Social Media</ColumnHeading>
-            <ul className="grid gap-1.5 sm:grid-cols-2">
+            <ul className="grid grid-cols-2 gap-2">
               {Object.entries(SocialMedia).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -185,14 +201,15 @@ export function FooterSectionMobile() {
                   label={key}
                   icon={data.icon}
                   external
+                  compact
                 />
               ))}
             </ul>
           </section>
 
-          <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5 sm:col-span-2">
+          <section className="rounded-2xl border border-[#2f2923] bg-[#161311]/40 p-5">
             <ColumnHeading>Coding</ColumnHeading>
-            <ul className="grid gap-1.5 sm:grid-cols-2">
+            <ul className="grid grid-cols-2 gap-2">
               {Object.entries(CodingProfiles).map(([key, data]) => (
                 <NavLink
                   key={key}
@@ -200,6 +217,7 @@ export function FooterSectionMobile() {
                   label={key}
                   icon={data.icon}
                   external
+                  compact
                 />
               ))}
             </ul>

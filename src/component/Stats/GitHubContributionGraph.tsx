@@ -1,6 +1,13 @@
 "use client";
 
-import { Award, Calendar, ExternalLink, Flame, GitCommit } from "lucide-react";
+import {
+  Award,
+  Calendar,
+  ChevronDown,
+  ExternalLink,
+  Flame,
+  GitCommit,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -271,8 +278,31 @@ export function GitHubContributionGraph({
           </div>
         </div>
 
-        {/* Year Selector Tabs */}
-        <div className="flex items-center gap-1.5 p-1 bg-[#1e1a16] rounded-xl border border-[#2f2923] shrink-0">
+        {/* Year Selector: Mobile Dropdown (< sm) */}
+        <div className="sm:hidden w-full relative">
+          <select
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+            className="w-full appearance-none bg-[#1e1a16] border border-[#2f2923] text-[#f3ebdd] font-mono text-xs rounded-xl px-3.5 py-2.5 pr-8 focus:outline-none focus:border-[#d9a55b]/60 transition-colors cursor-pointer"
+            aria-label="Select contribution year"
+          >
+            {availableYears.map((year) => (
+              <option
+                key={year}
+                value={year}
+                className="bg-[#161311] text-[#f3ebdd]"
+              >
+                {year} Contributions
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#d9a55b]">
+            <ChevronDown className="w-3.5 h-3.5" />
+          </div>
+        </div>
+
+        {/* Year Selector: Desktop Tabs (sm+) */}
+        <div className="hidden sm:flex items-center gap-1.5 p-1 bg-[#1e1a16] rounded-xl border border-[#2f2923] shrink-0">
           {availableYears.map((year) => {
             const isActive = year === selectedYear;
             return (
@@ -341,10 +371,10 @@ export function GitHubContributionGraph({
 
       {/* Calendar Heatmap Container */}
       <div className="relative w-full overflow-x-auto pb-2 scrollbar-thin">
-        <div className="w-full select-none" style={{ minWidth: "640px" }}>
+        <div className="w-max min-w-full select-none">
           {/* Months Header */}
           <div className="flex text-[11px] text-[#8e8374] font-mono mb-2 pl-8">
-            <div className="grid grid-flow-col auto-cols-[13px] gap-[3px] w-full relative h-4">
+            <div className="relative h-4 w-full">
               {monthHeaders.map((m) => (
                 <span
                   key={`${m.label}-${m.weekIdx}`}
@@ -358,7 +388,7 @@ export function GitHubContributionGraph({
           </div>
 
           {/* Days Grid with Weekday Labels on Left */}
-          <div className="flex gap-2 items-start w-full">
+          <div className="flex gap-2 items-start">
             {/* Weekday labels */}
             <div className="grid grid-rows-7 gap-[3px] text-[10px] text-[#8e8374] font-mono pt-[1px] select-none w-6 shrink-0">
               {DAY_LABELS.map((day) => (
@@ -368,12 +398,12 @@ export function GitHubContributionGraph({
               ))}
             </div>
 
-            {/* Weeks columns — fill remaining width */}
-            <div className="flex gap-[3px] flex-1">
+            {/* Weeks columns */}
+            <div className="flex gap-[3px]">
               {weeks.map((week) => (
                 <div
                   key={week.id}
-                  className="grid grid-rows-7 gap-[3px] flex-1"
+                  className="grid grid-rows-7 gap-[3px] w-[13px] shrink-0"
                 >
                   {week.days.map((day) => {
                     const isHovered =
